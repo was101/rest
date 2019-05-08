@@ -8,9 +8,9 @@ public class DBUtil {
 		Connection conn = null;
 		
 		
-		String url = "jdbc:mysql://127.0.0.1:3306/rest?CharacterEncording=UTF-8&serverTimezone=UTC&useSSL=false";
-		String id = "Rest_id";
-		String pass = "rest123@";
+		String url = "jdbc:mysql://eungho77.ipdisk.co.kr:3306/rest?CharacterEncording=UTF-8&serverTimezone=UTC&useSSL=false";
+		String id = "keh_as";
+		String pass = "anfakdch45!";
 		try {
 			conn = DriverManager.getConnection(url, id, pass);
 		} catch (SQLException e) {
