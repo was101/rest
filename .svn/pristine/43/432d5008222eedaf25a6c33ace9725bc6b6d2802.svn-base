@@ -1,0 +1,94 @@
+package com.rest.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+//--------------암&복호화
+import org.apache.tomcat.util.codec.binary.Base64;
+
+import java.security.*;
+import javax.crypto.*;
+import javax.crypto.spec.*;
+//--------------암&복호화 end
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.rest.DAO.UserDAO;
+import com.rest.VO.UserVO;
+
+/**
+ * Servlet implementation class Test
+ */
+@WebServlet("/Test")
+public class Test extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    /**
+     * Default constructor. 
+     */
+    public Test() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		UserDAO dao = new UserDAO();
+		String nickname = request.getParameter("nickname");
+		String pw = request.getParameter("pw");
+		
+
+		System.out.println("원본암호: " + pw);
+		
+		//-----------암호화
+		try {
+			// 256bit = 32byte  ----------AES
+			String strPassWord = "12345678901234567890123456789012";	//암호화 키
+			String strIv = "1234567890123456";	//암호화방식 그룹키
+
+			SecretKey clsKey = new SecretKeySpec( strPassWord.getBytes(), "AES" );
+			IvParameterSpec clsIV = new IvParameterSpec( strIv.getBytes() );
+
+			Cipher clsCipher = Cipher.getInstance( "AES/CBC/PKCS5Padding" );
+			//AES end
+
+			String base_Enc = encrypt(pw);	//base64 암호화
+			System.out.println("base64 암호화결과: " + base_Enc);
+
+			clsCipher.init( Cipher.ENCRYPT_MODE, clsKey, clsIV );
+			byte [] aes_Enc = clsCipher.doFinal( base_Enc.getBytes("utf-8") );	//AES256 암호화
+
+			System.out.println("AES256 암호화 결과: " + new String(aes_Enc, "utf8"));
+			pw = new String(aes_Enc, "utf8");
+		} catch(NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
+				e)
+		{
+			e.printStackTrace();
+		}
+		//-----------암호화
+		
+		if(dao.confirmNick(nickname, pw)) response.getWriter().write("true");
+		else response.getWriter().write("false");
+		}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	//-----------base64 암호화
+	public static String encrypt(String in)
+	{
+		return new String(Base64.encodeBase64(in.getBytes()));
+	}
+	//-----------base64 암호화 end
+}

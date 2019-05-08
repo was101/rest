@@ -1,0 +1,69 @@
+package com.rest.DAO;
+
+import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.rest.VO.ReservationVO;
+
+import Util.DBUtil;
+
+
+public class ReservationDAO {
+
+	Connection conn;
+	Statement st; 
+	PreparedStatement ps;
+	ResultSet rs;
+	int result = 0;
+	
+	public int reservationList(String time, int rm_no, String pw, String nickname) {
+		ReservationVO vo = new ReservationVO();
+		conn = DBUtil.dbconnect();
+		String sql = "INSERT INTO Reservation (Time, Rm_no, Nickname, Pw) VALUES(?,?,?,?,?)";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, time);
+			ps.setInt(2, rm_no);
+			ps.setString(3, pw);
+			ps.setString(4, nickname);
+			result = ps.executeUpdate();
+			return result;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return result;
+	}
+	
+	public List<ReservationVO> all() {
+		ArrayList<ReservationVO> vlist = new ArrayList<>();
+		ReservationVO vo;
+		conn = DBUtil.dbconnect();
+		String sql = "SELECT * from reservation";
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				vo = new ReservationVO();
+				vo.setRm_id(rs.getInt(1));
+				vo.setTime(rs.getString(2));
+				vo.setRm_no(rs.getInt(3));
+				vo.setPw(rs.getString(4));
+				vo.setNickname(rs.getString(5));
+				vlist.add(vo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return vlist;
+	}
+	
+}

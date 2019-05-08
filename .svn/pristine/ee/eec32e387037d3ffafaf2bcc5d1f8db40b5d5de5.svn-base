@@ -1,0 +1,6 @@
+<meta charset="UTF-8">
+<div>
+<div class="Header">알림창</div>
+<div class="Body">알림~~~~~~~~~~~</div>
+<div class="footer"><button>닫기</button></div>
+</div>

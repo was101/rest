@@ -1,0 +1,104 @@
+package com.rest.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+//--------------암&복호화
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.omg.IOP.Encoding;
+
+import java.security.*;
+import javax.crypto.*;
+import javax.crypto.spec.*;
+//--------------암&복호화 end
+
+import com.rest.DAO.UserDAO;
+
+/**
+ * Servlet implementation class FindPW
+ */
+@WebServlet("/FindPW")
+public class FindPW extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FindPW() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		UserDAO dao = new UserDAO();
+
+		cryp a = new cryp();
+		
+		String nickname = request.getParameter("nickname");
+		String email = request.getParameter("email");
+		String pw = dao.findPW(nickname, email);
+		
+		//---------복호화
+//		try {
+//			// 256bit = 32byte  ----------AES
+//			String strPassWord = "12345678901234567890123456789012";	//암호화 키
+//			String strIv = "1234567890123456";	//암호화방식 그룹키
+//
+//			SecretKey clsKey = new SecretKeySpec( strPassWord.getBytes(), "AES" );
+//			IvParameterSpec clsIV = new IvParameterSpec( strIv.getBytes() );
+//
+//			Cipher clsCipher = Cipher.getInstance( "AES/CBC/PKCS5Padding" );
+//			//AES end
+//
+//			clsCipher.init( Cipher.DECRYPT_MODE, clsKey, clsIV );
+//			byte[] aes_Dec = clsCipher.doFinal(pw.getBytes());	//AES256 복호화
+//
+//			String aes_Dec_Utf8 = new String(aes_Dec, "utf8");	//utf8변환
+//			System.out.println("AES256 복호화 결과: " + aes_Dec_Utf8);
+//
+//			String base_Dec = decrypt(aes_Dec_Utf8);	//base64 복호화
+//			System.out.println("11최종 복호화결과: " + base_Dec);
+//			pw = base_Dec;
+//			System.out.println("결과: " + pw);
+//			System.out.println("결과: " + pw);
+//			System.out.println("결과: " + pw);
+//		} catch(NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException
+//				e)
+//		{
+//			System.out.println("결과: " + pw);
+//			e.printStackTrace();
+//		}
+		//---------복호화End
+		
+		try {
+			response.getWriter().write(a.run_decrypt(pw));
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+	//-------base64 복호화
+	public static String decrypt(String in) throws IOException
+	{
+		return new String(Base64.decodeBase64(in.getBytes())); 
+	}
+	//-------base64 복호화 end
+}
