@@ -44,7 +44,7 @@ public class ReservationDAO {
 		ArrayList<ReservationVO> vlist = new ArrayList<>();
 		ReservationVO vo;
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT * from reservation where rm_no=?";
+		String sql = "SELECT * from Reservation where rm_no=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, rm_no);
@@ -68,7 +68,7 @@ public class ReservationDAO {
 	
 	public int findRes(String nickname, String time) {
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT rm_id from reservation where nickname=? and time=?";
+		String sql = "SELECT rm_id from Reservation where nickname=? and time=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, nickname);

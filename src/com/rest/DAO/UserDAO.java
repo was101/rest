@@ -30,7 +30,7 @@ public class UserDAO {
 	public UserVO getUser(String nickname) {
 		UserVO vo = null;
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT * from user where nickname=?";
+		String sql = "SELECT * from User where nickname=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, nickname);
@@ -52,7 +52,7 @@ public class UserDAO {
 
 	public int signUp(String nickname, String password, String email) {
 		conn = DBUtil.dbconnect();
-		String sql = "INSERT INTO USER VALUES(?,?,?)";
+		String sql = "INSERT INTO User VALUES(?,?,?)";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, nickname);
@@ -70,7 +70,7 @@ public class UserDAO {
 	
 	public boolean confirmNick(String nickname, String pw) {
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT nickname from user where nickname=? and pw=?";
+		String sql = "SELECT nickname from User where nickname=? and pw=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1,  nickname);
@@ -89,7 +89,7 @@ public class UserDAO {
 	public String findNick(String email) {
 		String nickName = "";
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT nickname from user where Email=?";
+		String sql = "SELECT nickname from User where Email=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, email + "@openhands.co.kr");
@@ -108,7 +108,7 @@ public class UserDAO {
 	public String findPW(String nickname, String email) throws IOException {
 		String pw = "";
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT pw from user where nickname=? and email=?";
+		String sql = "SELECT pw from User where nickname=? and email=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, nickname);
@@ -127,7 +127,7 @@ public class UserDAO {
 	
 	public boolean duplNick(String nickname) {
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT nickname from user where nickname=?";
+		String sql = "SELECT nickname from User where nickname=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1,  nickname);
