@@ -1,6 +1,7 @@
 package com.rest.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,25 +34,24 @@ public class Reservation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		
 		HttpSession session = request.getSession();
 		ReservationDAO dao = new ReservationDAO();
 		ReservationVO vo = new ReservationVO();
+		ArrayList<Integer> num = dao.resCheck((String)session.getAttribute("nickname"));
 		
 		// vo객체로 데이터 저장
-		System.out.println("nickname : " + session.getAttribute("nickname"));
-		System.out.println("pw : " + session.getAttribute("pw"));
-		System.out.println("time : " + request.getParameter("time"));
-		System.out.println("rm_no : " + request.getParameter("rm_no"));
 		vo.setNickname((String)session.getAttribute("nickname"));
 		vo.setTime((String)request.getParameter("time"));
 		vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no")));
 		vo.setPw((String)session.getAttribute("pw"));
-		System.out.println(vo);
+		
+		// DB 조회
+		if(num.size() <= 2) {
+			System.out.println(num.size());
 		// DB에 저장
 		dao.reservation(vo);
-		System.out.println("이거슨 rm_id : " + dao.getID(vo.getTime(), vo.getNickname()));
 		response.getWriter().write(dao.getID(vo.getTime(), vo.getNickname())+"");
+		}else response.getWriter().write("x");
 		
 	}
 

@@ -88,13 +88,15 @@ li.active a, .show>.nav-link {
 	margin: 0px;
 	padding: 0px;
 }
+
 #calendar {
-	width:1200px;
+	width: 1200px;
 	margin: 0 150px;
-	position:relative;
-	top:50%;
-	left:20%;
+	position: relative;
+	top: 50%;
+	left: 20%;
 }
+
 room {
 	
 }
@@ -144,12 +146,15 @@ room {
 	outline: 0;
 	border: 0;
 }
+
 .header {
 	
 }
+
 .body {
 	
 }
+
 .footer {
 	
 }
@@ -184,31 +189,42 @@ $(document).ready(function() {
 				type: 'post',
 				url: 'Reservation',
 				data: {
-					"time": "title : '<%=request.getSession().getAttribute("nickname") %>'"  + ",start : '" + info.startStr + "',end : '" + info.endStr + "'",
+					"time": "title : '<%=request.getSession().getAttribute("nickname")%>'"  + ",start : '" + info.startStr + "',end : '" + info.endStr + "'",
 					"rm_no": rm_no
 				},
 			success: function(result) {
+				if(result == "x") {
+					alert("2번 이상 예약할 수 없습니다.");
+				}else {
+					
 			calendar.addEvent({
 				id:result,
-				title:"<%=request.getSession().getAttribute("nickname") %>",
+				title:"<%=request.getSession().getAttribute("nickname")%>",
 				start: info.startStr,
 				end : info.endStr
 			});
+				}
 			}
 			});
 			}
 		},
 		eventClick: function(info) {
-			var deleteCheck = confirm("예약을 취소 하시겠습니까?");
-			if(deleteCheck) {
-			$.ajax({
-				type: 'post',
-				url: 'Delete',
-				data: {
-					"rm_id": info.event.id
-				},
-			});
-			info.event.remove();
+			if(info.event.title == "<%=request.getSession().getAttribute("nickname")%>") {
+				var deleteCheck = confirm("예약을 취소 하시겠습니까?");
+				if(deleteCheck) {
+					$.ajax({
+						type: 'post',
+						url: 'Delete',
+						data: {
+							"rm_id": info.event.id,
+							"nickname" : info.event.title
+						},
+					});
+					info.event.remove();
+				}
+			}
+			else {
+				alert("예약자가 다릅니다.");
 			}
 		},
       	header: {
@@ -255,21 +271,21 @@ $(document).ready(function() {
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">편의기능</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">delacourt(식당메뉴)</a>
-						<a class="dropdown-item" href="#">회의실 예약 시스템</a>
-							<a class="dropdown-item" href="#">회의실 예약 시스템</a>
+						<a class="dropdown-item" href="#">delacourt(식당메뉴)</a> <a
+							class="dropdown-item" href="#">회의실 예약 시스템</a> <a
+							class="dropdown-item" href="#">회의실 예약 시스템</a>
 					</div></li>
-					<!-- <li class="nav-item" style="float:right;"><a class="nav-link" href="#">로그아웃</a></li> -->
+				<li class="nav-item" style="position: relative; right: 0;"><a
+					class="nav-link" href="Logout">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
-	<div style="text-align: center;margin-top:20px;">
+	<div style="text-align: center; margin-top: 20px;">
 		<button class="room rm1" value="1"></button>
 		<button class="room rm2" value="2"></button>
 		<button class="room rm3" value="3"></button>
 	</div>
 	<div id='calendar'></div>
-	<div class="alert">
-	</div>
+	<div class="alert"></div>
 </body>
 </html>

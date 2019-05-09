@@ -121,4 +121,25 @@ public class ReservationDAO {
 		return rm_id;
 	}
 	
+	public ArrayList<Integer> resCheck(String nickname) {
+		ArrayList<Integer> numArr = new ArrayList<>();
+		int rm_id = 0;
+		conn = DBUtil.dbconnect();
+		String sql = "SELECT rm_id from reservation where nickname=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, nickname);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				rm_id = rs.getInt(1);
+				numArr.add(rm_id);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return numArr;
+	}
+	
 }

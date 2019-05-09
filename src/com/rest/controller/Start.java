@@ -39,7 +39,8 @@ public class Start extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect("Calendar");
+			RequestDispatcher rd = request.getRequestDispatcher("Calendar");
+			rd.forward(request, response);
 		}
 	}
 
