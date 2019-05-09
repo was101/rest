@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>openhands 잠실 동관 휴게실 예약 시스템</title>
+<title>휴게실 예약 시스템</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 <link href="./fullCalendar/core/main.min.css" rel="stylesheet">

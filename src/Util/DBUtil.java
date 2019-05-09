@@ -10,7 +10,7 @@ public class DBUtil {
 		
 		String url = "jdbc:mysql://eungho77.ipdisk.co.kr:3306/rest?CharacterEncording=UTF-8&serverTimezone=UTC&useSSL=false";
 		String id = "keh_as";
-		String pass = "anfakdch45!";
+		String pass = "";
 		try {
 			conn = DriverManager.getConnection(url, id, pass);
 		} catch (SQLException e) {
