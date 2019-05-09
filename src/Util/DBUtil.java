@@ -8,10 +8,16 @@ public class DBUtil {
 		Connection conn = null;
 		
 		
-		String url = "jdbc:mysql://eungho77.ipdisk.co.kr:3306/rest?CharacterEncording=UTF-8&serverTimezone=UTC&useSSL=false";
+		String url = "jdbc:mysql://eungho77.ipdisk.co.kr:3306/rest?serverTimezone=Asia/Seoul";
 		String id = "keh_as";
 		String pass = "personal1234!@";
 		try {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			conn = DriverManager.getConnection(url, id, pass);
 		} catch (SQLException e) {
 			System.out.println("Driver Connect Fail");
