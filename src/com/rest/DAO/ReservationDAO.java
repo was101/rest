@@ -85,4 +85,40 @@ public class ReservationDAO {
 		return -1;
 	}
 	
+	public int delete(int rm_id) {
+		conn = DBUtil.dbconnect();
+		String sql = "DELETE FROM reservation WHERE rm_id=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, rm_id);
+			result = ps.executeUpdate();
+			return result;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return result;
+	}
+	
+	public int getID(String time, String nickname) {
+		conn = DBUtil.dbconnect();
+		int rm_id = 0;
+		String sql = "SELECT * FROM reservation WHERE time=? AND nickname=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, time);
+			ps.setString(2, nickname);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				rm_id = rs.getInt(1);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return rm_id;
+	}
+	
 }

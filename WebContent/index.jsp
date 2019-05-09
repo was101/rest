@@ -88,10 +88,13 @@ li.active a, .show>.nav-link {
 	margin: 0px;
 	padding: 0px;
 }
-/* #calendar {
-	max-width:1200px;
+#calendar {
+	width:1200px;
 	margin: 0 150px;
-} */
+	position:relative;
+	top:50%;
+	left:20%;
+}
 room {
 	
 }
@@ -159,11 +162,11 @@ $(document).ready(function() {
     var rm_no = 1;
 	
     var calendar = new FullCalendar.Calendar(calendarEl, {
-    	height: 915,
+    	height: 550,
     	themeSystem:'bootstrap',
     	plugins: [ 'interaction', 'timeGrid', 'bootstrap' ],
     	locale: 'ko',
-    	defaultView: 'timeGridWeek',
+    	defaultView: 'timeGridDay',
     	selectable: true,
     	allDaySlot:false,
     	minTime:"08:00:00",
@@ -175,6 +178,8 @@ $(document).ready(function() {
     	slotDuration: '00:20:00',
       	hiddenDays: [0, 6],
 		select: function(info) {
+			var reservationCheck = confirm(info.start.getHours() + "시 " + info.start.getMinutes() +"분에 예약하시겠습니까?");
+			if(reservationCheck) {
 			$.ajax({
 				type: 'post',
 				url: 'Reservation',
@@ -183,26 +188,35 @@ $(document).ready(function() {
 					"rm_no": rm_no
 				},
 			success: function(result) {
-				
-			}
-			});
-			alert("<%=request.getRemoteAddr()%>" + "\n닉네임 : " + "<%=request.getSession().getAttribute("nickname") %>" + "\nstart : " + info.startStr + "\nEnd : " + info.endStr);
 			calendar.addEvent({
+				id:result,
 				title:"<%=request.getSession().getAttribute("nickname") %>",
 				start: info.startStr,
 				end : info.endStr
 			});
+			}
+			});
+			}
 		},
 		eventClick: function(info) {
-			alert('Event: ' + info.event.title);
-		    alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-		    alert('View: ' + info.view.type);
+			var deleteCheck = confirm("예약을 취소 하시겠습니까?");
+			if(deleteCheck) {
+			$.ajax({
+				type: 'post',
+				url: 'Delete',
+				data: {
+					"rm_id": info.event.id
+				},
+			});
+			info.event.remove();
+			}
 		},
       	header: {
         	left: 'prev today next',
         	center: 'title',
-        	right: 'timeGridWeek'
+        	right: 'timeGridDay'
 		},
+		resourceLabelText: "Rooms",
 		events : [${time}]
 	});
 

@@ -50,7 +50,7 @@ public class ReservationVO {
 		this.nickname = nickname;
 	}
 	public String toString() {
-		return "{" + getTime() + "}";
+		return "{" + "id : " + getRm_id() + ", " + getTime() + "}";
 	}
 	
 }
