@@ -8,7 +8,7 @@ public class DBUtil {
 		Connection conn = null;
 		
 		
-		String url = "jdbc:mysql://eungho77.ipdisk.co.kr:3306/rest?CharacterEncording=UTF-8&serverTimezone=UTC&useSSL=false";
+		String url = "jdbc:mysql://eungho77.ipdisk.co.kr:3306/rest";
 		String id = "keh_as";
 		String pass = "";
 		try {
