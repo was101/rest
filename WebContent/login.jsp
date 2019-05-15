@@ -23,6 +23,7 @@
 	height: 100%;
 	background-color: #ffffff;
 	margin: 0;
+	border: none;
 }
 
 #instance .demo {
@@ -463,9 +464,9 @@ $(document).ready(function() {
     
     <script>
         bind('#instance', function () {
-            return new JParticles.particle('#instance .demo', {
+            return new JParticles.particle('#instance', {
                 color: '#5cbdaa',
-                parallax: true,
+                parallax: false,
                 parallaxStrength: 1
             });
         });
