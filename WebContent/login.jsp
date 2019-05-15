@@ -11,8 +11,38 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="./particles/jparticles.js"></script>
+<script src="./particles/particle.js"></script>
+    
 <title>휴게실 예약 시스템</title>
 <style>
+
+#instance {
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	margin: 0;
+}
+
+#instance .demo {
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	margin: 0;
+	border: none;
+}
+
+.btn-box {
+	text-align: center;
+}
+
+.btn {
+	margin: 20px 5px;
+	font-size: 20px;
+}
+
+
 @font-face {
 	font-family: 'Nanum Square';
 	src: url('./images/NANUMSQUAREEB.eot') format('embedded-opentype'),
@@ -25,63 +55,76 @@
 		format('embedded-opentype'), url('./images/NANUMBARUNGOTHICLIGHT.TTF')
 		format('truetype');
 }
+
 @font-face {
 	font-family: 'NBG';
-	font-weight:bold;
-	src: url('./images/NANUMBARUNGOTHICBOLD.eot') format('embedded-opentype'),
-		 url('./images/NANUMBARUNGOTHICBOLD.TTF') format('truetype');
+	font-weight: bold;
+	src: url('./images/NANUMBARUNGOTHICBOLD.eot')
+		format('embedded-opentype'), url('./images/NANUMBARUNGOTHICBOLD.TTF')
+		format('truetype');
 }
 
 body {
 	font-family: 'NBG';
 }
-.nickname{
-	background-image:url('./images/person.png');
-	background-repeat:no-repeat;
-	background-position:15px center;
+
+.nickname {
+	background-image: url('./images/person.png');
+	background-repeat: no-repeat;
+	background-position: 15px center;
 }
-.password{
-	background-image:url('./images/lock.png');
-	background-repeat:no-repeat;
-	background-position:15px center;
+
+.password {
+	background-image: url('./images/lock.png');
+	background-repeat: no-repeat;
+	background-position: 15px center;
 	margin-top: 25px;
 }
+
 .nickname, .password {
-	border-image: linear-gradient(to right, RGB(7, 152, 207),RGB(132, 125, 175), RGB(245, 101, 146));
+	border-image: linear-gradient(to right, RGB(7, 152, 207),
+		RGB(132, 125, 175), RGB(245, 101, 146));
 	border-image-slice: 1;
 	padding: 10px 10px 10px 50px;
 	margin-left: 50px;
 	width: 455px;
 	border-width: 4px;
 }
+
 .findPW {
 	border-style: solid;
-	border-image: linear-gradient(to right, RGB(7, 152, 207),RGB(132, 125, 175), RGB(245, 101, 146));
+	border-image: linear-gradient(to right, RGB(7, 152, 207),
+		RGB(132, 125, 175), RGB(245, 101, 146));
 	border-image-slice: 1;
-	border-width:2px 0 0 0;
+	border-width: 2px 0 0 0;
 }
+
 .findPW, .findID {
-	padding:20px;
+	padding: 20px;
 }
+
 .nickname:focus, .password:focus {
-	background-color:#E8FFFF;
+	background-color: #E8FFFF;
 }
+
 .signNick, .signPW, .REsignPW {
 	width: 290px;
 	margin-top: 5px;
-	padding : 5px;
+	padding: 5px;
 	margin-left: 10px;
-	margin-bottom:1px;
+	margin-bottom: 1px;
 }
+
 .signEmail {
 	width: 145px;
-	padding : 5px;
-	margin:5px 5px 1px 10px;
+	padding: 5px;
+	margin: 5px 5px 1px 10px;
 }
+
 input[type="checkbox"] {
 	background-position: top right;
 	background-repeat: no-repeat;
-	display:none;
+	display: none;
 }
 
 h1 {
@@ -97,9 +140,11 @@ h1 {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+
 label {
-	margin-left:50px;
+	margin-left: 50px;
 }
+
 .login {
 	font-family: 'Nanum Square';
 	width: 455px;
@@ -111,92 +156,119 @@ label {
 	margin-left: 50px;
 	margin-top: 10px;
 	font-size: 35px;
-	border:0;
-	outline:0;
+	border: 0;
+	outline: 0;
 }
+
 .signUp, .find {
 	cursor: pointer;
 }
+
 .modal-header {
-	background: linear-gradient(to right, RGB(7, 152, 207),RGB(132, 125, 175), RGB(245, 101, 146));
-	height:40px;
-	padding:10px 10px 5px 10px;
+	background: linear-gradient(to right, RGB(7, 152, 207),
+		RGB(132, 125, 175), RGB(245, 101, 146));
+	height: 40px;
+	padding: 10px 10px 5px 10px;
 }
-.modal-title{
-	font-size:17px;
-	font-weight:bold;
+
+.modal-title {
+	font-size: 17px;
+	font-weight: bold;
 }
+
 .modal-body {
-	padding:10px 20px 20px 20px;
+	padding: 10px 20px 20px 20px;
 }
+
 .modal-content {
-	width:462px;position: absolute;top:46.3%;left:45.4%;transform: translate(-50%, -50%);
+	width: 462px;
+	position: absolute;
+	top: 46.3%;
+	left: 45.4%;
+	transform: translate(-50%, -50%);
 }
-input[type=checkbox] + label {
-    left:0; padding:5px 0 5px 38px; background:url('./images/circle.png') no-repeat;
+
+input[type=checkbox]+label {
+	left: 0;
+	padding: 5px 0 5px 38px;
+	background: url('./images/circle.png') no-repeat;
 }
-input[type=checkbox]:checked + label { background-image: url('./images/circle+check.png'); }
+
+input[type=checkbox]:checked+label {
+	background-image: url('./images/circle+check.png');
+}
+
 .bttn {
-	margin-top:20px;
-	border-radius:5px;
-	width:60px;
-	border:1px solid gray;
-	outline:0;
+	margin-top: 20px;
+	border-radius: 5px;
+	width: 60px;
+	border: 1px solid gray;
+	outline: 0;
 }
+
 .cancel {
-	margin-left:30px;
+	margin-left: 30px;
 }
+
 .sign {
-	margin-left:120px;
+	margin-left: 120px;
 }
+
 .X {
-	border:0;
-	outline:0;
-	padding:0 0 0 0;
-	background-color:lightgray;
-	opacity:1;
-	border-radius:100%;
-	width:20px;
-	height:20px;
-	font-size:15px;
-	font-weight:bold;
+	border: 0;
+	outline: 0;
+	padding: 0 0 0 0;
+	background-color: lightgray;
+	opacity: 1;
+	border-radius: 100%;
+	width: 20px;
+	height: 20px;
+	font-size: 15px;
+	font-weight: bold;
 }
-.signText{
-	width:120px;
+
+.signText {
+	width: 120px;
 }
+
 .alheader, .fnheader {
-	background-image:linear-gradient(to right, RGB(7, 152, 207),RGB(132, 125, 175), RGB(245, 101, 146));
-	width:482px;
-    height: 40px;
-    color:white;
-    padding: 5px;
-    font-size: 20px;
-    font-weight:bold;
+	background-image: linear-gradient(to right, RGB(7, 152, 207),
+		RGB(132, 125, 175), RGB(245, 101, 146));
+	width: 482px;
+	height: 40px;
+	color: white;
+	padding: 5px;
+	font-size: 20px;
+	font-weight: bold;
 }
+
 .alertbody {
-	padding-top:10px;
-    text-align: center;
+	padding-top: 10px;
+	text-align: center;
 }
+
 .alX {
-    position: absolute;
-    left:95%;
-    border-radius: 100%;
-    border:0;
-    width: 20px;
-    height:20px;
-    font-size:15px;
-    font-weight:bold;
-    margin: 3px 0 0 0;
-    padding:0;
+	position: absolute;
+	left: 95%;
+	border-radius: 100%;
+	border: 0;
+	width: 20px;
+	height: 20px;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 3px 0 0 0;
+	padding: 0;
 }
+
 .IDC {
-	color:RGB(217, 93, 93);
-	padding-top:5px;
-	margin-left:123px;
+	color: RGB(217, 93, 93);
+	padding-top: 5px;
+	margin-left: 123px;
 	height: 29px;
 }
+
 .pass {
-	color:RGB(40, 186, 141);
+	color: RGB(40, 186, 141);
 }
 </style>
 <script>
@@ -377,13 +449,27 @@ $(document).ready(function() {
 			$('.FindMain').show();
 		}
 	});
-	
+
 	/* 	$('.')  /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/ */
 	
 });
+
 </script>
 </head>
 <body>
+    <script src="./particles/event.js"></script>
+    <div id="instance">
+    </div>
+    
+    <script>
+        bind('#instance', function () {
+            return new JParticles.particle('#instance .demo', {
+                color: '#5cbdaa',
+                parallax: true,
+                parallaxStrength: 1
+            });
+        });
+    </script>
 	<div style="position: absolute;top:45%;left:50%;transform: translate(-50%, -50%);width:600px;height:400px;">
 		<svg height="130" width="520">
   <defs>

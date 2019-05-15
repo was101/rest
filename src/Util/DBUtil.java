@@ -10,7 +10,7 @@ public class DBUtil {
 		
 		String url = "jdbc:mysql://eungho77.ipdisk.co.kr:3306/rest?serverTimezone=Asia/Seoul";
 		String id = "keh_as";
-		String pass = "personal1234!@";
+		String pass = "";
 		try {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
