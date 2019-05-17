@@ -29,7 +29,17 @@
 <script src="./fullCalendar/timegrid/main.min.js"></script>
 <script src='./fullCalendar/core/locales-all.min.js'></script>
 <script src="./fullCalendar/bootstrap/main.min.js"></script>
+
+<script src="./particles/jparticles.js"></script>
+<script src="./particles/particle.js"></script>
+
 <style>
+
+#instance {
+	width: 100%;
+	height: 100%;
+}
+
 @font-face {
 	font-family: 'Nanum Square';
 	src: url('./images/NANUMSQUAREEB.eot') format('embedded-opentype'),
@@ -258,6 +268,30 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+
+    <script src="./particles/event.js"></script>
+    <div id="instance" style="position: fixed">
+    <canvas class="instance" width="1920" height="1080" style="width: 100%; height: 100%;"></canvas></div>
+    <script>
+        bind('#instance', function () {
+            return new JParticles.particle('#instance',
+            {
+             color: ['#0798CF','#847daf','#f56592'],
+             num: .05,
+                range: 2000,
+                maxR: 2.5,
+                minR: 2.5,
+                lineWidth: .5,
+                maxSpeed: 0.05,
+                proximity: 100,
+                parallax: false,
+                parallaxStrength: 1,
+                parallaxLayer: [1, 3, 5, 7]
+                
+            });
+        });
+    </script>
+    
 	<div class="jumbotron text-center" style="margin-bottom: 0">
 		<h1 class="text-white" style="font-size: 65px;">휴게실 예약 시스템</h1>
 	</div>

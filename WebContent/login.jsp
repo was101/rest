@@ -21,28 +21,7 @@
 #instance {
 	width: 100%;
 	height: 100%;
-	background-color: #ffffff;
-	margin: 0;
-	border: none;
 }
-
-#instance .demo {
-	width: 100%;
-	height: 100%;
-	background-color: #ffffff;
-	margin: 0;
-	border: none;
-}
-
-.btn-box {
-	text-align: center;
-}
-
-.btn {
-	margin: 20px 5px;
-	font-size: 20px;
-}
-
 
 @font-face {
 	font-family: 'Nanum Square';
@@ -458,19 +437,30 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+
     <script src="./particles/event.js"></script>
-    <div id="instance">
-    </div>
-    
+    <div id="instance" style="position: fixed">
+    <canvas class="instance" width="1920" height="1080" style="width: 100%; height: 100%;"></canvas></div>
     <script>
         bind('#instance', function () {
-            return new JParticles.particle('#instance', {
-                color: '#5cbdaa',
+            return new JParticles.particle('#instance',
+            {
+             color: ['#0798CF','#847daf','#f56592'],
+             num: .05,
+                range: 2000,
+                maxR: 2.5,
+                minR: 2.5,
+                lineWidth: .5,
+                maxSpeed: 0.05,
+                proximity: 100,
                 parallax: false,
-                parallaxStrength: 1
+                parallaxStrength: 1,
+                parallaxLayer: [1, 3, 5, 7]
+                
             });
         });
     </script>
+    
 	<div style="position: absolute;top:45%;left:50%;transform: translate(-50%, -50%);width:600px;height:400px;">
 		<svg height="130" width="520">
   <defs>
