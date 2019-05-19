@@ -35,7 +35,6 @@
 <script src="./particles/event.js"></script>
 
 <style>
-
 #instance {
 	width: 100%;
 	height: 100%;
@@ -105,7 +104,7 @@ li.active a, .show>.nav-link {
 	border-bottom: 0px solid RGB(210, 210, 210);
 	margin: 0px;
 	padding: 0px;
-	float:right;
+	float: right;
 }
 
 #calendar {
@@ -176,7 +175,8 @@ room {
 .footer {
 	
 }
-#calendar rd{
+
+#calendar rd {
 	height: 30px;
 }
 </style>
@@ -299,9 +299,11 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-    <div id="instance" style="position: fixed">
-    <canvas class="instance" width="1920" height="1080" style="width: 100%; height: 100%;"></canvas></div>
-    
+	<div id="instance" style="position: fixed">
+		<canvas class="instance" width="1920" height="1080"
+			style="width: 100%; height: 100%;"></canvas>
+	</div>
+
 	<div class="jumbotron text-center" style="margin-bottom: 0">
 		<h1 class="text-white" style="font-size: 65px;">휴게실 예약 시스템</h1>
 	</div>
@@ -310,22 +312,31 @@ $(document).ready(function() {
 			src="./images/openhands_logo.png" style="width: 110px"></a>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="#">휴게실
-						예약</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">휴게실 예약</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">편의기능</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="#">delacourt(식당메뉴)</a> <a
-							class="dropdown-item" href="#">회의실 예약 시스템</a>
-							<a class="dropdown-item" href="#">전결라인</a>
-					</div>
-				</li>
+							class="dropdown-item" href="#">회의실 예약 시스템</a> <a
+							class="dropdown-item" href="#">전결라인</a>
+					</div></li>
 			</ul>
 		</div>
 		<div class="navbar2">
 			<ul class="navbar-nav">
-				<li class="nav-item" style="position: relative; right: 0;">
-				<a class="nav-link" href="Logout";>로그아웃</a></li>
+				<li class="nav-item dropdown" style="position: relative; right: 0;">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">사용자
+						정보</a>
+					<div class="dropdown-menu" style="position: absolute;left:-100%;">
+						<a class="dropdown-item" href="#">
+							<div>
+							예약 현황<br>
+							오후2시 예약중<br>
+							오후3시 예약중
+							</div>
+						</a> <a class="dropdown-item" href="Logout">로그아웃</a>
+					</div>
+				</li>
 			</ul>
 		</div>
 	</nav>

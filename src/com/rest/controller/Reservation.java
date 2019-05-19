@@ -45,7 +45,7 @@ public class Reservation extends HttpServlet {
 		vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no")));
 		
 		// DB 조회
-		if(num.size() <= 2) {
+		if(num.size() < 2) {
 			System.out.println(num.size());
 		// DB에 저장
 		dao.reservation(vo);
