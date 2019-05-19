@@ -108,6 +108,50 @@ li.active a, .show>.nav-link {
 	padding: 0px;
 }
 
+td {
+	padding: 10px 20px;
+	background-color: white;
+	cursor: pointer;
+	border: 1px solid lightgray;
+}
+
+.t1 .active {
+	background-color: RGB(7, 152, 207);
+}
+
+.t2 .active {
+	background-color: RGB(132, 125, 175);
+}
+
+.t3 .active {
+	background-color: RGB(245, 101, 146);
+}
+
+.default, .disable {
+	background-color: gray;
+}
+
+.notice {
+	padding: 10px;
+	text-align: center;
+	width:100%;
+	height:36px;
+}
+
+.dnotice {
+	width: 1226px;
+	height: 75px;
+	background-color: gray;
+	z-index: 10;
+	position: absolute;
+	opacity: 0.9;
+	color:red;
+	font-family:NBG;
+	font-weight:bold;
+	font-size: 20px;
+	padding:25px;
+	text-align: center;
+}
 /* #calendar {
 	width: 500px;
 	position: relative;
@@ -175,13 +219,6 @@ li.active a, .show>.nav-link {
 #calendar rd {
 	height: 30px;
 }
-
-td {
-	padding: 10px 20px;
-	background-color: lightgray;
-	cursor: pointer;
-	border: 1px solid white;
-}
 </style>
 <script>
 $(document).ready(function() {
@@ -201,7 +238,15 @@ $(document).ready(function() {
             parallaxStrength: 1
         });
     });
-	
+    $('td').click(function () {
+    	if($(this).attr('class').includes('active') || $(this).attr('class').includes('default') || $(this).attr('class').includes('disable')) {
+    		$(this).removeClass("active");
+    	}
+    	else {
+    		$(this).addClass("active");
+    	}
+    });
+});
 	<%-- var calendarEl = document.getElementById('calendar');
 	var date = new Date();
     var rm_no = 1;
@@ -298,7 +343,6 @@ $(document).ready(function() {
 			}
 		});
 	}); */
-});
 </script>
 </head>
 <body>
@@ -343,261 +387,158 @@ $(document).ready(function() {
 		</div>
 	</nav>
 
-	<div class="row d-flex justify-content-center"
-		style="text-align: center; margin-top: 20px;">
-		<div class="p-4">
-			<table class="1">
-				<thead>
-					<tr>
-						<th>AM</th>
-						<th>PM</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="start-6:00end-6:20">6:00</td>
-						<td class="start-12:00end-12:20">12:00</td>
-					</tr>
-					<tr>
-						<td class="start-6:20end-6:40">6:20</td>
-						<td class="start-12:20end-12:40">12:20</td>
-					</tr>
-					<tr>
-						<td class="start-6:40end-7:00">6:40</td>
-						<td class="start-12:40end-1:00">12:40</td>
-					</tr>
-					<tr>
-						<td class="start-7:00end-7:20">7:00</td>
-						<td class="start-1:00end-1:20">1:00</td>
-					</tr>
-					<tr>
-						<td class="start-7:20end-7:40">7:20</td>
-						<td class="start-1:20end-1:40">1:20</td>
-					</tr>
-					<tr>
-						<td class="start-7:40end-8:00">7:40</td>
-						<td class="start-1:40end-2:00">1:40</td>
-					</tr>
-					<tr>
-						<td class="start-8:00end-8:20">8:00</td>
-						<td class="start-2:00end-2:20">2:00</td>
-					</tr>
-					<tr>
-						<td class="start-8:20end-8:40">8:20</td>
-						<td class="start-2:20end-2:40">2:20</td>
-					</tr>
-					<tr>
-						<td class="start-8:40end-9:00">8:40</td>
-						<td class="start-2:40end-3:00">2:40</td>
-					</tr>
-					<tr>
-						<td class="start-9:00end-9:20">9:00</td>
-						<td class="start-3:00end-3:20">3:00</td>
-					</tr>
-					<tr>
-						<td class="start-9:20end-9:40">9:20</td>
-						<td class="start-3:20end-3:40">3:20</td>
-					</tr>
-					<tr>
-						<td class="start-9:40end-10:00">9:40</td>
-						<td class="start-3:40end-4:00">3:40</td>
-					</tr>
-					<tr>
-						<td class="start-10:00end-10:20">10:00</td>
-						<td class="start-4:00end-4:20">4:00</td>
-					</tr>
-					<tr>
-						<td class="start-10:20end-10:40">10:20</td>
-						<td class="start-4:20end-4:40">4:20</td>
-					</tr>
-					<tr>
-						<td class="start-10:40end-11:00">10:40</td>
-						<td class="start-4:40end-5:00">4:40</td>
-					</tr>
-					<tr>
-						<td class="start-11:00end-11:20">11:00</td>
-						<td class="start-5:00end-5:20">5:00</td>
-					</tr>
-					<tr>
-						<td class="start-11:20end-11:40">11:20</td>
-						<td class="start-5:20end-5:40">5:20</td>
-					</tr>
-					<tr>
-						<td class="start-11:40end-12:00">11:40</td>
-						<td class="start-5:40end-6:00">5:40</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="p-4">
-			<table class="2">
-				<thead>
-					<tr>
-						<th>AM</th>
-						<th>PM</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="start-6:00end-6:20">6:00</td>
-						<td class="start-12:00end-12:20">12:00</td>
-					</tr>
-					<tr>
-						<td class="start-6:20end-6:40">6:20</td>
-						<td class="start-12:20end-12:40">12:20</td>
-					</tr>
-					<tr>
-						<td class="start-6:40end-7:00">6:40</td>
-						<td class="start-12:40end-1:00">12:40</td>
-					</tr>
-					<tr>
-						<td class="start-7:00end-7:20">7:00</td>
-						<td class="start-1:00end-1:20">1:00</td>
-					</tr>
-					<tr>
-						<td class="start-7:20end-7:40">7:20</td>
-						<td class="start-1:20end-1:40">1:20</td>
-					</tr>
-					<tr>
-						<td class="start-7:40end-8:00">7:40</td>
-						<td class="start-1:40end-2:00">1:40</td>
-					</tr>
-					<tr>
-						<td class="start-8:00end-8:20">8:00</td>
-						<td class="start-2:00end-2:20">2:00</td>
-					</tr>
-					<tr>
-						<td class="start-8:20end-8:40">8:20</td>
-						<td class="start-2:20end-2:40">2:20</td>
-					</tr>
-					<tr>
-						<td class="start-8:40end-9:00">8:40</td>
-						<td class="start-2:40end-3:00">2:40</td>
-					</tr>
-					<tr>
-						<td class="start-9:00end-9:20">9:00</td>
-						<td class="start-3:00end-3:20">3:00</td>
-					</tr>
-					<tr>
-						<td class="start-9:20end-9:40">9:20</td>
-						<td class="start-3:20end-3:40">3:20</td>
-					</tr>
-					<tr>
-						<td class="start-9:40end-10:00">9:40</td>
-						<td class="start-3:40end-4:00">3:40</td>
-					</tr>
-					<tr>
-						<td class="start-10:00end-10:20">10:00</td>
-						<td class="start-4:00end-4:20">4:00</td>
-					</tr>
-					<tr>
-						<td class="start-10:20end-10:40">10:20</td>
-						<td class="start-4:20end-4:40">4:20</td>
-					</tr>
-					<tr>
-						<td class="start-10:40end-11:00">10:40</td>
-						<td class="start-4:40end-5:00">4:40</td>
-					</tr>
-					<tr>
-						<td class="start-11:00end-11:20">11:00</td>
-						<td class="start-5:00end-5:20">5:00</td>
-					</tr>
-					<tr>
-						<td class="start-11:20end-11:40">11:20</td>
-						<td class="start-5:20end-5:40">5:20</td>
-					</tr>
-					<tr>
-						<td class="start-11:40end-12:00">11:40</td>
-						<td class="start-5:40end-6:00">5:40</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="p-4">
-			<table class="3">
-				<thead>
-					<tr>
-						<th>AM</th>
-						<th>PM</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td class="start-6:00end-6:20">6:00</td>
-						<td class="start-12:00end-12:20">12:00</td>
-					</tr>
-					<tr>
-						<td class="start-6:20end-6:40">6:20</td>
-						<td class="start-12:20end-12:40">12:20</td>
-					</tr>
-					<tr>
-						<td class="start-6:40end-7:00">6:40</td>
-						<td class="start-12:40end-1:00">12:40</td>
-					</tr>
-					<tr>
-						<td class="start-7:00end-7:20">7:00</td>
-						<td class="start-1:00end-1:20">1:00</td>
-					</tr>
-					<tr>
-						<td class="start-7:20end-7:40">7:20</td>
-						<td class="start-1:20end-1:40">1:20</td>
-					</tr>
-					<tr>
-						<td class="start-7:40end-8:00">7:40</td>
-						<td class="start-1:40end-2:00">1:40</td>
-					</tr>
-					<tr>
-						<td class="start-8:00end-8:20">8:00</td>
-						<td class="start-2:00end-2:20">2:00</td>
-					</tr>
-					<tr>
-						<td class="start-8:20end-8:40">8:20</td>
-						<td class="start-2:20end-2:40">2:20</td>
-					</tr>
-					<tr>
-						<td class="start-8:40end-9:00">8:40</td>
-						<td class="start-2:40end-3:00">2:40</td>
-					</tr>
-					<tr>
-						<td class="start-9:00end-9:20">9:00</td>
-						<td class="start-3:00end-3:20">3:00</td>
-					</tr>
-					<tr>
-						<td class="start-9:20end-9:40">9:20</td>
-						<td class="start-3:20end-3:40">3:20</td>
-					</tr>
-					<tr>
-						<td class="start-9:40end-10:00">9:40</td>
-						<td class="start-3:40end-4:00">3:40</td>
-					</tr>
-					<tr>
-						<td class="start-10:00end-10:20">10:00</td>
-						<td class="start-4:00end-4:20">4:00</td>
-					</tr>
-					<tr>
-						<td class="start-10:20end-10:40">10:20</td>
-						<td class="start-4:20end-4:40">4:20</td>
-					</tr>
-					<tr>
-						<td class="start-10:40end-11:00">10:40</td>
-						<td class="start-4:40end-5:00">4:40</td>
-					</tr>
-					<tr>
-						<td class="start-11:00end-11:20">11:00</td>
-						<td class="start-5:00end-5:20">5:00</td>
-					</tr>
-					<tr>
-						<td class="start-11:20end-11:40">11:20</td>
-						<td class="start-5:20end-5:40">5:20</td>
-					</tr>
-					<tr>
-						<td class="start-11:40end-12:00">11:40</td>
-						<td class="start-5:40end-6:00">5:40</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="row d-flex justify-content-center">
+		<table class="t1">
+			<tbody>
+				<tr>
+					<th>AM</th>
+					<td class="start-6:00end-6:20 default">6:00</td>
+					<td class="start-6:20end-6:40 default">6:20</td>
+					<td class="start-6:40end-7:00 default">6:40</td>
+					<td class="start-7:00end-7:20 default">7:00</td>
+					<td class="start-7:20end-7:40 default">7:20</td>
+					<td class="start-7:40end-8:00 default">7:40</td>
+					<td class="start-8:00end-8:20">8:00</td>
+					<td class="start-8:20end-8:40">8:20</td>
+					<td class="start-8:40end-9:00">8:40</td>
+					<td class="start-9:00end-9:20">9:00</td>
+					<td class="start-9:20end-9:40">9:20</td>
+					<td class="start-9:40end-10:00 default">9:40</td>
+					<td class="start-10:00end-10:20">10:00</td>
+					<td class="start-10:20end-10:40">10:20</td>
+					<td class="start-10:40end-11:00">10:40</td>
+					<td class="start-11:00end-11:20">11:00</td>
+					<td class="start-11:20end-11:40">11:20</td>
+					<td class="start-11:40end-12:00">11:40</td>
+				</tr>
+				<tr>
+					<th>PM</th>
+					<td class="start-12:00end-12:20">12:00</td>
+					<td class="start-12:20end-12:40">12:20</td>
+					<td class="start-12:40end-1:00">12:40</td>
+					<td class="start-1:00end-1:20">1:00</td>
+					<td class="start-1:20end-1:40">1:20</td>
+					<td class="start-1:40end-2:00">1:40</td>
+					<td class="start-2:00end-2:20">2:00</td>
+					<td class="start-2:20end-2:40">2:20</td>
+					<td class="start-2:40end-3:00 default">2:40</td>
+					<td class="start-3:00end-3:20">3:00</td>
+					<td class="start-3:20end-3:40">3:20</td>
+					<td class="start-3:40end-4:00">3:40</td>
+					<td class="start-4:00end-4:20">4:00</td>
+					<td class="start-4:20end-4:40">4:20</td>
+					<td class="start-4:40end-5:00">4:40</td>
+					<td class="start-5:00end-5:20">5:00</td>
+					<td class="start-5:20end-5:40">5:20</td>
+					<td class="start-5:40end-6:00">5:40</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="dnotice" style="display:none"><marquee>Disabled</marquee></div>
 	</div>
+	<div class="notice" style="display:none">안마의자가 고장이 나서 당분간 이용이 불가합니다.</div>
+	<br>
+	<div class="row d-flex justify-content-center">
+		<table class="t2">
+			<tbody>
+				<tr>
+					<th>AM</th>
+					<td class="start-6:00end-6:20 default">6:00</td>
+					<td class="start-6:20end-6:40 default">6:20</td>
+					<td class="start-6:40end-7:00 default">6:40</td>
+					<td class="start-7:00end-7:20 default">7:00</td>
+					<td class="start-7:20end-7:40 default">7:20</td>
+					<td class="start-7:40end-8:00 default">7:40</td>
+					<td class="start-8:00end-8:20">8:00</td>
+					<td class="start-8:20end-8:40">8:20</td>
+					<td class="start-8:40end-9:00">8:40</td>
+					<td class="start-9:00end-9:20">9:00</td>
+					<td class="start-9:20end-9:40">9:20</td>
+					<td class="start-9:40end-10:00 default">9:40</td>
+					<td class="start-10:00end-10:20">10:00</td>
+					<td class="start-10:20end-10:40">10:20</td>
+					<td class="start-10:40end-11:00">10:40</td>
+					<td class="start-11:00end-11:20">11:00</td>
+					<td class="start-11:20end-11:40">11:20</td>
+					<td class="start-11:40end-12:00">11:40</td>
+				</tr>
+				<tr>
+					<th>PM</th>
+					<td class="start-12:00end-12:20">12:00</td>
+					<td class="start-12:20end-12:40">12:20</td>
+					<td class="start-12:40end-1:00">12:40</td>
+					<td class="start-1:00end-1:20">1:00</td>
+					<td class="start-1:20end-1:40">1:20</td>
+					<td class="start-1:40end-2:00">1:40</td>
+					<td class="start-2:00end-2:20">2:00</td>
+					<td class="start-2:20end-2:40">2:20</td>
+					<td class="start-2:40end-3:00 default">2:40</td>
+					<td class="start-3:00end-3:20">3:00</td>
+					<td class="start-3:20end-3:40">3:20</td>
+					<td class="start-3:40end-4:00">3:40</td>
+					<td class="start-4:00end-4:20">4:00</td>
+					<td class="start-4:20end-4:40">4:20</td>
+					<td class="start-4:40end-5:00">4:40</td>
+					<td class="start-5:00end-5:20">5:00</td>
+					<td class="start-5:20end-5:40">5:20</td>
+					<td class="start-5:40end-6:00">5:40</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="dnotice" style="display:none"><marquee>Disabled</marquee></div>
+	</div>
+	<div class="notice" style="display:none">안마의자가 고장이 나서 당분간 이용이 불가합니다.</div>
+	<br>
+	<div class="row d-flex justify-content-center">
+		<table class="t3">
+			<tbody>
+				<tr>
+					<th>AM</th>
+					<td class="start-6:00end-6:20 default">6:00</td>
+					<td class="start-6:20end-6:40 default">6:20</td>
+					<td class="start-6:40end-7:00 default">6:40</td>
+					<td class="start-7:00end-7:20 default">7:00</td>
+					<td class="start-7:20end-7:40 default">7:20</td>
+					<td class="start-7:40end-8:00 default">7:40</td>
+					<td class="start-8:00end-8:20">8:00</td>
+					<td class="start-8:20end-8:40">8:20</td>
+					<td class="start-8:40end-9:00">8:40</td>
+					<td class="start-9:00end-9:20">9:00</td>
+					<td class="start-9:20end-9:40">9:20</td>
+					<td class="start-9:40end-10:00 default">9:40</td>
+					<td class="start-10:00end-10:20">10:00</td>
+					<td class="start-10:20end-10:40">10:20</td>
+					<td class="start-10:40end-11:00">10:40</td>
+					<td class="start-11:00end-11:20">11:00</td>
+					<td class="start-11:20end-11:40">11:20</td>
+					<td class="start-11:40end-12:00">11:40</td>
+				</tr>
+				<tr>
+					<th>PM</th>
+					<td class="start-12:00end-12:20">12:00</td>
+					<td class="start-12:20end-12:40">12:20</td>
+					<td class="start-12:40end-1:00">12:40</td>
+					<td class="start-1:00end-1:20">1:00</td>
+					<td class="start-1:20end-1:40">1:20</td>
+					<td class="start-1:40end-2:00">1:40</td>
+					<td class="start-2:00end-2:20">2:00</td>
+					<td class="start-2:20end-2:40">2:20</td>
+					<td class="start-2:40end-3:00 default">2:40</td>
+					<td class="start-3:00end-3:20">3:00</td>
+					<td class="start-3:20end-3:40">3:20</td>
+					<td class="start-3:40end-4:00">3:40</td>
+					<td class="start-4:00end-4:20">4:00</td>
+					<td class="start-4:20end-4:40">4:20</td>
+					<td class="start-4:40end-5:00">4:40</td>
+					<td class="start-5:00end-5:20">5:00</td>
+					<td class="start-5:20end-5:40">5:20</td>
+					<td class="start-5:40end-6:00">5:40</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="dnotice"><marquee>Disabled</marquee></div>
+	</div>
+	<div class="notice">리클라이너가 고장이 나서 당분간 이용이 불가합니다.</div>
 	<!-- <div id='calendar'></div> -->
 	<!-- <div class="alert"></div> -->
 </body>
