@@ -149,7 +149,7 @@ td {
 	font-family:NBG;
 	font-weight:bold;
 	font-size: 20px;
-	padding:25px;
+	padding:25px 0px;
 	text-align: center;
 }
 /* #calendar {
@@ -374,7 +374,7 @@ $(document).ready(function() {
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
 					<a class="nav-link" data-toggle="dropdown" href="#"> <img
 						src="./images/person.png"
-						style="width: 20px; height: 18px; margin-right: 5px"></a>
+						style="margin-right: 5px"></a>
 					<div class="dropdown-menu" style="position: absolute; left: -300%;">
 						<a class="dropdown-item" href="#">
 							<div>
@@ -386,7 +386,7 @@ $(document).ready(function() {
 			</ul>
 		</div>
 	</nav>
-
+	<br><br><br>
 	<div class="row d-flex justify-content-center">
 		<table class="t1">
 			<tbody>
