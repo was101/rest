@@ -101,10 +101,9 @@ li.active a, .show>.nav-link {
 
 #calendar {
 	width: 1200px;
-	margin: 0 150px;
 	position: relative;
 	top: 50%;
-	left: 20%;
+	left: 14%;
 }
 
 room {
@@ -167,6 +166,9 @@ room {
 
 .footer {
 	
+}
+#calendar rd{
+	height: 30px;
 }
 </style>
 <script>
@@ -238,11 +240,15 @@ $(document).ready(function() {
 			}
 		},
       	header: {
-        	left: 'prev today next',
+        	left: '',
         	center: 'title',
-        	right: 'timeGridDay'
+        	right: ''
 		},
 		resourceLabelText: "Rooms",
+		resources:[{
+			id : '1',
+			title : "rm.01"
+		}],
 		events : [${time}]
 	});
 
@@ -300,14 +306,14 @@ $(document).ready(function() {
 			src="./images/openhands_logo.png" style="width: 110px"></a>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#">휴게실
+				<li class="nav-item"><a class="nav-link" href="#">휴게실
 						예약</a></li>
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">편의기능</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="#">delacourt(식당메뉴)</a> <a
-							class="dropdown-item" href="#">회의실 예약 시스템</a> <a
 							class="dropdown-item" href="#">회의실 예약 시스템</a>
+							<a class="dropdown-item" href="#">전결라인</a>
 					</div></li>
 				<li class="nav-item" style="position: relative; right: 0;"><a
 					class="nav-link" href="Logout">로그아웃</a></li>
