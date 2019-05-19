@@ -45,8 +45,6 @@ public class Calendar extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("Start");
 			rd.forward(request, response);
 		} else {
-			System.out.println("ip : " + request.getRemoteAddr() + " / nickname : " + session.getAttribute("nickname")
-					+ " / pw : " + session.getAttribute("pw"));
 			ReservationDAO dao = new ReservationDAO();
 
 			// 방 번호 값이 있으면 해당 번호로, 없으면 default로 1을 넣음.

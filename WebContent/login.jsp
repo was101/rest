@@ -336,7 +336,7 @@ $(document).ready(function() {
 	});
 	
 	$('.signPW').keyup(function() {
-		var test = /^[a-zA-Z0-9]{8,16}/;
+		var test = /^[a-zA-Z0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]{8,16}/;
 		if (test.test($('.signPW').val())) {
 			$('.sPW').addClass('pass');
 			$('.sPW').text("사용 가능한 비밀번호입니다.");
@@ -348,7 +348,7 @@ $(document).ready(function() {
 	});
 	
 	$('.REsignPW').keyup(function() {
-		var test = /^[a-zA-Z0-9]{8,16}/;
+		var test = /^[a-zA-Z0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]{8,16}/;
 		if ($('.signPW').val() == $('.REsignPW').val() && test.test($('.REsignPW').val())) {
 			$('.sRePW').addClass('pass');
 			$('.sRePW').text("비밀번호가 일치합니다.");

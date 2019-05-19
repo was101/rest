@@ -43,7 +43,6 @@ public class Reservation extends HttpServlet {
 		vo.setNickname((String)session.getAttribute("nickname"));
 		vo.setTime((String)request.getParameter("time"));
 		vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no")));
-		vo.setPw((String)session.getAttribute("pw"));
 		
 		// DB 조회
 		if(num.size() <= 2) {

@@ -54,7 +54,6 @@ public class login extends HttpServlet {
 		} else {
 			session = request.getSession();
 		}
-		System.out.println(session.getAttribute("nickname"));
 		response.sendRedirect("Calendar");
 
 	}

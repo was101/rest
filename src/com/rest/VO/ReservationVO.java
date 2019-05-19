@@ -5,18 +5,16 @@ public class ReservationVO {
 	private int rm_id;
 	private String time;
 	private int rm_no;
-	private String pw;
 	private String nickname;
 	
 	public ReservationVO() {
 		super();
 	}
-	public ReservationVO(int rm_id, String time, int rm_no, String pw, String nickname) {
+	public ReservationVO(int rm_id, String time, int rm_no, String nickname) {
 		super();
 		this.rm_id = rm_id;
 		this.time = time;
 		this.rm_no = rm_no;
-		this.pw = pw;
 		this.nickname = nickname;
 	}
 	public int getRm_id() {
@@ -36,12 +34,6 @@ public class ReservationVO {
 	}
 	public void setRm_no(int rm_no) {
 		this.rm_no = rm_no;
-	}
-	public String getPw() {
-		return pw;
-	}
-	public void setPw(String pw) {
-		this.pw = pw;
 	}
 	public String getNickname() {
 		return nickname;

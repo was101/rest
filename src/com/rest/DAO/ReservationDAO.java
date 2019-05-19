@@ -23,13 +23,12 @@ public class ReservationDAO {
 	
 	public int reservation(ReservationVO vo) {
 		conn = DBUtil.dbconnect();
-		String sql = "INSERT INTO reservation (Time, Rm_no, Nickname, Pw) VALUES(?,?,?,?)";
+		String sql = "INSERT INTO reservation (Time, Rm_no, Nickname) VALUES(?,?,?)";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, vo.getTime());
 			ps.setInt(2, vo.getRm_no());
 			ps.setString(3, vo.getNickname());
-			ps.setString(4, vo.getPw());
 			result = ps.executeUpdate();
 			return result;
 		} catch(SQLException e) {
@@ -55,7 +54,6 @@ public class ReservationDAO {
 				vo.setTime(rs.getString(2));
 				vo.setRm_no(rs.getInt(3));
 				vo.setNickname(rs.getString(4));
-				vo.setPw(rs.getString(5));
 				vlist.add(vo);
 			}
 		} catch(SQLException e) {
