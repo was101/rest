@@ -104,7 +104,6 @@ li.active a, .show>.nav-link {
 	border-bottom: 0px solid RGB(210, 210, 210);
 	margin: 0px;
 	padding: 0px;
-	float: right;
 }
 
 #calendar {
@@ -325,8 +324,8 @@ $(document).ready(function() {
 		<div class="navbar2">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">사용자
-						정보</a>
+					<a class="nav-link" data-toggle="dropdown" href="#">
+					<img src="./images/person.png" style="width: 20px; height: 18px; margin-right: 5px"></a>
 					<div class="dropdown-menu" style="position: absolute;left:-100%;">
 						<a class="dropdown-item" href="#">
 							<div>
@@ -341,9 +340,7 @@ $(document).ready(function() {
 		</div>
 	</nav>
 	<div style="text-align: center; margin-top: 20px;">
-		<button class="room rm1" value="1"></button>
-		<button class="room rm2" value="2"></button>
-		<button class="room rm3" value="3"></button>
+	
 	</div>
 	<div id='calendar'></div>
 	<div class="alert"></div>
