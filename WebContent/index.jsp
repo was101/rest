@@ -101,6 +101,13 @@ li.active a, .show>.nav-link {
 	padding: 0px;
 }
 
+.navbar2 {
+	border-bottom: 0px solid RGB(210, 210, 210);
+	margin: 0px;
+	padding: 0px;
+	float:right;
+}
+
 #calendar {
 	width: 1200px;
 	position: relative;
@@ -311,9 +318,14 @@ $(document).ready(function() {
 						<a class="dropdown-item" href="#">delacourt(식당메뉴)</a> <a
 							class="dropdown-item" href="#">회의실 예약 시스템</a>
 							<a class="dropdown-item" href="#">전결라인</a>
-					</div></li>
-				<li class="nav-item" style="position: relative; right: 0;"><a
-					class="nav-link" href="Logout">로그아웃</a></li>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar2">
+			<ul class="navbar-nav">
+				<li class="nav-item" style="position: relative; right: 0;">
+				<a class="nav-link" href="Logout";>로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
