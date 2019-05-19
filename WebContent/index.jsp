@@ -72,6 +72,8 @@ body {
 	border-bottom: 1px solid RGB(210, 210, 210);
 	font-family: 'Nanum Square', sans-serif;
 	font-size: 20px;
+	height: 130px;
+	padding: 30px;
 }
 
 .logo {
@@ -106,18 +108,14 @@ li.active a, .show>.nav-link {
 	padding: 0px;
 }
 
-#calendar {
-	width: 1200px;
+/* #calendar {
+	width: 500px;
 	position: relative;
 	top: 50%;
 	left: 14%;
-}
+} */
 
-room {
-	
-}
-
-.rm1 {
+/* .rm1 {
 	background: url(./images/RM_1_none.png) no-repeat;
 	background-position: 6px 10px;
 	padding: 60px;
@@ -161,8 +159,7 @@ room {
 	padding: 60px;
 	outline: 0;
 	border: 0;
-}
-
+} */
 .header {
 	
 }
@@ -177,6 +174,13 @@ room {
 
 #calendar rd {
 	height: 30px;
+}
+
+td {
+	padding: 10px 20px;
+	background-color: lightgray;
+	cursor: pointer;
+	border: 1px solid white;
 }
 </style>
 <script>
@@ -198,7 +202,7 @@ $(document).ready(function() {
         });
     });
 	
-	var calendarEl = document.getElementById('calendar');
+	<%-- var calendarEl = document.getElementById('calendar');
 	var date = new Date();
     var rm_no = 1;
 	
@@ -277,9 +281,9 @@ $(document).ready(function() {
 	});
 
 	calendar.render();
-	calendar.defaultDate = date;
+	calendar.defaultDate = date; --%>
 		
-	$('.room').click(function() {
+	/* $('.room').click(function() {
 		$('#calendar').html("");
 		$.ajax({
 			type:'post',
@@ -293,7 +297,7 @@ $(document).ready(function() {
 				console.log(result);
 			}
 		});
-	});
+	}); */
 });
 </script>
 </head>
@@ -324,14 +328,13 @@ $(document).ready(function() {
 		<div class="navbar2">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
-					<a class="nav-link" data-toggle="dropdown" href="#">
-					<img src="./images/person.png" style="width: 20px; height: 18px; margin-right: 5px"></a>
-					<div class="dropdown-menu" style="position: absolute;left:-100%;">
+					<a class="nav-link" data-toggle="dropdown" href="#"> <img
+						src="./images/person.png"
+						style="width: 20px; height: 18px; margin-right: 5px"></a>
+					<div class="dropdown-menu" style="position: absolute; left: -300%;">
 						<a class="dropdown-item" href="#">
 							<div>
-							예약 현황<br>
-							오후2시 예약중<br>
-							오후3시 예약중
+								예약 현황<br> 오후2시 예약중<br> 오후3시 예약중
 							</div>
 						</a> <a class="dropdown-item" href="Logout">로그아웃</a>
 					</div>
@@ -339,10 +342,263 @@ $(document).ready(function() {
 			</ul>
 		</div>
 	</nav>
-	<div style="text-align: center; margin-top: 20px;">
-	
+
+	<div class="row d-flex justify-content-center"
+		style="text-align: center; margin-top: 20px;">
+		<div class="p-4">
+			<table class="1">
+				<thead>
+					<tr>
+						<th>AM</th>
+						<th>PM</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="start-6:00end-6:20">6:00</td>
+						<td class="start-12:00end-12:20">12:00</td>
+					</tr>
+					<tr>
+						<td class="start-6:20end-6:40">6:20</td>
+						<td class="start-12:20end-12:40">12:20</td>
+					</tr>
+					<tr>
+						<td class="start-6:40end-7:00">6:40</td>
+						<td class="start-12:40end-1:00">12:40</td>
+					</tr>
+					<tr>
+						<td class="start-7:00end-7:20">7:00</td>
+						<td class="start-1:00end-1:20">1:00</td>
+					</tr>
+					<tr>
+						<td class="start-7:20end-7:40">7:20</td>
+						<td class="start-1:20end-1:40">1:20</td>
+					</tr>
+					<tr>
+						<td class="start-7:40end-8:00">7:40</td>
+						<td class="start-1:40end-2:00">1:40</td>
+					</tr>
+					<tr>
+						<td class="start-8:00end-8:20">8:00</td>
+						<td class="start-2:00end-2:20">2:00</td>
+					</tr>
+					<tr>
+						<td class="start-8:20end-8:40">8:20</td>
+						<td class="start-2:20end-2:40">2:20</td>
+					</tr>
+					<tr>
+						<td class="start-8:40end-9:00">8:40</td>
+						<td class="start-2:40end-3:00">2:40</td>
+					</tr>
+					<tr>
+						<td class="start-9:00end-9:20">9:00</td>
+						<td class="start-3:00end-3:20">3:00</td>
+					</tr>
+					<tr>
+						<td class="start-9:20end-9:40">9:20</td>
+						<td class="start-3:20end-3:40">3:20</td>
+					</tr>
+					<tr>
+						<td class="start-9:40end-10:00">9:40</td>
+						<td class="start-3:40end-4:00">3:40</td>
+					</tr>
+					<tr>
+						<td class="start-10:00end-10:20">10:00</td>
+						<td class="start-4:00end-4:20">4:00</td>
+					</tr>
+					<tr>
+						<td class="start-10:20end-10:40">10:20</td>
+						<td class="start-4:20end-4:40">4:20</td>
+					</tr>
+					<tr>
+						<td class="start-10:40end-11:00">10:40</td>
+						<td class="start-4:40end-5:00">4:40</td>
+					</tr>
+					<tr>
+						<td class="start-11:00end-11:20">11:00</td>
+						<td class="start-5:00end-5:20">5:00</td>
+					</tr>
+					<tr>
+						<td class="start-11:20end-11:40">11:20</td>
+						<td class="start-5:20end-5:40">5:20</td>
+					</tr>
+					<tr>
+						<td class="start-11:40end-12:00">11:40</td>
+						<td class="start-5:40end-6:00">5:40</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="p-4">
+			<table class="2">
+				<thead>
+					<tr>
+						<th>AM</th>
+						<th>PM</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="start-6:00end-6:20">6:00</td>
+						<td class="start-12:00end-12:20">12:00</td>
+					</tr>
+					<tr>
+						<td class="start-6:20end-6:40">6:20</td>
+						<td class="start-12:20end-12:40">12:20</td>
+					</tr>
+					<tr>
+						<td class="start-6:40end-7:00">6:40</td>
+						<td class="start-12:40end-1:00">12:40</td>
+					</tr>
+					<tr>
+						<td class="start-7:00end-7:20">7:00</td>
+						<td class="start-1:00end-1:20">1:00</td>
+					</tr>
+					<tr>
+						<td class="start-7:20end-7:40">7:20</td>
+						<td class="start-1:20end-1:40">1:20</td>
+					</tr>
+					<tr>
+						<td class="start-7:40end-8:00">7:40</td>
+						<td class="start-1:40end-2:00">1:40</td>
+					</tr>
+					<tr>
+						<td class="start-8:00end-8:20">8:00</td>
+						<td class="start-2:00end-2:20">2:00</td>
+					</tr>
+					<tr>
+						<td class="start-8:20end-8:40">8:20</td>
+						<td class="start-2:20end-2:40">2:20</td>
+					</tr>
+					<tr>
+						<td class="start-8:40end-9:00">8:40</td>
+						<td class="start-2:40end-3:00">2:40</td>
+					</tr>
+					<tr>
+						<td class="start-9:00end-9:20">9:00</td>
+						<td class="start-3:00end-3:20">3:00</td>
+					</tr>
+					<tr>
+						<td class="start-9:20end-9:40">9:20</td>
+						<td class="start-3:20end-3:40">3:20</td>
+					</tr>
+					<tr>
+						<td class="start-9:40end-10:00">9:40</td>
+						<td class="start-3:40end-4:00">3:40</td>
+					</tr>
+					<tr>
+						<td class="start-10:00end-10:20">10:00</td>
+						<td class="start-4:00end-4:20">4:00</td>
+					</tr>
+					<tr>
+						<td class="start-10:20end-10:40">10:20</td>
+						<td class="start-4:20end-4:40">4:20</td>
+					</tr>
+					<tr>
+						<td class="start-10:40end-11:00">10:40</td>
+						<td class="start-4:40end-5:00">4:40</td>
+					</tr>
+					<tr>
+						<td class="start-11:00end-11:20">11:00</td>
+						<td class="start-5:00end-5:20">5:00</td>
+					</tr>
+					<tr>
+						<td class="start-11:20end-11:40">11:20</td>
+						<td class="start-5:20end-5:40">5:20</td>
+					</tr>
+					<tr>
+						<td class="start-11:40end-12:00">11:40</td>
+						<td class="start-5:40end-6:00">5:40</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="p-4">
+			<table class="3">
+				<thead>
+					<tr>
+						<th>AM</th>
+						<th>PM</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="start-6:00end-6:20">6:00</td>
+						<td class="start-12:00end-12:20">12:00</td>
+					</tr>
+					<tr>
+						<td class="start-6:20end-6:40">6:20</td>
+						<td class="start-12:20end-12:40">12:20</td>
+					</tr>
+					<tr>
+						<td class="start-6:40end-7:00">6:40</td>
+						<td class="start-12:40end-1:00">12:40</td>
+					</tr>
+					<tr>
+						<td class="start-7:00end-7:20">7:00</td>
+						<td class="start-1:00end-1:20">1:00</td>
+					</tr>
+					<tr>
+						<td class="start-7:20end-7:40">7:20</td>
+						<td class="start-1:20end-1:40">1:20</td>
+					</tr>
+					<tr>
+						<td class="start-7:40end-8:00">7:40</td>
+						<td class="start-1:40end-2:00">1:40</td>
+					</tr>
+					<tr>
+						<td class="start-8:00end-8:20">8:00</td>
+						<td class="start-2:00end-2:20">2:00</td>
+					</tr>
+					<tr>
+						<td class="start-8:20end-8:40">8:20</td>
+						<td class="start-2:20end-2:40">2:20</td>
+					</tr>
+					<tr>
+						<td class="start-8:40end-9:00">8:40</td>
+						<td class="start-2:40end-3:00">2:40</td>
+					</tr>
+					<tr>
+						<td class="start-9:00end-9:20">9:00</td>
+						<td class="start-3:00end-3:20">3:00</td>
+					</tr>
+					<tr>
+						<td class="start-9:20end-9:40">9:20</td>
+						<td class="start-3:20end-3:40">3:20</td>
+					</tr>
+					<tr>
+						<td class="start-9:40end-10:00">9:40</td>
+						<td class="start-3:40end-4:00">3:40</td>
+					</tr>
+					<tr>
+						<td class="start-10:00end-10:20">10:00</td>
+						<td class="start-4:00end-4:20">4:00</td>
+					</tr>
+					<tr>
+						<td class="start-10:20end-10:40">10:20</td>
+						<td class="start-4:20end-4:40">4:20</td>
+					</tr>
+					<tr>
+						<td class="start-10:40end-11:00">10:40</td>
+						<td class="start-4:40end-5:00">4:40</td>
+					</tr>
+					<tr>
+						<td class="start-11:00end-11:20">11:00</td>
+						<td class="start-5:00end-5:20">5:00</td>
+					</tr>
+					<tr>
+						<td class="start-11:20end-11:40">11:20</td>
+						<td class="start-5:20end-5:40">5:20</td>
+					</tr>
+					<tr>
+						<td class="start-11:40end-12:00">11:40</td>
+						<td class="start-5:40end-6:00">5:40</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<div id='calendar'></div>
-	<div class="alert"></div>
+	<!-- <div id='calendar'></div> -->
+	<!-- <div class="alert"></div> -->
 </body>
 </html>
