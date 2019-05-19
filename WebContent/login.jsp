@@ -14,7 +14,8 @@
 
 <script src="./particles/jparticles.js"></script>
 <script src="./particles/particle.js"></script>
-    
+<script src="./particles/event.js"></script>
+
 <title>휴게실 예약 시스템</title>
 <style>
 
@@ -251,13 +252,33 @@ input[type=checkbox]:checked+label {
 	color: RGB(40, 186, 141);
 }
 </style>
+
 <script>
+
+
 var check = false;
 	function login() {
 		 if(!check) $('.alertMain').show();
 		return check;
 	};
 $(document).ready(function() {
+
+	bind('#instance', function() {
+		return new JParticles.particle('#instance', {
+			color : [ '#0798CF', '#847daf', '#f56592' ],
+			num : .05,
+			range : 2000,
+			maxR : 2.5,
+			minR : 2.5,
+			lineWidth : .5,
+			maxSpeed : 0.05,
+			proximity : 100,
+			parallax : false,
+			parallaxStrength : 1,
+			parallaxLayer : [ 1, 3, 5, 7 ]
+
+		});
+	});
 	
 	var alHeadHTML = "";
 	
@@ -433,33 +454,11 @@ $(document).ready(function() {
 	/* 	$('.')  /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/ */
 	
 });
-
 </script>
 </head>
 <body>
-
-    <script src="./particles/event.js"></script>
     <div id="instance" style="position: fixed">
     <canvas class="instance" width="1920" height="1080" style="width: 100%; height: 100%;"></canvas></div>
-    <script>
-        bind('#instance', function () {
-            return new JParticles.particle('#instance',
-            {
-             color: ['#0798CF','#847daf','#f56592'],
-             num: .05,
-                range: 2000,
-                maxR: 2.5,
-                minR: 2.5,
-                lineWidth: .5,
-                maxSpeed: 0.05,
-                proximity: 100,
-                parallax: false,
-                parallaxStrength: 1,
-                parallaxLayer: [1, 3, 5, 7]
-                
-            });
-        });
-    </script>
     
 	<div style="position: absolute;top:45%;left:50%;transform: translate(-50%, -50%);width:600px;height:400px;">
 		<svg height="130" width="520">
