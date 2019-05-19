@@ -34,9 +34,16 @@ public class DuplCheck extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		UserDAO dao = new UserDAO();
-		String nickname = request.getParameter("nickname");
+		String type = request.getParameter("type");
+		String answer;
+		if(type.equals("nickname")) {
+			answer = request.getParameter("answer");
+			response.getWriter().write(dao.duplNick(answer) + "");
+		}else {
+			answer = request.getParameter("answer") + "@openhands.co.kr";
+			response.getWriter().write(dao.duplEmail(answer) + "");
+		}
 
-		response.getWriter().write(dao.duplNick(nickname) + "");
 
 	}
 

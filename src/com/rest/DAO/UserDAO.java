@@ -142,10 +142,21 @@ public class UserDAO {
 		return false;
 	}
 	
-	//-------base64 복호화
-	public static String decrypt(String in) throws IOException
-	{
-		return new String(Base64.decodeBase64(in.getBytes())); 
+	public boolean duplEmail(String email) {
+		conn = DBUtil.dbconnect();
+		String sql = "SELECT email from user where email=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1,  email);
+			rs = ps.executeQuery();
+			if(rs.next()) return true;	
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return false;
 	}
-	//-------base64 복호화 end
+	
 }

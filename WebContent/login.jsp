@@ -315,7 +315,8 @@ $(document).ready(function() {
 				type: 'post',
 				url:'/DuplCheck',
 				data: {
-					'nickname' : $('.signNick').val()
+					'type' : 'nickname',
+					'answer' : $('.signNick').val()
 				},
 			success : function(result) {
 				if(result == 'true') {
@@ -361,8 +362,23 @@ $(document).ready(function() {
 	$('.signEmail').keyup(function() {
 		var test = /^[a-zA-Z0-9]+[\.]{1}[a-z]+/;
 		if (test.test($('.signEmail').val())) {
-			$('.sEmail').addClass('pass');
-			$('.sEmail').text("유효한 이메일입니다.");
+			$.ajax({
+				type: 'post',
+				url:'/DuplCheck',
+				data: {
+					'type' : 'email',
+					'answer' : $('.signEmail').val()
+				},
+			success : function(result) {
+				if(result == 'true') {
+					$('.sEmail').removeClass('pass');
+					$('.sEmail').text("중복된 이메일입니다.");
+				}else {
+					$('.sEmail').addClass('pass');
+					$('.sEmail').text("사용 가능한 이메일입니다.");
+				}
+			}
+			});
 		}
 		else {
 			$('.sEmail').removeClass('pass');
