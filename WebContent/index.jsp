@@ -152,6 +152,11 @@ td {
 	padding:25px 0px;
 	text-align: center;
 }
+.commaimage {
+	margin-right: 40px;
+	width: 70px;
+	height 83px;
+}
 /* #calendar {
 	width: 500px;
 	position: relative;

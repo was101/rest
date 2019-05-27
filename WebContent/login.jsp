@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="./images/comma.ico">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./jquery/jquery.cookie.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -263,6 +265,10 @@ var check = false;
 	};
 $(document).ready(function() {
 
+	if($.cookie("nickname") != "undefined" && $.cookie("nickname") != null) {
+		$('.remember').prop("checked", true);
+	}
+	
 	bind('#instance', function() {
 		return new JParticles.particle('#instance', {
 			color : [ '#0798CF', '#847daf', '#f56592' ],
@@ -491,7 +497,7 @@ $(document).ready(function() {
 <form action="login" method="post" onsubmit="return login();">
 		<input class='nickname' type="text" name="nickname" placeholder="Nickname"><br>
 		<input class="password" type="password" name="pw" placeholder="Password"><br><br>
-		<input class="remember" id="remember" type="checkbox"><label for="remember">Remember me</label>
+		<input class="remember" id="remember" type="checkbox" name="remember" value="checked"><label for="remember">Remember me</label>
 		<span style="margin-left: 95px;">
 		<span data-toggle="modal" data-target="#signUp" class="signUp">회원가입</span>
 		<span>&#32;/&#32;</span>

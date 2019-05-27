@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,22 +40,53 @@ public class login extends HttpServlet {
 		Crypt crypt = new Crypt();
 		String nickname = request.getParameter("nickname");
 		String pw = request.getParameter("pw");
+		String[] check = request.getParameterValues("remember");
 		HttpSession session = request.getSession(false);
+		Cookie[] cookies = request.getCookies();
+		for (int i = 0; check != null && i < check.length; i++) {
+			String remem = check[i];
+		}
 
 		// 세션이 없으면 세션을 생성, 세션이 있으면 해당 새션을 불러옴
-		if (session == null || session.getAttribute("nickname") == null) {
+		if (check != null) {
+			System.out.println("체크 됨");
+			Cookie nicknameCookie = new Cookie("nickname", nickname);
+			Cookie pwCookie = new Cookie("pw", crypt.run_Encrypt(pw));
+			response.addCookie(nicknameCookie);
+			response.addCookie(pwCookie);
 			session = request.getSession();
 			session.setAttribute("nickname", nickname);
 			try {
 				session.setAttribute("pw", crypt.run_Encrypt(pw));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			response.sendRedirect("/Calendar");
 		} else {
-			session = request.getSession();
+			System.out.println("체크 안됨");
+			for (int i = 0; i < cookies.length; i++) {
+				cookies[i].setValue(null);
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+			}
+			if (session == null || session.getAttribute("nickname") == null) {
+				System.out.println("세션없음");
+				session = request.getSession();
+				session.setAttribute("nickname", nickname);
+				System.out.println(session.getAttribute("nickname"));
+				try {
+					session.setAttribute("pw", crypt.run_Encrypt(pw));
+					System.out.println(pw);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				response.sendRedirect("/Calendar");
+			} else {
+				System.out.println("세션있음");
+				session = request.getSession();
+				response.sendRedirect("/Calendar");
+			}
 		}
-		response.sendRedirect("Calendar");
 
 	}
 

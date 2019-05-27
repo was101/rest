@@ -38,13 +38,14 @@ public class Calendar extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 
 		// 세션이 없으면 로그인화면으로, 있으면 캘린더 생성.
 		if (session == null || session.getAttribute("nickname") == null) {
-			RequestDispatcher rd = request.getRequestDispatcher("Start");
-			rd.forward(request, response);
+			System.out.println("session : " + session.getAttribute("nickname"));
+			response.sendRedirect("Start");
 		} else {
+			System.out.println("session : " + session.getAttribute("nickname"));
 			ReservationDAO dao = new ReservationDAO();
 
 			// 방 번호 값이 있으면 해당 번호로, 없으면 default로 1을 넣음.
@@ -65,7 +66,7 @@ public class Calendar extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			String html = "";
 			for (int i = 1; i <= 3; i++) {
-				html += "<div class='row d-flex justify-content-center'><table class='t" + i + "'><tbody><tr>";
+				html += "<div class='row d-flex justify-content-center'><img class='commainages' src='./images/comma" + i + ".jpg'><table class='t" + i + "'><tbody><tr>";
 				for (int j = 6; j < 12; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j < 8) {
