@@ -66,7 +66,7 @@ public class Calendar extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			String html = "";
 			for (int i = 1; i <= 3; i++) {
-				html += "<div class='row d-flex justify-content-center'><img class='commainages' src='./images/comma" + i + ".jpg'><table class='t" + i + "'><tbody><tr>";
+				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".jpg'><table class='t" + i + "'><tbody><tr>";
 				for (int j = 6; j < 12; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j < 8) {

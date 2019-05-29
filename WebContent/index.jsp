@@ -114,7 +114,31 @@ td {
 	cursor: pointer;
 	border: 1px solid lightgray;
 }
-
+.rm01{
+width:1600px;
+margin-left:110px;
+margin-bottom:110px;
+margin-top:30px;
+}
+.rm02{
+width:1600px;
+margin-left:110px;
+margin-bottom:110px;
+}
+.rm03{
+width:1600px;
+margin-left:110px;
+margin-bottom:110px;
+}
+.t1 {
+float:right;
+}
+.t2 {
+float:right;
+}
+.t3 {
+float:right;
+}
 .t1 .active {
 	background-color: RGB(7, 152, 207);
 }
@@ -156,6 +180,23 @@ td {
 	margin-right: 40px;
 	width: 70px;
 	height 83px;
+}
+.admin {
+position: absolute;
+    width: 20px;
+    height: 563px;
+    right: 0%;
+    top: 28.73%;
+    transition: all ease 1s;
+}
+.admin:hover {
+position: absolute;
+    width: 20px;
+    height: 563px;
+    right: 0%;
+    top: 28.73%;
+    background-color:skyblue;
+    transform: scale( 20.0, 1 );
 }
 /* #calendar {
 	width: 500px;
@@ -393,6 +434,7 @@ $(document).ready(function() {
 	</nav>
 	<br><br><br>
 	${html}
+	<div class="admin"></div>
 	<!-- <div id='calendar'></div> -->
 	<!-- <div class="alert"></div> -->
 </body>
