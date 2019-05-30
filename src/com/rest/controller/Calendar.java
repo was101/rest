@@ -84,12 +84,10 @@ public class Calendar extends HttpServlet {
 						else html += "<td class='" + j + ":" + k + "0'>" + j + ":" + k + "0</td>";
 					}
 				}
-				if(i == 3) {
-					html += "</tr></tbody></table><div class='dnotice' style=><marquee>Disabled</marquee></div></div>";
-					html += "<div class='notice'>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</div><br>";
+				if(i == i) {
+					html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
 				}else {
 				html += "</tr></tbody></table><div class='dnotice' style='display:none'><marquee>Disabled</marquee></div></div>";
-				html += "<div class='notice' style='display:none'>안마의자가 고장이 나서 당분간 이용이 불가합니다.</div><br>";
 				}
 			}
 

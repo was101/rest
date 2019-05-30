@@ -66,6 +66,110 @@ body {
 	font-family: 'NBG', sans-serif;
 }
 
+
+
+.gp-header{
+	font-family: georgia;
+	font-size: 40px;
+	color: #5FD698;
+	font-style: italic;
+	text-align: center;
+	margin-top: 25px;
+}
+.gp-footer{
+	position: fixed;
+	color: rgba(95,214,152,0.7);
+	bottom: 10px;
+	left: 50%;
+	font-family: georgia;
+	font-style: italic;
+	transform: translateX(-50%);
+}
+.gp-footer .soc_icons{
+	display: inline-block;
+	color: #5FD698;
+	margin: 0px 10px;
+}
+
+::-moz-selection { background: transparent;}
+::selection {background: transparent;}
+
+.switchContainer1{
+	display: inline-block;
+	filter: url("index.html#gooey");
+	-webkit-filter: url("#gooey");
+	position: absolute;
+	left:60%;
+	top:27%;
+	cursor: pointer;
+}
+
+.switchContainer2{
+	display: inline-block;
+	filter: url("index.html#gooey");
+	-webkit-filter: url("#gooey");
+	position: absolute;
+	left:60%;
+	top:54%;
+	cursor: pointer;
+}
+
+.switchContainer3{
+	display: inline-block;
+	filter: url("index.html#gooey");
+	-webkit-filter: url("#gooey");
+	position: absolute;
+	left:60%;
+	top:81%;
+	cursor: pointer;
+}
+
+.switchBg{
+	width:60px;
+	height: 7px;
+}
+.switchBtn{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: inline-block;
+	position: absolute;
+	left: 0px;
+	top: -12px;
+	transform: translate3d(0,0,0);
+}
+
+.switchBg, .switchBtn{background: #DC4848; transition: 300ms all ease;}
+.switchContainer1.switchOn .switchBtn, .switchContainer1.switchOn .switchBg{background: #5FD698;}
+
+.switchContainer1.switchOn .switchBtn{animation: switchOn 250ms linear forwards; }
+.switchContainer1.switchOff .switchBtn{animation: switchOff 250ms linear forwards; }
+
+.switchContainer2.switchOn .switchBtn, .switchContainer2.switchOn .switchBg{background: #5FD698;}
+
+.switchContainer2.switchOn .switchBtn{animation: switchOn 250ms linear forwards; }
+.switchContainer2.switchOff .switchBtn{animation: switchOff 250ms linear forwards; }
+
+.switchContainer3.switchOn .switchBtn, .switchContainer3.switchOn .switchBg{background: #5FD698;}
+
+.switchContainer3.switchOn .switchBtn{animation: switchOn 250ms linear forwards; }
+.switchContainer3.switchOff .switchBtn{animation: switchOff 250ms linear forwards; }
+
+@keyframes switchOn { 
+  0%{transform: scale3d(1,1,1) translate3d(0px,0,0); transform-origin: left center;} 
+  40%{transform: scale3d(1.4,0.7,0) translate3d(20px,0,0); transform-origin: right center;}
+  70%{transform: scale3d(0.9,1.15,1) translate3d(33px,0,0); }
+  100%{transform: scale3d(1,1,1) translate3d(30px,0,0); }
+}
+@keyframes switchOff { 
+  0%{transform: scale3d(1,1,1) translate3d(30px,0,0); transform-origin: right center;} 
+  40%{transform: scale3d(1.4,0.7,0) translate3d(10px,0,0); transform-origin: right center;}
+  70%{transform: scale3d(0.9,1.15,1) translate3d(-3px,0,0); }
+  100%{transform: scale3d(1,1,1) translate3d(0px,0,0); }
+}
+
+
+
 .jumbotron {
 	background-image: linear-gradient(to right, RGB(7, 152, 207),
 		RGB(132, 125, 175), RGB(245, 101, 146));
@@ -162,41 +266,86 @@ float:right;
 	height:36px;
 }
 
-.dnotice {
-	width: 1226px;
-	height: 75px;
-	background-color: gray;
-	z-index: 10;
-	position: absolute;
-	opacity: 0.9;
-	color:red;
-	font-family:NBG;
-	font-weight:bold;
-	font-size: 20px;
-	padding:25px 0px;
-	text-align: center;
+.dnotice1 {
+	width: 1424.55px;
+    height: 90px;
+    background-color: #099CD3;
+    z-index: 20;
+    position: relative;
+    opacity: 1;
+    color: white;
+    font-family: NBG;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 25px 0px;
+    text-align: center;
+    float: right;
+    top: -101px;
+    right: 0%;
+}
+.dnotice2 {
+	width: 1424.55px;
+    height: 90px;
+    background-color: #867EB1;
+    z-index: 20;
+    position: relative;
+    opacity: 1;
+    color: white;
+    font-family: NBG;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 25px 0px;
+    text-align: center;
+    float: right;
+    top: -101px;
+    right: 0%;
+}
+.dnotice3 {
+	width: 1424.55px;
+    height: 90px;
+    background-color: #F36692;
+    z-index: 20;
+    position: relative;
+    opacity: 1;
+    color: white;
+    font-family: NBG;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 25px 0px;
+    text-align: center;
+    float: right;
+    top: -101px;
+    right: 0%;
 }
 .commaimage {
 	margin-right: 40px;
 	width: 70px;
-	height 83px;
+	height : 83px;
+}
+.commaimage1 {
+	margin: 0 20px 20px 30px;
+	width: 70px;
+	height : 83px;
+	float:left;
 }
 .admin {
-position: absolute;
-    width: 20px;
-    height: 563px;
-    right: 0%;
-    top: 28.73%;
-    transition: all ease 1s;
+    font-family: NBG;
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    width: 400px;
+    height: 336.5px;
+    right: -20%;
+    top: 39%;
+    transition: all ease 0.5s;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
 }
 .admin:hover {
-position: absolute;
-    width: 20px;
-    height: 563px;
+    width: 200px;
     right: 0%;
-    top: 28.73%;
-    background-color:skyblue;
-    transform: scale( 20.0, 1 );
+    background-color: white;
+    border: 2px solid lightgray;
 }
 /* #calendar {
 	width: 500px;
@@ -292,6 +441,49 @@ $(document).ready(function() {
     		$(this).addClass("active");
     	}
     });
+    
+
+    var container = document.querySelector("#switchContainer1");
+    var container2 = document.querySelector("#switchContainer2");
+    var container3 = document.querySelector("#switchContainer3");
+
+    function onOffSwitch(){
+      if(container.classList.contains("switchOn")){
+        container.classList.remove("switchOn");
+        container.classList += " switchOff";
+      }
+      else{
+        container.classList.remove("switchOff");
+        container.classList += " switchOn";
+      }
+      
+    }
+    container.addEventListener("click", onOffSwitch, false);
+
+    function onOffSwitch2(){
+       if(container2.classList.contains("switchOn")){
+         container2.classList.remove("switchOn");
+         container2.classList += " switchOff";
+       }
+       else{
+         container2.classList.remove("switchOff");
+         container2.classList += " switchOn";
+       }
+    }
+    container2.addEventListener("click", onOffSwitch2, false);
+    
+    function onOffSwitch3(){
+        if(container3.classList.contains("switchOn")){
+          container3.classList.remove("switchOn");
+          container3.classList += " switchOff";
+        }
+        else{
+          container3.classList.remove("switchOff");
+          container3.classList += " switchOn";
+        }
+      }
+    container3.addEventListener("click", onOffSwitch3, false);
+      
 });
 	<%-- var calendarEl = document.getElementById('calendar');
 	var date = new Date();
@@ -434,7 +626,55 @@ $(document).ready(function() {
 	</nav>
 	<br><br><br>
 	${html}
-	<div class="admin"></div>
+	
+
+
+
+	<div class="admin">
+	<span><center style="margin:6px 0 0 0;color:RGB(64, 64, 64); font-size: 20px;">Controls</center></span><hr style="margin: 0;">
+	<img class="commaimage1" src="./images/comma1.jpg">
+	<div class="switchContainer1" id="switchContainer1">
+  <div class="switchBg"></div>
+    <div class="switchBtn"></div>
+</div>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
+  <defs>
+    <filter id="gooey">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+    </filter>
+  </defs>
+</svg>
+
+	<img class="commaimage1" src="./images/comma2.jpg">
+	<div class="switchContainer2" id="switchContainer2">
+  <div class="switchBg"></div>
+    <div class="switchBtn"></div>
+</div>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
+  <defs>
+    <filter id="gooey">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+    </filter>
+  </defs>
+</svg>
+
+	<img class="commaimage1" src="./images/comma3.jpg">
+	<div class="switchContainer3" id="switchContainer3">
+  <div class="switchBg"></div>
+    <div class="switchBtn"></div>
+</div>
+	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
+  <defs>
+    <filter id="gooey">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+    </filter>
+  </defs>
+</svg>
+
+	</div>
 	<!-- <div id='calendar'></div> -->
 	<!-- <div class="alert"></div> -->
 </body>
