@@ -416,7 +416,7 @@ float:right;
 </style>
 <script>
 $(document).ready(function() {
-	$('td').not('.default').click(funcion() {
+	$('td').not('.default').click(function() {
 		if($(this).attr('class').inclludes('active')) $(this).removeClass("active");
 		else $(this).addClass("active");
 	});
@@ -434,14 +434,6 @@ $(document).ready(function() {
             parallax: false,
             parallaxStrength: 1
         });
-    });
-    $('td').click(function () {
-    	if($(this).attr('class').includes('active') || $(this).attr('class').includes('default') || $(this).attr('class').includes('disable')) {
-    		$(this).removeClass("active");
-    	}
-    	else {
-    		$(this).addClass("active");
-    	}
     });
     
 
