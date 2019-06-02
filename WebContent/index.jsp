@@ -416,8 +416,13 @@ float:right;
 </style>
 <script>
 $(document).ready(function() {
+
+    $('.dnotice1').hide();
+    $('.dnotice2').hide();
+    $('.dnotice3').hide();
+	
 	$('td').not('.default').click(function() {
-		if($(this).attr('class').inclludes('active')) $(this).removeClass("active");
+		if($(this).attr('class').includes('active')) $(this).removeClass("active");
 		else $(this).addClass("active");
 	});
     bind('#instance', function () {
@@ -445,10 +450,12 @@ $(document).ready(function() {
       if(container.classList.contains("switchOn")){
         container.classList.remove("switchOn");
         container.classList += " switchOff";
+        $('.dnotice1').hide();
       }
       else{
         container.classList.remove("switchOff");
         container.classList += " switchOn";
+        $('.dnotice1').show();
       }
       
     }
@@ -458,10 +465,12 @@ $(document).ready(function() {
        if(container2.classList.contains("switchOn")){
          container2.classList.remove("switchOn");
          container2.classList += " switchOff";
+         $('.dnotice2').hide();
        }
        else{
          container2.classList.remove("switchOff");
          container2.classList += " switchOn";
+         $('.dnotice2').show();
        }
     }
     container2.addEventListener("click", onOffSwitch2, false);
@@ -470,10 +479,12 @@ $(document).ready(function() {
         if(container3.classList.contains("switchOn")){
           container3.classList.remove("switchOn");
           container3.classList += " switchOff";
+          $('.dnotice3').hide();
         }
         else{
           container3.classList.remove("switchOff");
           container3.classList += " switchOn";
+          $('.dnotice3').show();
         }
       }
     container3.addEventListener("click", onOffSwitch3, false);

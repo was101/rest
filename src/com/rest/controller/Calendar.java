@@ -84,11 +84,7 @@ public class Calendar extends HttpServlet {
 						else html += "<td class='" + j + ":" + k + "0'>" + j + ":" + k + "0</td>";
 					}
 				}
-				if(i == i) {
-					html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
-				}else {
-				html += "</tr></tbody></table><div class='dnotice' style='display:none'><marquee>Disabled</marquee></div></div>";
-				}
+				html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
 			}
 
 			// time을 출력해서 DB에서 잘 가져 왔는지 확인 가능. 그 후 time을 jsp에 뿌려줌.
