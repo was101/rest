@@ -54,37 +54,33 @@ public class Calendar extends HttpServlet {
 				rm_no = Integer.parseInt(request.getParameter("rm_no"));
 
 			// DB에서 time을 불러온 뒤에 json형식으로 바꿈.(아직은 String)
-			String time = "";
-			ReservationVO vo;
-			ArrayList<ReservationVO> vlist = dao.booked(rm_no);
-			for (int i = 0; i < vlist.size(); i++) {
-				vo = vlist.get(i);
-				time += vo.toString();
-				if (vlist.size() - 1 != i)
-					time += ", ";
-			}
+			String time = dao.booked();
 			request.setCharacterEncoding("UTF-8");
 			String html = "";
 			for (int i = 1; i <= 3; i++) {
-				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".png'><table class='t" + i + "'><tbody><tr>";
+				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".jpg'><table class='t" + i + "'><tbody><tr>";
 				for (int j = 6; j < 12; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j < 8) {
-							html += "<td class='" + j + ":" + k + "0 default'>" + j + ":" + k + "0</td>";
+							html += "<td class='" + j + "m" + k + "0 default'>" + j + ":" + k + "0</td>";
 						}else if(j == 9 && k == 4) {
-							html += "<td class='" + j + ":" + k + "0 default'>" + j + ":" + k + "0</td>";
-						}else html += "<td class='" + j + ":" + k + "0'>" + j + ":" + k + "0</td>";
+							html += "<td class='" + j + "m" + k + "0 default'>" + j + ":" + k + "0</td>";
+						}else html += "<td class='" + j + "m" + k + "0'>" + j + ":" + k + "0</td>";
 					}
 				}
 				html += "</tr><tr>";
 				for (int j = 12; j < 18; j++) {
 					for (int k = 0; k <= 4; k += 2) {
-						if(j == 14 && k == 4) html += "<td class='" + (j-12) + ":" + k + "0 default'>" + (j-12) + ":" + k + "0</td>";
-						else if(j > 12) html += "<td class='" + (j-12) + ":" + k + "0'>" + (j-12) + ":" + k + "0</td>";
-						else html += "<td class='" + j + ":" + k + "0'>" + j + ":" + k + "0</td>";
+						if(j == 14 && k == 4) html += "<td class='" + (j-12) + "m" + k + "0 default'>" + (j-12) + ":" + k + "0</td>";
+						else if(j > 12) html += "<td class='" + (j-12) + "m" + k + "0'>" + (j-12) + ":" + k + "0</td>";
+						else html += "<td class='" + j + "m" + k + "0'>" + j + ":" + k + "0</td>";
 					}
 				}
-				html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
+				if(i == i) {
+					html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
+				}else {
+				html += "</tr></tbody></table><div class='dnotice' style='display:none'><marquee>Disabled</marquee></div></div>";
+				}
 			}
 
 			// time을 출력해서 DB에서 잘 가져 왔는지 확인 가능. 그 후 time을 jsp에 뿌려줌.

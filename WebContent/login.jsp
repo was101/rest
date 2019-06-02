@@ -315,7 +315,7 @@ $(document).ready(function() {
 	});
 	
 	$('.signNick').keyup(function() {
-		var test = /^[a-zA-Zㄱ-ㅎ가-힣0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]{2,20}/;
+		var test = /^[a-zA-Zㄱ-ㅎ가-힣0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]{2,8}/;
 		if (test.test($('.signNick').val())) {
 			$.ajax({
 				type: 'post',

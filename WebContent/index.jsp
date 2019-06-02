@@ -66,9 +66,7 @@ body {
 	font-family: 'NBG', sans-serif;
 }
 
-
-
-.gp-header{
+.gp-header {
 	font-family: georgia;
 	font-size: 40px;
 	color: #5FD698;
@@ -76,59 +74,67 @@ body {
 	text-align: center;
 	margin-top: 25px;
 }
-.gp-footer{
+
+.gp-footer {
 	position: fixed;
-	color: rgba(95,214,152,0.7);
+	color: rgba(95, 214, 152, 0.7);
 	bottom: 10px;
 	left: 50%;
 	font-family: georgia;
 	font-style: italic;
 	transform: translateX(-50%);
 }
-.gp-footer .soc_icons{
+
+.gp-footer .soc_icons {
 	display: inline-block;
 	color: #5FD698;
 	margin: 0px 10px;
 }
 
-::-moz-selection { background: transparent;}
-::selection {background: transparent;}
+::-moz-selection {
+	background: transparent;
+}
 
-.switchContainer1{
+::selection {
+	background: transparent;
+}
+
+.switchContainer1 {
 	display: inline-block;
 	filter: url("index.html#gooey");
 	-webkit-filter: url("#gooey");
 	position: absolute;
-	left:60%;
-	top:27%;
+	left: 60%;
+	top: 27%;
 	cursor: pointer;
 }
 
-.switchContainer2{
+.switchContainer2 {
 	display: inline-block;
 	filter: url("index.html#gooey");
 	-webkit-filter: url("#gooey");
 	position: absolute;
-	left:60%;
-	top:54%;
+	left: 60%;
+	top: 54%;
 	cursor: pointer;
 }
 
-.switchContainer3{
+.switchContainer3 {
 	display: inline-block;
 	filter: url("index.html#gooey");
 	-webkit-filter: url("#gooey");
 	position: absolute;
-	left:60%;
-	top:81%;
+	left: 60%;
+	top: 81%;
 	cursor: pointer;
 }
 
-.switchBg{
-	width:60px;
+.switchBg {
+	width: 60px;
 	height: 7px;
 }
-.switchBtn{
+
+.switchBtn {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
@@ -136,40 +142,437 @@ body {
 	position: absolute;
 	left: 0px;
 	top: -12px;
-	transform: translate3d(0,0,0);
+	transform: translate3d(0, 0, 0);
 }
 
-.switchBg, .switchBtn{background: #DC4848; transition: 300ms all ease;}
-.switchContainer1.switchOn .switchBtn, .switchContainer1.switchOn .switchBg{background: #5FD698;}
-
-.switchContainer1.switchOn .switchBtn{animation: switchOn 250ms linear forwards; }
-.switchContainer1.switchOff .switchBtn{animation: switchOff 250ms linear forwards; }
-
-.switchContainer2.switchOn .switchBtn, .switchContainer2.switchOn .switchBg{background: #5FD698;}
-
-.switchContainer2.switchOn .switchBtn{animation: switchOn 250ms linear forwards; }
-.switchContainer2.switchOff .switchBtn{animation: switchOff 250ms linear forwards; }
-
-.switchContainer3.switchOn .switchBtn, .switchContainer3.switchOn .switchBg{background: #5FD698;}
-
-.switchContainer3.switchOn .switchBtn{animation: switchOn 250ms linear forwards; }
-.switchContainer3.switchOff .switchBtn{animation: switchOff 250ms linear forwards; }
-
-@keyframes switchOn { 
-  0%{transform: scale3d(1,1,1) translate3d(0px,0,0); transform-origin: left center;} 
-  40%{transform: scale3d(1.4,0.7,0) translate3d(20px,0,0); transform-origin: right center;}
-  70%{transform: scale3d(0.9,1.15,1) translate3d(33px,0,0); }
-  100%{transform: scale3d(1,1,1) translate3d(30px,0,0); }
-}
-@keyframes switchOff { 
-  0%{transform: scale3d(1,1,1) translate3d(30px,0,0); transform-origin: right center;} 
-  40%{transform: scale3d(1.4,0.7,0) translate3d(10px,0,0); transform-origin: right center;}
-  70%{transform: scale3d(0.9,1.15,1) translate3d(-3px,0,0); }
-  100%{transform: scale3d(1,1,1) translate3d(0px,0,0); }
+.switchBg, .switchBtn {
+	background: #DC4848;
+	transition: 300ms all ease;
 }
 
+.switchContainer1.switchOn .switchBtn, .switchContainer1.switchOn .switchBg
+	{
+	background: #5FD698;
+}
+
+.switchContainer1.switchOn .switchBtn {
+	animation: switchOn 250ms linear forwards;
+}
+
+.switchContainer1.switchOff .switchBtn {
+	animation: switchOff 250ms linear forwards;
+}
+
+.switchContainer2.switchOn .switchBtn, .switchContainer2.switchOn .switchBg
+	{
+	background: #5FD698;
+}
+
+.switchContainer2.switchOn .switchBtn {
+	animation: switchOn 250ms linear forwards;
+}
+
+.switchContainer2.switchOff .switchBtn {
+	animation: switchOff 250ms linear forwards;
+}
+
+.switchContainer3.switchOn .switchBtn, .switchContainer3.switchOn .switchBg
+	{
+	background: #5FD698;
+}
+
+.switchContainer3.switchOn .switchBtn {
+	animation: switchOn 250ms linear forwards;
+}
+
+.switchContainer3.switchOff .switchBtn {
+	animation: switchOff 250ms linear forwards;
+}
+
+@
+keyframes switchOn { 0%{
+	transform: scale3d(1, 1, 1) translate3d(0px, 0, 0);
+	transform-origin: left center;
+}
+
+40%{
+transform
 
 
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+scale3d
+
+
+
+
+
+
+
+
+(1
+.4
+,
+0
+.7
+,
+0)
+translate3d
+
+
+
+
+
+
+
+
+(20
+px
+,
+0,0);
+transform-origin
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+right
+
+
+
+
+ 
+
+
+
+
+center
+
+
+
+
+
+
+
+
+;
+}
+70%{
+transform
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+scale3d
+
+
+
+
+
+
+
+
+(0
+.9
+,
+1
+.15
+,
+1)
+translate3d
+
+
+
+
+
+
+
+
+(33
+px
+,
+0,0);
+}
+100%{
+transform
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+scale3d
+
+
+
+
+
+
+
+
+(1
+,
+1,1)
+translate3d
+
+
+
+
+
+
+
+
+(30
+px
+,
+0,0);
+}
+}
+@
+keyframes switchOff { 0%{
+	transform: scale3d(1, 1, 1) translate3d(30px, 0, 0);
+	transform-origin: right center;
+}
+
+40%{
+transform
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+scale3d
+
+
+
+
+
+
+
+
+(1
+.4
+,
+0
+.7
+,
+0)
+translate3d
+
+
+
+
+
+
+
+
+(10
+px
+,
+0,0);
+transform-origin
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+right
+
+
+
+
+ 
+
+
+
+
+center
+
+
+
+
+
+
+
+
+;
+}
+70%{
+transform
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+scale3d
+
+
+
+
+
+
+
+
+(0
+.9
+,
+1
+.15
+,
+1)
+translate3d
+
+
+
+
+
+
+
+
+(-3
+px
+,
+0,0);
+}
+100%{
+transform
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+scale3d
+
+
+
+
+
+
+
+
+(1
+,
+1,1)
+translate3d
+
+
+
+
+
+
+
+
+(0
+px
+,
+0,0);
+}
+}
 .jumbotron {
 	background-image: linear-gradient(to right, RGB(7, 152, 207),
 		RGB(132, 125, 175), RGB(245, 101, 146));
@@ -218,31 +621,38 @@ td {
 	cursor: pointer;
 	border: 1px solid lightgray;
 }
-.rm01{
-width:1600px;
-margin-left:110px;
-margin-bottom:110px;
-margin-top:30px;
+
+.rm01 {
+	width: 1600px;
+	margin-left: 110px;
+	margin-bottom: 110px;
+	margin-top: 30px;
 }
-.rm02{
-width:1600px;
-margin-left:110px;
-margin-bottom:110px;
+
+.rm02 {
+	width: 1600px;
+	margin-left: 110px;
+	margin-bottom: 110px;
 }
-.rm03{
-width:1600px;
-margin-left:110px;
-margin-bottom:110px;
+
+.rm03 {
+	width: 1600px;
+	margin-left: 110px;
+	margin-bottom: 110px;
 }
+
 .t1 {
-float:right;
+	float: right;
 }
+
 .t2 {
-float:right;
+	float: right;
 }
+
 .t3 {
-float:right;
+	float: right;
 }
+
 .t1 .active {
 	background-color: RGB(7, 152, 207);
 }
@@ -262,89 +672,95 @@ float:right;
 .notice {
 	padding: 10px;
 	text-align: center;
-	width:100%;
-	height:36px;
+	width: 100%;
+	height: 36px;
 }
 
 .dnotice1 {
 	width: 1424.55px;
-    height: 90px;
-    background-color: #099CD3;
-    z-index: 20;
-    position: relative;
-    opacity: 1;
-    color: white;
-    font-family: NBG;
-    font-weight: bold;
-    font-size: 30px;
-    padding: 25px 0px;
-    text-align: center;
-    float: right;
-    top: -101px;
-    right: 0%;
+	height: 90px;
+	background-color: #099CD3;
+	z-index: 20;
+	position: relative;
+	opacity: 1;
+	color: white;
+	font-family: NBG;
+	font-weight: bold;
+	font-size: 30px;
+	padding: 25px 0px;
+	text-align: center;
+	float: right;
+	top: -101px;
+	right: 0%;
 }
+
 .dnotice2 {
 	width: 1424.55px;
-    height: 90px;
-    background-color: #867EB1;
-    z-index: 20;
-    position: relative;
-    opacity: 1;
-    color: white;
-    font-family: NBG;
-    font-weight: bold;
-    font-size: 30px;
-    padding: 25px 0px;
-    text-align: center;
-    float: right;
-    top: -101px;
-    right: 0%;
+	height: 90px;
+	background-color: #867EB1;
+	z-index: 20;
+	position: relative;
+	opacity: 1;
+	color: white;
+	font-family: NBG;
+	font-weight: bold;
+	font-size: 30px;
+	padding: 25px 0px;
+	text-align: center;
+	float: right;
+	top: -101px;
+	right: 0%;
 }
+
 .dnotice3 {
 	width: 1424.55px;
-    height: 90px;
-    background-color: #F36692;
-    z-index: 20;
-    position: relative;
-    opacity: 1;
-    color: white;
-    font-family: NBG;
-    font-weight: bold;
-    font-size: 30px;
-    padding: 25px 0px;
-    text-align: center;
-    float: right;
-    top: -101px;
-    right: 0%;
+	height: 90px;
+	background-color: #F36692;
+	z-index: 20;
+	position: relative;
+	opacity: 1;
+	color: white;
+	font-family: NBG;
+	font-weight: bold;
+	font-size: 30px;
+	padding: 25px 0px;
+	text-align: center;
+	float: right;
+	top: -101px;
+	right: 0%;
 }
+
 .commaimages {
-	margin-right: 40px;
+	margin-right: 30px;
 	width: 80px;
-	height : 102px;
+	height: 102px;
 }
+
 .commaimage1 {
 	width: 58px;
-	height : 71px;
-	float:left;
-	margin : 0px 20px 20px 30px;
+	height: 71px;
+	float: left;
+	margin: 0px 20px 20px 30px;
 }
+
 .admin {
-    font-family: NBG;
-    font-weight: bold;
-    font-size: 15px;
-    position: fixed;
-    width: 200px;
-    height: 336.5px;
-    right: -190px;
-    top: 39%;
-    transition: all ease 0.5s;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+	font-family: NBG;
+	font-weight: bold;
+	font-size: 15px;
+	position: fixed;
+	width: 200px;
+	height: 336.5px;
+	right: -190px;
+	top: 39%;
+	transition: all ease 0.5s;
+	border-bottom-left-radius: 20px;
+	border-top-left-radius: 20px;
 }
+
 .admin:hover {
-    right: 0%;
-    background-color: white;
-    border: 2px solid lightgray;
+	right: 0%;
+	background-color: white;
+	border: 2px solid lightgray;
 }
 /* #calendar {
 	width: 500px;
@@ -416,14 +832,35 @@ float:right;
 </style>
 <script>
 $(document).ready(function() {
-
+	var reservation = false;
+	var time = ${time};
+	for(var i = 0; i < time.length; i++) {
+		console.log('.t' + time[i][0] + ' .' + time[i][1]);
+		$('.t' + time[i][0] + ' tr .' + time[i][1]).addClass('active');
+	}
     $('.dnotice1').hide();
     $('.dnotice2').hide();
     $('.dnotice3').hide();
-	
-	$('td').not('.default').click(function() {
+	$('td').not('.default, .active').click(function() {
+		$.ajax({
+			type: 'post',
+			url: 'Reservation',
+			data : {
+				'time' : $(this).attr('class'),
+				'rm_no' : $(this).parent().parent().parent().attr('class')
+			},
+		success : function(result) {
+			if(result == "x") {
+				alert("예약을 2번 이상 예약할 수 없습니다.");
+				reservation = true;
 		if($(this).attr('class').includes('active')) $(this).removeClass("active");
-		else $(this).addClass("active");
+		else if(reservation) {
+			$(this).addClass("active");
+			reservation = false;
+		}
+			}	
+		}
+		});
 	});
     bind('#instance', function () {
         return new JParticles.particle('#instance',
@@ -616,8 +1053,7 @@ $(document).ready(function() {
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
 					<a class="nav-link" data-toggle="dropdown" href="#"> <img
-						src="./images/person.png"
-						style="margin-right: 5px"></a>
+						src="./images/person.png" style="margin-right: 5px"></a>
 					<div class="dropdown-menu" style="position: absolute; left: -300%;">
 						<a class="dropdown-item" href="#">
 							<div>
@@ -629,36 +1065,41 @@ $(document).ready(function() {
 			</ul>
 		</div>
 	</nav>
-	<br><br><br>
-	${html}
-	
+	<br>
+	<br>
+	<br> ${html}
+
 
 
 
 	<div class="admin">
-	<span><center style="margin:6px 0 0 0;color:RGB(64, 64, 64); font-size: 20px;">Controls</center></span><hr style="margin: 0;">
-	<img class="commaimage1" src="./images/comma1.png" style="margin-top:20px;">
-	<div class="switchContainer1" id="switchContainer1">
-  <div class="switchBg"></div>
-    <div class="switchBtn"></div>
-</div>
+		<span><center
+				style="margin: 6px 0 0 0; color: RGB(64, 64, 64); font-size: 20px;">Controls</center></span>
+		<hr style="margin: 0;">
+		<img class="commaimage1" src="./images/comma1.png"
+			style="margin-top: 20px;">
+		<div class="switchContainer1" id="switchContainer1">
+			<div class="switchBg"></div>
+			<div class="switchBtn"></div>
+		</div>
 
-	<img class="commaimage1" src="./images/comma2.png">
-	<div class="switchContainer2" id="switchContainer2">
-  <div class="switchBg"></div>
-    <div class="switchBtn"></div>
-</div>
+		<img class="commaimage1" src="./images/comma2.png">
+		<div class="switchContainer2" id="switchContainer2">
+			<div class="switchBg"></div>
+			<div class="switchBtn"></div>
+		</div>
 
-	<img class="commaimage1" src="./images/comma3.png">
-	<div class="switchContainer3" id="switchContainer3">
-  <div class="switchBg"></div>
-    <div class="switchBtn"></div>
-</div>
-	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
+		<img class="commaimage1" src="./images/comma3.png">
+		<div class="switchContainer3" id="switchContainer3">
+			<div class="switchBg"></div>
+			<div class="switchBtn"></div>
+		</div>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
   <defs>
     <filter id="gooey">
       <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"></feGaussianBlur>
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feColorMatrix in="blur" mode="matrix"
+				values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
     </filter>
   </defs>
 </svg>

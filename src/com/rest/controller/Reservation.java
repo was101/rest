@@ -37,16 +37,15 @@ public class Reservation extends HttpServlet {
 		HttpSession session = request.getSession();
 		ReservationDAO dao = new ReservationDAO();
 		ReservationVO vo = new ReservationVO();
-		ArrayList<Integer> num = dao.resCheck((String)session.getAttribute("nickname"));
+		int num = dao.resCheck((String)session.getAttribute("nickname"));
 		
 		// vo객체로 데이터 저장
 		vo.setNickname((String)session.getAttribute("nickname"));
 		vo.setTime((String)request.getParameter("time"));
-		vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no")));
-		
+		vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no").replaceAll("t", "")));
 		// DB 조회
-		if(num.size() < 2) {
-			System.out.println(num.size());
+		if(num < 2) {
+			System.out.println(num);
 		// DB에 저장
 		dao.reservation(vo);
 		response.getWriter().write(dao.getID(vo.getTime(), vo.getNickname())+"");

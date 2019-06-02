@@ -39,29 +39,25 @@ public class ReservationDAO {
 		return result;
 	}
 	
-	public ArrayList<ReservationVO> booked(int rm_no) {
-		ArrayList<ReservationVO> vlist = new ArrayList<>();
-		ReservationVO vo;
+	public String booked() {
+		String str = "[";
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT * from reservation where rm_no=?";
+		String sql = "SELECT * from reservation";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, rm_no);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				vo = new ReservationVO();
-				vo.setRm_id(rs.getInt(1));
-				vo.setTime(rs.getString(2));
-				vo.setRm_no(rs.getInt(3));
-				vo.setNickname(rs.getString(4));
-				vlist.add(vo);
+				System.out.println("rm_no : " + rs.getInt(3) + " / time : " + rs.getString(2));
+				str += "[" + rs.getInt(3) + ",'" + rs.getString(2) + "'],";
 			}
+			str += "@@]";
+			str = str.replace(",@@", "");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DBUtil.dbdisconnect(conn, st, rs);
 		}
-		return vlist;
+		return str;
 	}
 	
 	public int findRes(String nickname, String time) {
@@ -119,9 +115,8 @@ public class ReservationDAO {
 		return rm_id;
 	}
 	
-	public ArrayList<Integer> resCheck(String nickname) {
-		ArrayList<Integer> numArr = new ArrayList<>();
-		int rm_id = 0;
+	public int resCheck(String nickname) {
+		int num = 0;
 		conn = DBUtil.dbconnect();
 		String sql = "SELECT rm_id from reservation where nickname=?";
 		try {
@@ -129,15 +124,14 @@ public class ReservationDAO {
 			ps.setString(1, nickname);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				rm_id = rs.getInt(1);
-				numArr.add(rm_id);
+				num++;
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DBUtil.dbdisconnect(conn, st, rs);
 		}
-		return numArr;
+		return num;
 	}
 	
 }
