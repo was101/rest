@@ -317,32 +317,31 @@ float:right;
     top: -101px;
     right: 0%;
 }
-.commaimage {
+.commaimages {
 	margin-right: 40px;
-	width: 70px;
-	height : 83px;
+	width: 80px;
+	height : 102px;
 }
 .commaimage1 {
-	margin: 0 20px 20px 30px;
-	width: 70px;
-	height : 83px;
+	width: 58px;
+	height : 71px;
 	float:left;
+	margin : 0px 20px 20px 30px;
 }
 .admin {
     font-family: NBG;
     font-weight: bold;
     font-size: 15px;
-    position: absolute;
-    width: 400px;
+    position: fixed;
+    width: 200px;
     height: 336.5px;
-    right: -20%;
+    right: -190px;
     top: 39%;
     transition: all ease 0.5s;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
 }
 .admin:hover {
-    width: 200px;
     right: 0%;
     background-color: white;
     border: 2px solid lightgray;
@@ -417,7 +416,10 @@ float:right;
 </style>
 <script>
 $(document).ready(function() {
-	
+	$('td').not('.default').click(funcion() {
+		if($(this).attr('class').inclludes('active')) $(this).removeClass("active");
+		else $(this).addClass("active");
+	});
     bind('#instance', function () {
         return new JParticles.particle('#instance',
         {
@@ -632,35 +634,19 @@ $(document).ready(function() {
 
 	<div class="admin">
 	<span><center style="margin:6px 0 0 0;color:RGB(64, 64, 64); font-size: 20px;">Controls</center></span><hr style="margin: 0;">
-	<img class="commaimage1" src="./images/comma1.jpg">
+	<img class="commaimage1" src="./images/comma1.png" style="margin-top:20px;">
 	<div class="switchContainer1" id="switchContainer1">
   <div class="switchBg"></div>
     <div class="switchBtn"></div>
 </div>
-	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
-  <defs>
-    <filter id="gooey">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"></feGaussianBlur>
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-    </filter>
-  </defs>
-</svg>
 
-	<img class="commaimage1" src="./images/comma2.jpg">
+	<img class="commaimage1" src="./images/comma2.png">
 	<div class="switchContainer2" id="switchContainer2">
   <div class="switchBg"></div>
     <div class="switchBtn"></div>
 </div>
-	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0">
-  <defs>
-    <filter id="gooey">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"></feGaussianBlur>
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-    </filter>
-  </defs>
-</svg>
 
-	<img class="commaimage1" src="./images/comma3.jpg">
+	<img class="commaimage1" src="./images/comma3.png">
 	<div class="switchContainer3" id="switchContainer3">
   <div class="switchBg"></div>
     <div class="switchBtn"></div>
