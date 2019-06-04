@@ -40,16 +40,22 @@ public class Start extends HttpServlet {
 		System.out.println(cookies);
 		
 		if (session == null || session.getAttribute("nickname") == null) {
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.forward(request, response);
-			if(cookies != null) {
+			if(cookies != null && cookies.length > 1) {
+				session = request.getSession();
 				for(Cookie c : cookies) {
+					System.out.println(c.getName());
 					if(c.getName().equals("nickname")) session.setAttribute("nickname", c.getValue());
 					else if(c.getName().equals("pw")) session.setAttribute("pw", c.getValue());
+					else if(c.getName().equals("checked")) session.setAttribute("checked", c.getValue());
 					System.out.println(c.getValue());
 				}
+				response.sendRedirect("Calendar");
+			}else {
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.forward(request, response);
 			}
 		} else {
+			session = request.getSession();
 			response.sendRedirect("Calendar");
 		}
 	}

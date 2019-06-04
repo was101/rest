@@ -43,8 +43,9 @@ public class login extends HttpServlet {
 		String[] check = request.getParameterValues("remember");
 		HttpSession session = request.getSession(false);
 		Cookie[] cookies = request.getCookies();
+		String remem = "";
 		for (int i = 0; check != null && i < check.length; i++) {
-			String remem = check[i];
+			remem = check[i];
 		}
 
 		// 세션이 없으면 세션을 생성, 세션이 있으면 해당 새션을 불러옴
@@ -52,8 +53,13 @@ public class login extends HttpServlet {
 			System.out.println("체크 됨");
 			Cookie nicknameCookie = new Cookie("nickname", nickname);
 			Cookie pwCookie = new Cookie("pw", crypt.run_Encrypt(pw));
+			Cookie reCookie = new Cookie("checked", remem);
+			nicknameCookie.setMaxAge(60*60*24*30);
+			pwCookie.setMaxAge(60*60*24*30);
+			reCookie.setMaxAge(60*60*24*30);
 			response.addCookie(nicknameCookie);
 			response.addCookie(pwCookie);
+			response.addCookie(reCookie);
 			session = request.getSession();
 			session.setAttribute("nickname", nickname);
 			try {
@@ -64,28 +70,24 @@ public class login extends HttpServlet {
 			response.sendRedirect("/Calendar");
 		} else {
 			System.out.println("체크 안됨");
-			for (int i = 0; i < cookies.length; i++) {
-				cookies[i].setValue(null);
-				cookies[i].setMaxAge(0);
-				response.addCookie(cookies[i]);
+			System.out.println("체크 됨");
+			Cookie nicknameCookie = new Cookie("nickname", nickname);
+			Cookie pwCookie = new Cookie("pw", crypt.run_Encrypt(pw));
+			Cookie reCookie = new Cookie("checked", remem);
+			nicknameCookie.setMaxAge(60*30);
+			pwCookie.setMaxAge(60*30);
+			reCookie.setMaxAge(60*30);
+			response.addCookie(nicknameCookie);
+			response.addCookie(pwCookie);
+			response.addCookie(reCookie);
+			session = request.getSession();
+			session.setAttribute("nickname", nickname);
+			try {
+				session.setAttribute("pw", crypt.run_Encrypt(pw));
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			if (session == null || session.getAttribute("nickname") == null) {
-				System.out.println("세션없음");
-				session = request.getSession();
-				session.setAttribute("nickname", nickname);
-				System.out.println(session.getAttribute("nickname"));
-				try {
-					session.setAttribute("pw", crypt.run_Encrypt(pw));
-					System.out.println(pw);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				response.sendRedirect("/Calendar");
-			} else {
-				System.out.println("세션있음");
-				session = request.getSession();
-				response.sendRedirect("/Calendar");
-			}
+			response.sendRedirect("/Calendar");
 		}
 
 	}

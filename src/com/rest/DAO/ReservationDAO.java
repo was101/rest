@@ -47,11 +47,11 @@ public class ReservationDAO {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				System.out.println("rm_no : " + rs.getInt(3) + " / time : " + rs.getString(2));
 				str += "[" + rs.getInt(3) + ",'" + rs.getString(2) + "'],";
 			}
 			str += "@@]";
 			str = str.replace(",@@", "");
+			str = str.replace("@@", "");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

@@ -460,7 +460,6 @@ td {
 </style>
 <script>
 $(document).ready(function() {
-	var reservation = false;
 	var time = ${time};
 	for(var i = 0; i < time.length; i++) {
 		console.log('.t' + time[i][0] + ' .' + time[i][1]);
@@ -470,24 +469,18 @@ $(document).ready(function() {
     $('.dnotice2').hide();
     $('.dnotice3').hide();
 	$('td').not('.default, .active').click(function() {
+		var res = $(this);
 		$.ajax({
 			type: 'post',
 			url: 'Reservation',
 			data : {
-				'time' : $(this).attr('class'),
-				'rm_no' : $(this).parent().parent().parent().attr('class')
+				'time' : res.attr('class'),
+				'rm_no' : res.parent().parent().parent().attr('class')
 			},
 		success : function(result) {
-			if(result == "x") {
-				alert("예약을 2번 이상 예약할 수 없습니다.");
-				reservation = true;
-		if($(this).attr('class').includes('active')) $(this).removeClass("active");
-		else if(reservation) {
-			$(this).addClass("active");
-			reservation = false;
-		}
-			}	
-		}
+			if(result == "x") alert("예약을 2번 이상 예약할 수 없습니다.");
+			else res.addClass("active");
+			}
 		});
 	});
     bind('#instance', function () {

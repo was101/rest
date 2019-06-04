@@ -38,7 +38,7 @@ public class Calendar extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 
 		// 세션이 없으면 로그인화면으로, 있으면 캘린더 생성.
 		if (session == null || session.getAttribute("nickname") == null) {
@@ -58,7 +58,7 @@ public class Calendar extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			String html = "";
 			for (int i = 1; i <= 3; i++) {
-				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".jpg'><table class='t" + i + "'><tbody><tr>";
+				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".png'><table class='t" + i + "'><tbody><tr>";
 				for (int j = 6; j < 12; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j < 8) {
@@ -76,11 +76,8 @@ public class Calendar extends HttpServlet {
 						else html += "<td class='" + j + "m" + k + "0'>" + j + ":" + k + "0</td>";
 					}
 				}
-				if(i == i) {
-					html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
-				}else {
-				html += "</tr></tbody></table><div class='dnotice' style='display:none'><marquee>Disabled</marquee></div></div>";
-				}
+				if(i < 3) html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
+				else html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>안마의자가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
 			}
 
 			// time을 출력해서 DB에서 잘 가져 왔는지 확인 가능. 그 후 time을 jsp에 뿌려줌.
