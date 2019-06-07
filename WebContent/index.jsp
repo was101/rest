@@ -678,7 +678,7 @@ $(document).ready(function() {
 					<div class="dropdown-menu" style="position: absolute; left: -300%;">
 						<a class="dropdown-item" href="#">
 							<div>
-								예약 현황<br> 오후2시 예약중<br> 오후3시 예약중&times;
+							${status}
 							</div>
 						</a> <a class="dropdown-item" href="Logout">로그아웃</a>
 					</div>
@@ -694,8 +694,7 @@ $(document).ready(function() {
 
 
 	<div class="admin">
-		<span><center
-				style="margin: 6px 0 0 0; color: RGB(64, 64, 64); font-size: 20px;">Controls</center></span>
+		<span><center style="margin: 6px 0 0 0; color: RGB(64, 64, 64); font-size: 20px;">Controls</center></span>
 		<hr style="margin: 0;">
 		<img class="commaimage1" src="./images/comma1.png"
 			style="margin-top: 20px;">

@@ -94,7 +94,7 @@ public class ReservationDAO {
 		}
 		return result;
 	}
-	
+
 	public int getID(String time, String nickname) {
 		conn = DBUtil.dbconnect();
 		int rm_id = 0;
@@ -114,6 +114,29 @@ public class ReservationDAO {
 		}
 		return rm_id;
 	}
+
+	//----------------------------------------------------------
+	public int getIDt(int rm_num, String time, String nick) {
+		conn = DBUtil.dbconnect();
+		int rm_id = 0;
+		String sql = "SELECT * FROM reservation WHERE rm_no=? AND time=? AND nickname=?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, rm_num);
+			ps.setString(2, time);
+			ps.setString(3, nick);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				rm_id = rs.getInt(1);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return rm_id;
+	}
+	//----------------------------------------------------------
 	
 	public int resCheck(String nickname) {
 		int num = 0;
