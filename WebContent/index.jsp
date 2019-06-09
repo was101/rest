@@ -676,11 +676,8 @@ $(document).ready(function() {
 					<a class="nav-link" data-toggle="dropdown" href="#"> <img
 						src="./images/person.png" style="margin-right: 5px"></a>
 					<div class="dropdown-menu" style="position: absolute; left: -300%;">
-						<a class="dropdown-item" href="#">
-							<div>
 							${status}
-							</div>
-						</a> <a class="dropdown-item" href="Logout">로그아웃</a>
+						<a class="dropdown-item" href="Logout">로그아웃</a>
 					</div>
 				</li>
 			</ul>

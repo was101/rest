@@ -115,28 +115,28 @@ public class ReservationDAO {
 		return rm_id;
 	}
 
-	//----------------------------------------------------------
-	public int getIDt(int rm_num, String time, String nick) {
+	public List<String> getInfo(String nickname) {
 		conn = DBUtil.dbconnect();
-		int rm_id = 0;
-		String sql = "SELECT * FROM reservation WHERE rm_no=? AND time=? AND nickname=?";
+		String sql = "SELECT rm_no, time FROM reservation WHERE nickname=?";
+		List<String> info = new ArrayList<>();
+		String str = "";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, rm_num);
-			ps.setString(2, time);
-			ps.setString(3, nick);
+			ps.setString(1, nickname);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				rm_id = rs.getInt(1);
+				str = rs.getInt(1) + "번방 " + rs.getString(2);
+				str = str.replace("m", ":");
+				str = "<a class='dropdown-item' href='#'>" + str + "<span>&times;</span></a>";
+				if(!info.contains(str)) info.add(str);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DBUtil.dbdisconnect(conn, st, rs);
 		}
-		return rm_id;
+		return info;
 	}
-	//----------------------------------------------------------
 	
 	public int resCheck(String nickname) {
 		int num = 0;
