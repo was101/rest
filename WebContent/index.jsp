@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<c:set value="<%=(String)request.getSession().getAttribute(\"nickname\") %>" var="nickname"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +10,6 @@
 <title>휴게실 예약 시스템</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-<link href="./fullCalendar/core/main.min.css" rel="stylesheet">
-<link href="./fullCalendar/daygrid/main.min.css" rel="stylesheet">
-<link href="./fullCalendar/timegrid/main.min.css" rel="stylesheet">
-<link href="./fullCalendar/bootstrap/main.min.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
@@ -23,13 +21,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="./fullCalendar/core/main.min.js"></script>
-<script src="./fullCalendar/interaction/main.min.js"></script>
-<script src="./fullCalendar/daygrid/main.min.js"></script>
-<script src="./fullCalendar/timegrid/main.min.js"></script>
-<script src='./fullCalendar/core/locales-all.min.js'></script>
-<script src="./fullCalendar/bootstrap/main.min.js"></script>
-
 <script src="./particles/jparticles.js"></script>
 <script src="./particles/particle.js"></script>
 <script src="./particles/event.js"></script>
@@ -390,6 +381,13 @@ td {
 	background-color: white;
 	border: 2px solid lightgray;
 }
+.cancel {
+    border-radius: 100px;
+    background-color: #DC4848;
+    margin-left: 6px;
+    font-size: 9px;
+    padding: 3px;
+}
 /* #calendar {
 	width: 500px;
 	position: relative;
@@ -442,21 +440,6 @@ td {
 	outline: 0;
 	border: 0;
 } */
-.header {
-	
-}
-
-.body {
-	
-}
-
-.footer {
-	
-}
-
-#calendar rd {
-	height: 30px;
-}
 </style>
 <script>
 $(document).ready(function() {
@@ -465,24 +448,72 @@ $(document).ready(function() {
 		console.log('.t' + time[i][0] + ' .' + time[i][1]);
 		$('.t' + time[i][0] + ' tr .' + time[i][1]).addClass('active');
 	}
-    $('.dnotice1').hide();
-    $('.dnotice2').hide();
-    $('.dnotice3').hide();
-	$('td').not('.default, .active').click(function() {
+	
+	$.ajax({
+    	type: 'post',
+    	url: '/Rest/Disabled',
+    	success : function(result) {
+    	var arr = [[],[],[]];
+    		var str = result;
+    		for(var i = 0; i < arr.length; i++) {
+    			arr[i] = str.split("@")[i].split("/");
+    		}
+    		for(var i = 0; i < arr.length; i++) {
+    			if(arr[i][1] == "0") {
+    				$('.dnotice' + arr[i][0]).hide();
+    				$('.switchContainer' + arr[i][0]).addClass('switchOff');
+    			}
+    			else if (arr[i][1] == "1") {
+    				$('.dnotice' + arr[i][0]).show();
+    				$('.switchContainer' + arr[i][0]).addClass('switchOn');
+    			}
+    		}
+    	}
+    });
+	
+	$('td').not('.default, .active, .AM, .PM').click(function() {
 		var res = $(this);
+		var reservationCheck = confirm(res.attr('class').replace("m","시 ") + "분에 예약 하시겠습니까?");
+		if(reservationCheck) {
 		$.ajax({
 			type: 'post',
-			url: 'Reservation',
+			url: '/Rest/Reservation',
 			data : {
 				'time' : res.attr('class'),
 				'rm_no' : res.parent().parent().parent().attr('class')
 			},
 		success : function(result) {
 			if(result == "x") alert("예약을 2번 이상 예약할 수 없습니다.");
-			else res.addClass("active");
+			else if(result == "d") alert("연속으로 예약할 수 없습니다.");
+			else if(result == "s") alert("동일한 시간대에 다른 방을 예약할 수 없습니다.");
+			else location.reload();
 			}
 		});
+		}
 	});
+	
+	$('.default, .active').click(function() {
+		alert("예약하실 수 없습니다.");
+	});
+	
+	$('.delete').click(function() {
+		var del = $(this);
+		var deleteCheck = confirm("예약을 취소하시겠습니까?");
+		var time = del.text().substring(3, del.text().indexOf(':')+3).replace(":", "m");
+		if(deleteCheck) {
+			 $.ajax({
+				type: 'post',
+				url: '/Rest/Delete',
+				data : {
+					'time' : time
+				},
+				success : function() {
+					location.reload();
+				}
+			});
+		}
+	});
+	
     bind('#instance', function () {
         return new JParticles.particle('#instance',
         {
@@ -499,7 +530,7 @@ $(document).ready(function() {
         });
     });
     
-
+    <c:if test="${nickname == '오픈핸즈'}">
     var container = document.querySelector("#switchContainer1");
     var container2 = document.querySelector("#switchContainer2");
     var container3 = document.querySelector("#switchContainer3");
@@ -509,11 +540,27 @@ $(document).ready(function() {
         container.classList.remove("switchOn");
         container.classList += " switchOff";
         $('.dnotice1').hide();
+        $.ajax({
+        	type: 'post',
+        	url: '/Rest/Disable',
+        	data : {
+        		'rm_no' : 1,
+        		'used' : 0
+        	}
+        });
       }
       else{
         container.classList.remove("switchOff");
         container.classList += " switchOn";
         $('.dnotice1').show();
+        $.ajax({
+        	type: 'post',
+        	url: '/Rest/Disable',
+        	data : {
+        		'rm_no' : 1,
+        		'used' : 1
+        	}
+        });
       }
       
     }
@@ -524,11 +571,27 @@ $(document).ready(function() {
          container2.classList.remove("switchOn");
          container2.classList += " switchOff";
          $('.dnotice2').hide();
+         $.ajax({
+         	type: 'post',
+         	url: '/Rest/Disable',
+         	data : {
+         		'rm_no' : 2,
+         		'used' : 0
+         	}
+         });
        }
        else{
          container2.classList.remove("switchOff");
          container2.classList += " switchOn";
          $('.dnotice2').show();
+         $.ajax({
+         	type: 'post',
+         	url: '/Rest/Disable',
+         	data : {
+         		'rm_no' : 2,
+         		'used' : 1
+         	}
+         });
        }
     }
     container2.addEventListener("click", onOffSwitch2, false);
@@ -538,112 +601,32 @@ $(document).ready(function() {
           container3.classList.remove("switchOn");
           container3.classList += " switchOff";
           $('.dnotice3').hide();
+          $.ajax({
+          	type: 'post',
+          	url: '/Rest/Disable',
+          	data : {
+          		'rm_no' : 3,
+          		'used' : 0
+          	}
+          });
         }
         else{
           container3.classList.remove("switchOff");
           container3.classList += " switchOn";
           $('.dnotice3').show();
+          $.ajax({
+          	type: 'post',
+          	url: '/Rest/Disable',
+          	data : {
+          		'rm_no' : 3,
+          		'used' : 1
+          	}
+          });
         }
       }
     container3.addEventListener("click", onOffSwitch3, false);
-      
+      </c:if>
 });
-	<%-- var calendarEl = document.getElementById('calendar');
-	var date = new Date();
-    var rm_no = 1;
-	
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-    	height: 550,
-    	themeSystem:'bootstrap',
-    	plugins: [ 'interaction', 'timeGrid', 'bootstrap' ],
-    	locale: 'ko',
-    	defaultView: 'timeGridDay',
-    	selectable: true,
-    	allDaySlot:false,
-    	minTime:"08:00:00",
-    	maxTime:"19:00:00",
-    	nowIndicator: true,
-    	defaultDate: date,
-    	handleWindowResize: true,
-    	windowResiseDelay:2000,
-    	slotDuration: '00:20:00',
-      	hiddenDays: [0, 6],
-		select: function(info) {
-			var reservationCheck = confirm(info.start.getHours() + "시 " + info.start.getMinutes() +"분에 예약하시겠습니까?");
-			if(reservationCheck) {
-			$.ajax({
-				type: 'post',
-				url: 'Reservation',
-				data: {
-					"time": "title : '<%=request.getSession().getAttribute("nickname")%>'"  + ",start : '" + info.startStr + "',end : '" + info.endStr + "'",
-					"rm_no": rm_no
-				},
-			success: function(result) {
-				if(result == "x") {
-					alert("2번 이상 예약할 수 없습니다.");
-				}else {
-					
-			calendar.addEvent({
-				id:result,
-				title:"<%=request.getSession().getAttribute("nickname")%>",
-				start: info.startStr,
-				end : info.endStr
-			});
-				}
-			}
-			});
-			}
-		},
-		eventClick: function(info) {
-			if(info.event.title == "<%=request.getSession().getAttribute("nickname")%>") {
-				var deleteCheck = confirm("예약을 취소 하시겠습니까?");
-				if(deleteCheck) {
-					$.ajax({
-						type: 'post',
-						url: 'Delete',
-						data: {
-							"rm_id": info.event.id,
-							"nickname" : info.event.title
-						},
-					});
-					info.event.remove();
-				}
-			}
-			else {
-				alert("예약자가 다릅니다.");
-			}
-		},
-      	header: {
-        	left: '',
-        	center: 'title',
-        	right: ''
-		},
-		resourceLabelText: "Rooms",
-		resources:[{
-			id : '1',
-			title : "rm.01"
-		}],
-		events : [${time}]
-	});
-
-	calendar.render();
-	calendar.defaultDate = date; --%>
-		
-	/* $('.room').click(function() {
-		$('#calendar').html("");
-		$.ajax({
-			type:'post',
-			url:'Calendar',
-			data : {
-				'rm_no' : $(this).val(),
-				'ajax' : "1"
-			},
-			success: function(result) {
-				rm_no = $(this).val();
-				console.log(result);
-			}
-		});
-	}); */
 </script>
 </head>
 <body>
@@ -664,9 +647,9 @@ $(document).ready(function() {
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">편의기능</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">delacourt(식당메뉴)</a> <a
-							class="dropdown-item" href="#">회의실 예약 시스템</a> <a
-							class="dropdown-item" href="#">전결라인</a>
+						<a class="dropdown-item" href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list;jsessionid=dIzKcanodX9wf2LeRYcek775PIStW75nQZw2Jf7qshFWXZh5_AA8!550924408?zoneId=AS&menuTime=lunch" target="_sub">delacourt(식당메뉴)</a> <a
+							class="dropdown-item" href="http://70.30.169.36:8080/RS/#	" target="_sub">회의실 예약 시스템</a> <a
+							class="dropdown-item" href="#" target="_sub">전결라인</a>
 					</div></li>
 			</ul>
 		</div>
@@ -675,9 +658,13 @@ $(document).ready(function() {
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
 					<a class="nav-link" data-toggle="dropdown" href="#"> <img
 						src="./images/person.png" style="margin-right: 5px"></a>
-					<div class="dropdown-menu" style="position: absolute; left: -300%;">
+					<div class="dropdown-menu" style="position: absolute; left: -416%;width:200px;">
+					<div style="margin: 0px 3px 6px 15px;">
+					<img src="./images/person.png"> 내 예약 정보
+					</div>
+					<a class="dropdown-item target" href="Logout"></a>
 							${status}
-						<a class="dropdown-item" href="Logout">로그아웃</a>
+						<a class="dropdown-item" href="Logout"><img src="./images/logout.png" style="width:20px;margin-right:5px;">로그아웃</a>
 					</div>
 				</li>
 			</ul>
@@ -687,9 +674,13 @@ $(document).ready(function() {
 	<br>
 	<br> ${html}
 
-
-
-
+	<div style="text-align:center;font-weight:bold;">
+	※ 지원사원팀 휴게시간(AM 9: 30 ~ 10:00 / PM 2:30 ~ 3:00)으로 예약 불가이지만, 현장에 자리가 남아있으면 들어가셔도 됩니다.
+	</div>
+	
+	
+	
+<c:if test="${nickname == '오픈핸즈'}">
 	<div class="admin">
 		<span><center style="margin: 6px 0 0 0; color: RGB(64, 64, 64); font-size: 20px;">Controls</center></span>
 		<hr style="margin: 0;">
@@ -722,6 +713,7 @@ $(document).ready(function() {
 </svg>
 
 	</div>
+</c:if>
 	<!-- <div id='calendar'></div> -->
 	<!-- <div class="alert"></div> -->
 </body>

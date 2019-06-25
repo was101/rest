@@ -3,9 +3,9 @@ package com.rest.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-//--------------암&복호화
+//--------------�븫&蹂듯샇�솕
 import org.apache.tomcat.util.codec.binary.Base64;
-//--------------암&복호화 end
+//--------------�븫&蹂듯샇�솕 end
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,7 +52,7 @@ public class Test extends HttpServlet {
 				response.getWriter().write("false");
 		} catch (Exception e) {
 			System.out.println("security error");
-//			e.printStackTrace();	//개발자용
+//			e.printStackTrace();	//媛쒕컻�옄�슜
 		}
 	}
 

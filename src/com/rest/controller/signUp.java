@@ -2,9 +2,9 @@ package com.rest.controller;
 
 import java.io.IOException;
 
-//--------------암&복호화
+//--------------�븫&蹂듯샇�솕
 import org.apache.tomcat.util.codec.binary.Base64;
-//--------------암&복호화 end
+//--------------�븫&蹂듯샇�솕 end
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,8 +48,7 @@ public class signUp extends HttpServlet {
 		try {
 			response.getWriter().write(dao.signUp(nickname, crypt.run_Encrypt(password), email) + "");
 		} catch (Exception e) {
-			System.out.println("security error");
-//			e.printStackTrace();	//개발자용
+			e.printStackTrace();	//媛쒕컻�옄�슜
 		}
 	}
 

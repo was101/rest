@@ -69,9 +69,8 @@ public class Crypt
 			en2 = null;
 			pw = null;
 			de = null;
-		} catch (Exception e)
-		{
-			System.out.println("Security error");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return de2;
 	}

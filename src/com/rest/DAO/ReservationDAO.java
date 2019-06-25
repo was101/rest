@@ -79,12 +79,28 @@ public class ReservationDAO {
 		return -1;
 	}
 	
-	public int delete(int rm_id) {
+	public int delete(String time, String nickname) {
 		conn = DBUtil.dbconnect();
-		String sql = "DELETE FROM reservation WHERE rm_id=?";
+		String sql = "DELETE FROM reservation WHERE time=? AND nickname=?";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, rm_id);
+			ps.setString(1, time);
+			ps.setString(2, nickname);
+			result = ps.executeUpdate();
+			return result;
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbdisconnect(conn, st, rs);
+		}
+		return result;
+	}
+	
+	public int deleteAll() {
+		conn = DBUtil.dbconnect();
+		String sql = "DELETE FROM reservation";
+		try {
+			ps = conn.prepareStatement(sql);
 			result = ps.executeUpdate();
 			return result;
 		} catch(SQLException e) {
@@ -117,7 +133,7 @@ public class ReservationDAO {
 
 	public List<String> getInfo(String nickname) {
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT rm_no, time FROM reservation WHERE nickname=?";
+		String sql = "SELECT rm_no, time FROM reservation WHERE nickname=? order by time asc";
 		List<String> info = new ArrayList<>();
 		String str = "";
 		try {
@@ -125,9 +141,9 @@ public class ReservationDAO {
 			ps.setString(1, nickname);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				str = rs.getInt(1) + "번방 " + rs.getString(2);
+				str = rs.getString(2);
 				str = str.replace("m", ":");
-				str = "<a class='dropdown-item' href='#'>" + str + "<span>&times;</span></a>";
+				str = "<a class='dropdown-item delete' href='#'>" + "<img style='width:25px;margin-right:5px;' src='./images/comma" + rs.getInt(1) + ".png'>" + str + "<span class='cancel'>&times;</span></a>";
 				if(!info.contains(str)) info.add(str);
 			}
 		} catch(SQLException e) {
@@ -138,23 +154,23 @@ public class ReservationDAO {
 		return info;
 	}
 	
-	public int resCheck(String nickname) {
-		int num = 0;
+	public List<String> resCheck(String nickname) {
+		List<String> list = new ArrayList<>();
 		conn = DBUtil.dbconnect();
-		String sql = "SELECT rm_id from reservation where nickname=?";
+		String sql = "SELECT time from reservation where nickname=?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, nickname);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				num++;
+				list.add(rs.getString(1));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			DBUtil.dbdisconnect(conn, st, rs);
 		}
-		return num;
+		return list;
 	}
 	
 }

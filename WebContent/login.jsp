@@ -298,7 +298,7 @@ $(document).ready(function() {
 	$('.nickname, .password').keyup(function() {
 		$.ajax({
 			type:'POST',
-			url:'/Test',
+			url:'/Rest/Test',
 			 data : {
 				 'nickname' : $('.nickname').val(),
 				 'pw' : $('.password').val()
@@ -319,7 +319,7 @@ $(document).ready(function() {
 		if (test.test($('.signNick').val())) {
 			$.ajax({
 				type: 'post',
-				url:'/DuplCheck',
+				url:'/Rest/DuplCheck',
 				data: {
 					'type' : 'nickname',
 					'answer' : $('.signNick').val()
@@ -370,7 +370,7 @@ $(document).ready(function() {
 		if (test.test($('.signEmail').val())) {
 			$.ajax({
 				type: 'post',
-				url:'/DuplCheck',
+				url:'/Rest/DuplCheck',
 				data: {
 					'type' : 'email',
 					'answer' : $('.signEmail').val()
@@ -395,7 +395,7 @@ $(document).ready(function() {
 	$('.pwfind').click(function() {
 		$.ajax({
 			type: 'post',
-			url: '/FindPW',
+			url: '/Rest/FindPW',
 			data: {
 				'nickname' : $('.fpnick').val(),
 				'email' : $('.fpemail').val()
@@ -416,7 +416,7 @@ $(document).ready(function() {
 	$('.nickfind').click(function() {
 		$.ajax({
 			type: 'post',
-			url: '/FindNick',
+			url: '/Rest/FindNick',
 			data: {
 				'email' : $('.fnemail').val()
 			},
@@ -438,13 +438,13 @@ $(document).ready(function() {
 	
 	$('.signsubmit').click(function() {
 		var testNick = /^[a-zA-Z가-힣0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]{2,20}/;
-		var testPW = /^[a-zA-Z0-9]{8,16}/;
+		var testPW = /^[a-zA-Z0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]{8,16}/;
 		var testEmail = /^[a-zA-Z0-9]+[\.]{1}[a-z]+/;
 		var signCheck = testNick.test($('.signNick').val()) && testPW.test($('.signPW').val()) && testPW.test($('.REsignPW').val()) && $('.signPW').val() == $('.REsignPW').val() && testEmail.test($('.signEmail').val());
 		if(signCheck) {
 		$.ajax({
 			type : 'post',
-			url : '/signUp',
+			url : '/Rest/signUp',
 			data : {
 				'nickname' : $('.signNick').val(),
 				'password' : $('.REsignPW').val(),
@@ -497,7 +497,7 @@ $(document).ready(function() {
 <form action="login" method="post" onsubmit="return login();">
 		<input class='nickname' type="text" name="nickname" placeholder="Nickname"><br>
 		<input class="password" type="password" name="pw" placeholder="Password"><br><br>
-		<input class="remember" id="remember" type="checkbox" name="remember" value="checked"><label for="remember">Remember me</label>
+		<input class="remember" id="remember" type="checkbox" name="remember" value="checked"><label for="remember">자동 로그인</label>
 		<span style="margin-left: 95px;">
 		<span data-toggle="modal" data-target="#signUp" class="signUp">회원가입</span>
 		<span>&#32;/&#32;</span>

@@ -1,5 +1,6 @@
 package com.rest.DAO;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,15 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.rest.VO.UserVO;
-
-//--------------암&복호화
-import org.apache.tomcat.util.codec.binary.Base64;
-
-import java.io.IOException;
-import java.security.*;
-import javax.crypto.*;
-import javax.crypto.spec.*;
-//--------------암&복호화 end
 
 import Util.DBUtil;
 

@@ -37,26 +37,23 @@ public class Start extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 		Cookie[] cookies = request.getCookies();
-		System.out.println(cookies);
 		
 		if (session == null || session.getAttribute("nickname") == null) {
 			if(cookies != null && cookies.length > 1) {
 				session = request.getSession();
 				for(Cookie c : cookies) {
-					System.out.println(c.getName());
 					if(c.getName().equals("nickname")) session.setAttribute("nickname", c.getValue());
 					else if(c.getName().equals("pw")) session.setAttribute("pw", c.getValue());
 					else if(c.getName().equals("checked")) session.setAttribute("checked", c.getValue());
-					System.out.println(c.getValue());
 				}
-				response.sendRedirect("Calendar");
+				response.sendRedirect("/Rest/Calendar");
 			}else {
 				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 				rd.forward(request, response);
 			}
 		} else {
 			session = request.getSession();
-			response.sendRedirect("Calendar");
+			response.sendRedirect("/Rest/Calendar");
 		}
 	}
 

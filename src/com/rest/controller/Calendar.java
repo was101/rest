@@ -38,20 +38,18 @@ public class Calendar extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 
-		// 세션이 없으면 로그인화면으로, 있으면 캘린더 생성.
+		// �꽭�뀡�씠 �뾾�쑝硫� 濡쒓렇�씤�솕硫댁쑝濡�, �엳�쑝硫� 罹섎┛�뜑 �깮�꽦.
 		if (session == null || session.getAttribute("nickname") == null) {
-			System.out.println("session : " + session.getAttribute("nickname"));
-			response.sendRedirect("Start");
+			response.sendRedirect("/Rest/Start");
 		} else {
-			System.out.println("session : " + session.getAttribute("nickname"));
 			ReservationDAO dao = new ReservationDAO();
 
-			// 방 번호 값이 있으면 해당 번호로, 없으면 default로 1을 넣음.
+			// 諛� 踰덊샇 媛믪씠 �엳�쑝硫� �빐�떦 踰덊샇濡�, �뾾�쑝硫� default濡� 1�쓣 �꽔�쓬.
 			int rm_no = 1;
 			if (request.getParameter("rm_no") != null)
 				rm_no = Integer.parseInt(request.getParameter("rm_no"));
 
-			// DB에서 time을 불러온 뒤에 json형식으로 바꿈.(아직은 String)
+			// DB�뿉�꽌 time�쓣 遺덈윭�삩 �뮘�뿉 json�삎�떇�쑝濡� 諛붽퓞.(�븘吏곸� String)
 			String time = dao.booked();
 			String nickname = (String)session.getAttribute("nickname");
 			request.setCharacterEncoding("UTF-8");
@@ -61,7 +59,7 @@ public class Calendar extends HttpServlet {
 			List<String> info = dao.getInfo(nickname);
 			
 			for (int i = 1; i <= 3; i++) {
-				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".png'><table class='t" + i + "'><tbody><tr>";
+				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".png'><table class='t" + i + "'><tbody><tr><td class='AM' style='font-weight:bold;'>AM</td>";
 				for (int j = 6; j < 12; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j < 8) {
@@ -74,7 +72,7 @@ public class Calendar extends HttpServlet {
 						}
 					}
 				}
-				html += "</tr><tr>";
+				html += "</tr><tr><td class='PM' style='font-weight:bold;'>PM</td>";
 				for (int j = 12; j < 18; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j == 14 && k == 4) html += "<td class='" + (j-12) + "m" + k + "0 default'>" + (j-12) + ":" + k + "0</td>";
@@ -90,18 +88,21 @@ public class Calendar extends HttpServlet {
 						}
 					}
 				}
-				if(i < 3) html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>리클라이너가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
-				else html += "</tr></tbody></table><div class='dnotice" + i + "'style=><marquee>안마의자가 고장이 나서 당분간 이용이 불가합니다.</marquee></div></div>";
+				if(i < 3) html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>由ы겢�씪�씠�꼫媛� 怨좎옣�씠 �굹�꽌 �떦遺꾧컙 �씠�슜�씠 遺덇��빀�땲�떎.</marquee></div></div>";
+				else html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>�븞留덉쓽�옄媛� 怨좎옣�씠 �굹�꽌 �떦遺꾧컙 �씠�슜�씠 遺덇��빀�땲�떎.</marquee></div></div>";
 			}
+			
+			String str = "";
 			for(int i = 0; i < info.size(); i++) {
-				status += info.get(i) + "<br>";
+				str = info.get(i);
+				if(Integer.parseInt(str.substring(str.indexOf(">", str.indexOf("g'>")) + 1, str.indexOf(":", str.indexOf("g'>")))) < 6 && Integer.parseInt(str.substring(str.indexOf(">", str.indexOf("g'>")) + 1, str.indexOf(":", str.indexOf("g'>")))) > 11) str = str.replace("g'>", "g'><strong>PM</strong> ");
+				else str = str.replace("g'>", "g'><strong>AM</strong> ");
+				status += str;
 			}
 
 			
-			// time을 출력해서 DB에서 잘 가져 왔는지 확인 가능. 그 후 time을 jsp에 뿌려줌.
-			System.out.println(time);
+			// time�쓣 異쒕젰�빐�꽌 DB�뿉�꽌 �옒 媛��졇 �솕�뒗吏� �솗�씤 媛��뒫. 洹� �썑 time�쓣 jsp�뿉 肉뚮젮以�.
 			request.setAttribute("time", time);
-			System.out.println(html);
 			request.setAttribute("html", html);
 			request.setAttribute("status", status);
 			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");

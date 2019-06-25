@@ -1,7 +1,7 @@
 package com.rest.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,19 +36,40 @@ public class Reservation extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		ReservationDAO dao = new ReservationDAO();
-		ReservationVO vo = new ReservationVO();
-		int num = dao.resCheck((String)session.getAttribute("nickname"));
+		List<String> list = dao.resCheck((String)session.getAttribute("nickname"));
 		
-		// vo객체로 데이터 저장
-		vo.setNickname((String)session.getAttribute("nickname"));
-		vo.setTime((String)request.getParameter("time"));
-		vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no").replaceAll("t", "")));
-		// DB 조회
-		if(num < 2) {
-			System.out.println(num);
-		// DB에 저장
+		// vo媛앹껜濡� �뜲�씠�꽣 ���옣
+		// DB 議고쉶
+		if(list.size() < 2) {
+			ReservationVO vo = new ReservationVO();
+			vo.setNickname((String)session.getAttribute("nickname"));
+			vo.setTime((String)request.getParameter("time"));
+			vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no").replaceAll("t", "")));
+		// DB�뿉 ���옣
+			boolean check = true;
+			int time = Integer.parseInt(vo.getTime().replace("m", ""));
+			if(time % 100 >= 60) time += 40;
+			for(int i = 0; i < list.size(); i++) {
+				int p20 = Integer.parseInt(list.get(i).replace("m", "")) + 20;
+				int m20 = p20 - 40;
+				int same = p20 - 20;
+				if(p20 % 100 >= 60) p20 += 40;
+				if(m20 % 100 >= 60) m20 -= 60;
+				if(same % 100 >= 60) same += 40;
+				if(time == p20 || time == m20) {
+					response.getWriter().write("d");
+					check = false;
+					break;
+				} else if(time == same) {
+					response.getWriter().write("s");
+					check = false;
+					break;
+				}
+			}
+			if(check ) { 
 		dao.reservation(vo);
 		response.getWriter().write(dao.getID(vo.getTime(), vo.getNickname())+"");
+			}
 		}else response.getWriter().write("x");
 		
 	}

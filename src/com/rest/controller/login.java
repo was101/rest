@@ -47,9 +47,8 @@ public class login extends HttpServlet {
 			remem = check[i];
 		}
 
-		// 세션이 없으면 세션을 생성, 세션이 있으면 해당 새션을 불러옴
+		// �꽭�뀡�씠 �뾾�쑝硫� �꽭�뀡�쓣 �깮�꽦, �꽭�뀡�씠 �엳�쑝硫� �빐�떦 �깉�뀡�쓣 遺덈윭�샂
 		if (check != null) {
-			System.out.println("체크 됨");
 			Cookie nicknameCookie = new Cookie("nickname", nickname);
 			Cookie pwCookie = new Cookie("pw", crypt.run_Encrypt(pw));
 			Cookie reCookie = new Cookie("checked", remem);
@@ -66,10 +65,8 @@ public class login extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("/Calendar");
+			response.sendRedirect("/Rest/Calendar");
 		} else {
-			System.out.println("체크 안됨");
-			System.out.println("체크 됨");
 			Cookie nicknameCookie = new Cookie("nickname", nickname);
 			Cookie pwCookie = new Cookie("pw", crypt.run_Encrypt(pw));
 			Cookie reCookie = new Cookie("checked", remem);
@@ -86,17 +83,15 @@ public class login extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			response.sendRedirect("/Calendar");
+			response.sendRedirect("/Rest/Calendar");
 		}
-
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

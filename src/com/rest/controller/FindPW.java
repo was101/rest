@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//--------------암&복호화
+//--------------�븫&蹂듯샇�솕
 import org.apache.tomcat.util.codec.binary.Base64;
-//--------------암&복호화 end
+//--------------�븫&蹂듯샇�솕 end
 
 import com.rest.DAO.UserDAO;
 
@@ -48,8 +48,7 @@ public class FindPW extends HttpServlet {
 		try {
 			response.getWriter().write(a.run_decrypt(pw));
 		} catch (Exception e) {
-			System.out.println("security error");
-//			e.printStackTrace();	//개발자용
+			e.printStackTrace();	//媛쒕컻�옄�슜
 		}
 	}
 

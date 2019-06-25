@@ -7,21 +7,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.rest.DAO.ReservationDAO;
+import com.rest.DAO.DisableDAO;
 
 /**
- * Servlet implementation class Delete
+ * Servlet implementation class Disabled
  */
-@WebServlet("/Delete")
-public class Delete extends HttpServlet {
+@WebServlet("/Disabled")
+public class Disabled extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Delete() {
+    public Disabled() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,11 +29,9 @@ public class Delete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		ReservationDAO dao = new ReservationDAO();
-		String nickname = (String)session.getAttribute("nickname");
-		String time = (String)request.getParameter("time");
-		dao.delete(time, nickname);
+		DisableDAO dao = new DisableDAO();
+		String str = dao.select();
+		response.getWriter().write(str);
 	}
 
 	/**
