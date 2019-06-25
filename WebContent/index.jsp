@@ -659,7 +659,7 @@ $(document).ready(function() {
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
 					<a class="nav-link" data-toggle="dropdown" href="#"> <img
 						src="./images/person.png" style="margin-right: 5px"></a>
-					<div class="dropdown-menu" style="position: absolute; left: -416%;width:200px;">
+					<div class="dropdown-menu" style="position: absolute; left: -495%;width:201px;">
 					<div style="margin: 0px 3px 6px 15px;">
 					<img src="./images/person.png" style="margin-right:5px"> <strong><%=request.getSession().getAttribute("nickname") %> </strong>예약 정보
 					</div>
