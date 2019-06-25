@@ -59,7 +59,7 @@ public class Calendar extends HttpServlet {
 			List<String> info = dao.getInfo(nickname);
 			
 			for (int i = 1; i <= 3; i++) {
-				html += "<div class='rm0" + i + "'><img class='commaimages' src='./images/comma" + i + ".png'><table class='t" + i + "'><tbody><tr><td class='AM' style='font-weight:bold;'>AM</td>";
+				html += "<div class='rm0" + i + "'><img class='commaimages" + i + "' src='./images/comma" + i + ".png'><table class='t" + i + "'><tbody><tr><td class='AM' style='font-weight:bold;'>AM</td>";
 				for (int j = 6; j < 12; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j < 8) {
@@ -88,8 +88,8 @@ public class Calendar extends HttpServlet {
 						}
 					}
 				}
-				if(i < 3) html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>由ы겢�씪�씠�꼫媛� 怨좎옣�씠 �굹�꽌 �떦遺꾧컙 �씠�슜�씠 遺덇��빀�땲�떎.</marquee></div></div>";
-				else html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>�븞留덉쓽�옄媛� 怨좎옣�씠 �굹�꽌 �떦遺꾧컙 �씠�슜�씠 遺덇��빀�땲�떎.</marquee></div></div>";
+				if(i < 3) html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>리클라이너 고장으로 사용할 수 없습니다.</marquee></div></div>";
+				else html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>안마의자 고장으로 사용할 수 없습니다.</marquee></div></div>";
 			}
 			
 			String str = "";

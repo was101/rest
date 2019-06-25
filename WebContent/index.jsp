@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<c:set value="<%=(String)request.getSession().getAttribute(\"nickname\") %>" var="nickname"/>
 <!DOCTYPE html>
@@ -242,33 +242,35 @@ td {
 }
 
 .rm01 {
-	width: 1600px;
+	width: 1645px;
 	margin-left: 110px;
 	margin-bottom: 110px;
-	margin-top: 30px;
 }
 
 .rm02 {
-	width: 1600px;
+	width: 1645px;
 	margin-left: 110px;
 	margin-bottom: 110px;
 }
 
 .rm03 {
-	width: 1600px;
+	width: 1645px;
 	margin-left: 110px;
 	margin-bottom: 110px;
 }
 
 .t1 {
+	margin-top:20px;
 	float: right;
 }
 
 .t2 {
+	margin-top:20px;
 	float: right;
 }
 
 .t3 {
+	margin-top:20px;
 	float: right;
 }
 
@@ -309,7 +311,7 @@ td {
 	padding: 25px 0px;
 	text-align: center;
 	float: right;
-	top: -101px;
+	top: -99px;
 	right: 0%;
 }
 
@@ -327,7 +329,7 @@ td {
 	padding: 25px 0px;
 	text-align: center;
 	float: right;
-	top: -101px;
+	top: -100px;
 	right: 0%;
 }
 
@@ -345,14 +347,27 @@ td {
 	padding: 25px 0px;
 	text-align: center;
 	float: right;
-	top: -101px;
+	top: -97px;
 	right: 0%;
 }
 
-.commaimages {
-	margin-right: 30px;
-	width: 80px;
-	height: 102px;
+.commaimages1 {
+   margin-right: 30px;
+   width: 120px;
+   height: 120px;
+}
+
+.commaimages2 {
+   margin-right: 30px;
+   width: 120px;
+   height: 120px;
+}
+
+.commaimages3 {
+   margin-right: 30px;
+   margin-left: 9px;
+   width: 107px;
+   height: 117px;
 }
 
 .commaimage1 {
@@ -685,20 +700,20 @@ $(document).ready(function() {
 	<div class="admin">
 		<span><center style="margin: 6px 0 0 0; color: RGB(64, 64, 64); font-size: 20px;">Controls</center></span>
 		<hr style="margin: 0;">
-		<img class="commaimage1" src="./images/comma1.png"
+		<img class="commaimage1" src="./images/comman1.png"
 			style="margin-top: 20px;">
 		<div class="switchContainer1" id="switchContainer1">
 			<div class="switchBg"></div>
 			<div class="switchBtn"></div>
 		</div>
 
-		<img class="commaimage1" src="./images/comma2.png">
+		<img class="commaimage1" src="./images/comman2.png">
 		<div class="switchContainer2" id="switchContainer2">
 			<div class="switchBg"></div>
 			<div class="switchBtn"></div>
 		</div>
 
-		<img class="commaimage1" src="./images/comma3.png">
+		<img class="commaimage1" src="./images/comman3.png">
 		<div class="switchContainer3" id="switchContainer3">
 			<div class="switchBg"></div>
 			<div class="switchBtn"></div>

@@ -13,7 +13,7 @@ import com.rest.DAO.DisableDAO;
 /**
  * Servlet implementation class Disable
  */
-@WebServlet("/Rest/Disable")
+@WebServlet("/Disable")
 public class Disable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
