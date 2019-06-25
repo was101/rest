@@ -386,7 +386,8 @@ td {
     background-color: #DC4848;
     margin-left: 6px;
     font-size: 9px;
-    padding: 3px;
+    padding: 0px 1px;
+    font-weight: bold;
 }
 /* #calendar {
 	width: 500px;
@@ -660,7 +661,7 @@ $(document).ready(function() {
 						src="./images/person.png" style="margin-right: 5px"></a>
 					<div class="dropdown-menu" style="position: absolute; left: -416%;width:200px;">
 					<div style="margin: 0px 3px 6px 15px;">
-					<img src="./images/person.png"> 내 예약 정보
+					<img src="./images/person.png" style="margin-right:5px"> <strong><%=request.getSession().getAttribute("nickname") %> </strong>예약 정보
 					</div>
 					<a class="dropdown-item target" href="Logout"></a>
 							${status}
