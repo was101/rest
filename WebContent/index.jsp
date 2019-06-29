@@ -470,9 +470,9 @@ $(document).ready(function() {
     	url: '/Rest/Disabled',
     	success : function(result) {
     	var arr = [[],[],[]];
-    		var str = result;
-    		for(var i = 0; i < arr.length; i++) {
-    			arr[i] = str.split("@")[i].split("/");
+    		var str = result.split("@");
+    		for(var i = 0; i < str.length; i++) {
+    			arr[i] = str[i].split("/");
     		}
     		for(var i = 0; i < arr.length; i++) {
     			if(arr[i][1] == "0") {
@@ -508,7 +508,25 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('.default, .active').click(function() {
+	$('.active').click(function() {
+		var cancel = $(this);
+		$.ajax({
+			type: 'post',
+			url: '/Rest/Delete',
+			data : {
+				'time' : cancel.attr('class').replace(' active', '')
+			},
+			success : function(result) {
+				console.log(result);
+				if(result == '1') {
+				alert('에약이 취소 되었습니다.');
+				location.reload();
+				} else alert('예약자가 다릅니다.');
+			}
+		});
+	});
+	
+	$('.default').click(function() {
 		alert("예약하실 수 없습니다.");
 	});
 	
@@ -655,25 +673,25 @@ $(document).ready(function() {
 		<h1 class="text-white" style="font-size: 65px;">휴게실 예약 시스템</h1>
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-white bg-white sticky-top">
-		<a class="navbar-brand logo" href="http://www.openhands.co.kr"><img
+		<a class="navbar-brand logo" href="http://www.openhands.co.kr" target="_sub"><img
 			src="./images/openhands_logo.png" style="width: 110px"></a>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">휴게실 예약</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">편의기능</a>
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">편의기능</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list;jsessionid=dIzKcanodX9wf2LeRYcek775PIStW75nQZw2Jf7qshFWXZh5_AA8!550924408?zoneId=AS&menuTime=lunch" target="_sub">delacourt(식당메뉴)</a> <a
-							class="dropdown-item" href="http://70.30.169.36:8080/RS/#	" target="_sub">회의실 예약 시스템</a> <a
-							class="dropdown-item" href="#" target="_sub">전결라인</a>
-					</div></li>
+						<a class="dropdown-item" href="http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list;jsessionid=dIzKcanodX9wf2LeRYcek775PIStW75nQZw2Jf7qshFWXZh5_AA8!550924408?zoneId=AS&menuTime=lunch" target="_sub">delacourt(식당메뉴)</a>
+						<a class="dropdown-item" href="http://70.30.169.36:8080/RS/#" target="_sub">회의실 예약 시스템</a>
+							<!-- <a class="dropdown-item" href="#" target="_sub">전결라인</a> -->
+					</div>
+				</li>
 			</ul>
 		</div>
 		<div class="navbar2">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
-					<a class="nav-link" data-toggle="dropdown" href="#"> <img
-						src="./images/person.png" style="margin-right: 5px"></a>
+					<a class="nav-link" data-toggle="dropdown" href="#"><strong style="font-size:15px;">내 예약 정보</strong></a>
 					<div class="dropdown-menu" style="position: absolute; left: -495%;width:201px;">
 					<div style="margin: 0px 3px 6px 15px;">
 					<img src="./images/person.png" style="margin-right:5px"> <strong><%=request.getSession().getAttribute("nickname") %> </strong>예약 정보

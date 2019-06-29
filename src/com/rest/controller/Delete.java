@@ -34,7 +34,7 @@ public class Delete extends HttpServlet {
 		ReservationDAO dao = new ReservationDAO();
 		String nickname = (String)session.getAttribute("nickname");
 		String time = (String)request.getParameter("time");
-		dao.delete(time, nickname);
+		response.getWriter().write(String.valueOf(dao.delete(time, nickname)));
 	}
 
 	/**
