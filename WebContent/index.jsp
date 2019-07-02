@@ -15,12 +15,9 @@
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 <link rel="shortcut icon" type="image/x-icon" href="./images/comma.ico">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="./particles/jparticles.js"></script>
 <script src="./particles/particle.js"></script>
 <script src="./particles/event.js"></script>
@@ -51,6 +48,11 @@
 	src: url('./images/NANUMBARUNGOTHICBOLD.eot')
 		format('embedded-opentype'), url('./images/NANUMBARUNGOTHICBOLD.TTF')
 		format('truetype');
+}
+
+@font-face {
+	font-family: 'Seoul';
+	src: url('./images/SEOULHANGANGM.TTF') format('truetype');
 }
 
 body {
@@ -180,6 +182,7 @@ body {
 	animation: switchOff 250ms linear forwards;
 }
 
+
 @keyframes switchOn { 
 	0%{transform: scale3d(1, 1, 1) translate3d(0px, 0, 0);transform-origin: left center;}
 	40%{transform:scale3d(1.4,0.7,0) translate3d(20px,0,0);transform-origin:right center;}
@@ -192,6 +195,7 @@ body {
 	70%{transform:scale3d(0.9,1.15,1) translate3d(-3px,0,0);}
 	100%{transform: scale3d(1,1,1) translate3d(0px,0,0);}
 }
+
 .jumbotron {
 	background-image: linear-gradient(to right, RGB(7, 152, 207),
 		RGB(132, 125, 175), RGB(245, 101, 146));
@@ -260,17 +264,17 @@ td {
 }
 
 .t1 {
-	margin-top:20px;
+	margin-top: 20px;
 	float: right;
 }
 
 .t2 {
-	margin-top:20px;
+	margin-top: 20px;
 	float: right;
 }
 
 .t3 {
-	margin-top:20px;
+	margin-top: 20px;
 	float: right;
 }
 
@@ -352,22 +356,22 @@ td {
 }
 
 .commaimages1 {
-   margin-right: 30px;
-   width: 120px;
-   height: 120px;
+	margin-right: 30px;
+	width: 120px;
+	height: 120px;
 }
 
 .commaimages2 {
-   margin-right: 30px;
-   width: 120px;
-   height: 120px;
+	margin-right: 30px;
+	width: 120px;
+	height: 120px;
 }
 
 .commaimages3 {
-   margin-right: 30px;
-   margin-left: 9px;
-   width: 107px;
-   height: 117px;
+	margin-right: 30px;
+	margin-left: 9px;
+	width: 107px;
+	height: 117px;
 }
 
 .commaimage1 {
@@ -396,14 +400,103 @@ td {
 	background-color: white;
 	border: 2px solid lightgray;
 }
+
 .cancel {
-    border-radius: 100px;
-    background-color: #DC4848;
-    margin-left: 6px;
-    font-size: 9px;
-    padding: 0px 1px;
-    font-weight: bold;
+	border-radius: 100px;
+	background-color: #DC4848;
+	margin-left: 6px;
+	font-size: 9px;
+	padding: 0px 1px;
+	font-weight: bold;
 }
+
+.X {
+	border: 0;
+	outline: 0;
+	padding: 0 0 0 0;
+	background-color: lightgray;
+	opacity: 1;
+	border-radius: 100%;
+	width: 20px;
+	height: 20px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.modal-header {
+	background: linear-gradient(to right, RGB(7, 152, 207),
+		RGB(132, 125, 175), RGB(245, 101, 146));
+	height: 40px;
+	padding: 10px 10px 5px 10px;
+}
+
+.modal-title {
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.modal-body {
+	font-size: 27px;
+	padding: 15px 15px 10px 15px;
+}
+
+.modal-content {
+	width: 462px;
+	position: absolute;
+	top: 46.3%;
+	left: 45.4%;
+	transform: translate(-50%, -50%);
+}
+
+.modal-fade{
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 3000; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.mleft {
+	float: left;
+	margin-left: 80px;
+	margin-top: -16px;
+	color : RGB(64, 64, 64);
+}
+
+.mright {
+	float: right;
+	margin-right: 80px;
+	margin-top: 34px;
+	color : RGB(64, 64, 64);
+}
+
+.mtext {
+	font-family: 'Nanum Square', sans-serif;
+	color : RGB(64, 64, 64);
+	border: 2px solid lightgray;
+	border-radius: 10px;
+	padding-top: 65px;
+	padding-bottom: 35px;
+	padding-left: 24px;
+	margin-top: -30px;
+}
+
+.text {
+	margin-bottom: 30px;
+}
+
+.mlogo {
+	margin-top: 7px;
+	float: right;
+	width: 130px;
+	height: 24px;
+}
+
 /* #calendar {
 	width: 500px;
 	position: relative;
@@ -459,6 +552,7 @@ td {
 </style>
 <script>
 $(document).ready(function() {
+
 	var time = ${time};
 	for(var i = 0; i < time.length; i++) {
 		console.log('.t' + time[i][0] + ' .' + time[i][1]);
@@ -750,5 +844,41 @@ $(document).ready(function() {
 </c:if>
 	<!-- <div id='calendar'></div> -->
 	<!-- <div class="alert"></div> -->
+	
+	<div class="modal-fade" id="noticepopup">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title text-white"></h4>
+					<button type="button" class="X" data-dismiss="modal" onClick="close_pop();">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<div class="mleft"><font style="font-size : 50px; font-family: 'Seoul', sans-serif;">“</font></div>
+					<div class="mright"><font style="font-size : 50px; font-family: 'Seoul', sans-serif;">”</font></div>
+					<span style="font-family: 'Nanum Square', sans-serif; color : RGB(64, 64, 64);"><center>휴계실 예약 시스템<br>공지사항</center></span><br>
+					<div class="mtext">
+					<div class="text">1.사용 후 커튼을 열어두세요.</div>
+					<div class="text">2.사용 시 깨끗하게 사용해주세요.</div>
+					<div class="text">3.시간을 잘 지켜주세요.</div>
+					<div class="text">4.사용시 팻말을 돌려서 표시!</div>
+					</div>
+					<img class="mlogo" src="./images/openhands_logo.png">
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			$('#noticepopup').show();
+		});
+
+		function close_pop(flag) {
+			$('#noticepopup').hide();
+		};
+	</script>
 </body>
 </html>
