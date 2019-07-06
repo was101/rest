@@ -1,6 +1,7 @@
 package com.rest.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,10 +38,14 @@ public class Reservation extends HttpServlet {
 		HttpSession session = request.getSession();
 		ReservationDAO dao = new ReservationDAO();
 		List<String> list = dao.resCheck((String)session.getAttribute("nickname"));
-		
+		Date date = new Date();
+		list.add("9999");
+		for(String s : list) {
+			System.out.println("time : " + s);
+		}
 		// vo媛앹껜濡� �뜲�씠�꽣 ���옣
 		// DB 議고쉶
-		if(list.size() < 2) {
+		if(list.size() < 3) {
 			ReservationVO vo = new ReservationVO();
 			vo.setNickname((String)session.getAttribute("nickname"));
 			vo.setTime((String)request.getParameter("time"));
@@ -48,6 +53,7 @@ public class Reservation extends HttpServlet {
 		// DB�뿉 ���옣
 			boolean check = true;
 			int time = Integer.parseInt(vo.getTime().replace("m", ""));
+			System.out.println("resTime : " + time);
 			if(time % 100 >= 60) time += 40;
 			for(int i = 0; i < list.size(); i++) {
 				int p20 = Integer.parseInt(list.get(i).replace("m", "")) + 20;
@@ -57,6 +63,7 @@ public class Reservation extends HttpServlet {
 				if(m20 % 100 >= 60) m20 -= 60;
 				if(same % 100 >= 60) same += 40;
 				if(time == p20 || time == m20) {
+					System.out.println("time : " + time + " p20 : " + p20 + " m20 : " + m20);
 					response.getWriter().write("d");
 					check = false;
 					break;
@@ -64,11 +71,27 @@ public class Reservation extends HttpServlet {
 					response.getWriter().write("s");
 					check = false;
 					break;
+				} else if(time / 100 > 6) {
+					if(date.getHours() > time / 100) {
+						response.getWriter().write("v");
+						check = false;
+					}else if(date.getHours() == time / 100 && date.getMinutes() > time % 100) {
+						response.getWriter().write("v");
+						check = false;
+					}
+				}else if(time / 100 < 6 && date.getHours() < 6) {
+					if(date.getHours() > time / 100) {
+						response.getWriter().write("v");
+						check = false;
+					}else if(date.getHours() == time / 100 && date.getMinutes() > time % 100) {
+						response.getWriter().write("v");
+						check = false;
+					}
 				}
 			}
-			if(check ) { 
+			if(check) { 
 		dao.reservation(vo);
-		response.getWriter().write(dao.getID(vo.getTime(), vo.getNickname())+"");
+		response.getWriter().write("o");
 			}
 		}else response.getWriter().write("x");
 		

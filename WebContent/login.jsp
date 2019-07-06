@@ -264,7 +264,8 @@ var check = false;
 		return check;
 	};
 $(document).ready(function() {
-
+	localStorage.setItem("popup", 0);
+	
 	if($.cookie("nickname") != "undefined" && $.cookie("nickname") != null) {
 		$('.remember').prop("checked", true);
 	}

@@ -553,6 +553,12 @@ td {
 <script>
 $(document).ready(function() {
 
+	if(localStorage.getItem('popup') == 0) {
+		console.log(localStorage.getItem('popup'));
+		localStorage.setItem('popup', localStorage.getItem('popup')+1);
+	$('#noticepopup').show();
+	}
+	
 	var time = ${time};
 	for(var i = 0; i < time.length; i++) {
 		console.log('.t' + time[i][0] + ' .' + time[i][1]);
@@ -596,7 +602,8 @@ $(document).ready(function() {
 			if(result == "x") alert("예약을 2번 이상 예약할 수 없습니다.");
 			else if(result == "d") alert("연속으로 예약할 수 없습니다.");
 			else if(result == "s") alert("동일한 시간대에 다른 방을 예약할 수 없습니다.");
-			else location.reload();
+			else if(result == "v") alert("지난 시간대는 예약할 수 없습니다.");
+			else if(result == "o") location.reload();
 			}
 		});
 		}
@@ -754,7 +761,11 @@ $(document).ready(function() {
       }
     container3.addEventListener("click", onOffSwitch3, false);
       </c:if>
+
 });
+		function close_pop(flag) {
+			$('#noticepopup').hide();
+		};
 </script>
 </head>
 <body>
@@ -869,16 +880,6 @@ $(document).ready(function() {
 			</div>
 			</div>
 		</div>
-	</div>
 
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			$('#noticepopup').show();
-		});
-
-		function close_pop(flag) {
-			$('#noticepopup').hide();
-		};
-	</script>
 </body>
 </html>

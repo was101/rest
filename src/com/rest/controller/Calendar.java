@@ -95,7 +95,8 @@ public class Calendar extends HttpServlet {
 			String str = "";
 			for(int i = 0; i < info.size(); i++) {
 				str = info.get(i);
-				if(Integer.parseInt(str.substring(str.indexOf(">", str.indexOf("g'>")) + 1, str.indexOf(":", str.indexOf("g'>")))) < 6 && Integer.parseInt(str.substring(str.indexOf(">", str.indexOf("g'>")) + 1, str.indexOf(":", str.indexOf("g'>")))) > 11) str = str.replace("g'>", "g'><strong>PM</strong> ");
+				System.out.println(Integer.parseInt(str.substring(str.indexOf(">", str.indexOf("g'>")) + 1, str.indexOf(":", str.indexOf("g'>")))));
+				if(Integer.parseInt(str.substring(str.indexOf(">", str.indexOf("g'>")) + 1, str.indexOf(":", str.indexOf("g'>")))) < 6 || Integer.parseInt(str.substring(str.indexOf(">", str.indexOf("g'>")) + 1, str.indexOf(":", str.indexOf("g'>")))) > 11) str = str.replace("g'>", "g'><strong>PM</strong> ");
 				else str = str.replace("g'>", "g'><strong>AM</strong> ");
 				status += str;
 			}
