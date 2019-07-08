@@ -143,7 +143,7 @@ public class ReservationDAO {
 			while(rs.next()) {
 				str = rs.getString(2);
 				str = str.replace("m", ":");
-				str = "<a class='dropdown-item delete' href='#'>" + "<img style='width:25px;margin-right:5px;' src='./images/comma" + rs.getInt(1) + ".png'>" + str + "<span class='cancel'>&times;</span></a>";
+				str = "<a class='dropdown-item delete' href='#'>" + "<img style='width:25px;margin-right:5px;' src='./images/comman" + rs.getInt(1) + ".png'>" + str + "<span class='cancel'>&times;</span></a>";
 				if(!info.contains(str)) info.add(str);
 			}
 		} catch(SQLException e) {

@@ -203,7 +203,7 @@ body {
 	font-family: 'Nanum Square', sans-serif;
 	font-size: 20px;
 	height: 130px;
-	padding: 30px;
+	padding: 20px;
 }
 
 .logo {
@@ -441,7 +441,7 @@ td {
 }
 
 .modal-content {
-	width: 462px;
+	width: 652px;
 	position: absolute;
 	top: 46.3%;
 	left: 45.4%;
@@ -463,15 +463,15 @@ td {
 
 .mleft {
 	float: left;
-	margin-left: 80px;
-	margin-top: -16px;
+    margin-top: 5px;
+    margin-left: 60px;
 	color : RGB(64, 64, 64);
 }
 
 .mright {
 	float: right;
-	margin-right: 80px;
-	margin-top: 34px;
+    margin-right: 60px;
+    margin-top: 12px;
 	color : RGB(64, 64, 64);
 }
 
@@ -480,9 +480,10 @@ td {
 	color : RGB(64, 64, 64);
 	border: 2px solid lightgray;
 	border-radius: 10px;
-	padding-top: 65px;
-	padding-bottom: 35px;
+	padding-top: 50px;
+	padding-bottom: 20px;
 	padding-left: 24px;
+	padding-right: 24px;
 	margin-top: -30px;
 }
 
@@ -495,6 +496,10 @@ td {
 	float: right;
 	width: 130px;
 	height: 24px;
+}
+
+.navbar-nav, .dropdown-item {
+	font-size: 25px;
 }
 
 /* #calendar {
@@ -775,11 +780,11 @@ $(document).ready(function() {
 	</div>
 
 	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<h1 class="text-white" style="font-size: 65px;">휴게실 예약 시스템</h1>
+		<h1 class="text-white" style="font-size: 75px;">휴게실 예약 시스템</h1>
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-white bg-white sticky-top">
 		<a class="navbar-brand logo" href="http://www.openhands.co.kr" target="_sub"><img
-			src="./images/openhands_logo.png" style="width: 110px"></a>
+			src="./images/openhands_logo.png" style="width: 140px"></a>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">휴게실 예약</a></li>
@@ -796,10 +801,10 @@ $(document).ready(function() {
 		<div class="navbar2">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown" style="position: relative; right: 0;">
-					<a class="nav-link" data-toggle="dropdown" href="#"><strong style="font-size:15px;">내 예약 정보</strong></a>
-					<div class="dropdown-menu" style="position: absolute; left: -116%;width:201px;">
-					<div style="margin: 0px 3px 6px 15px;">
-					<img src="./images/person.png" style="margin-right:5px"> <strong><%=request.getSession().getAttribute("nickname") %> </strong>예약 정보
+					<a class="nav-link" data-toggle="dropdown" href="#"><strong style="font-size:25px;">내 예약 정보</strong></a>
+					<div class="dropdown-menu" style="position: absolute; left: -80%;width:248px;">
+					<div style="margin: 0px 3px 6px 15px; font-size : 25px;">
+					<img src="./images/person.png" style="margin-right:5px;"> <strong><%=request.getSession().getAttribute("nickname") %> </strong>예약 정보
 					</div>
 					<a class="dropdown-item target" href="Logout"></a>
 							${status}
@@ -813,7 +818,7 @@ $(document).ready(function() {
 	<br>
 	<br> ${html}
 
-	<div style="text-align:center;font-weight:bold;">
+	<div style="text-align:center;font-weight:bold; font-size : 20px; margin-top : -80px;">
 	※ 지원사원팀 휴게시간(AM 9: 30 ~ 10:00 / PM 2:30 ~ 3:00)으로 예약 불가이지만, 현장에 자리가 남아있으면 들어가셔도 됩니다.
 	</div>
 	
@@ -868,12 +873,12 @@ $(document).ready(function() {
 				<div class="modal-body">
 					<div class="mleft"><font style="font-size : 50px; font-family: 'Seoul', sans-serif;">“</font></div>
 					<div class="mright"><font style="font-size : 50px; font-family: 'Seoul', sans-serif;">”</font></div>
-					<span style="font-family: 'Nanum Square', sans-serif; color : RGB(64, 64, 64);"><center>휴계실 예약 시스템<br>공지사항</center></span><br>
+					<div style="font-family: 'Nanum Square', sans-serif; color : RGB(64, 64, 64); margin-top: 18px; margin-bottom: 25px; font-size: 38px;"><center>휴게실 예약 시스템 공지사항</center></div><br>
 					<div class="mtext">
-					<div class="text">1.사용 후 커튼을 열어두세요.</div>
-					<div class="text">2.사용 시 깨끗하게 사용해주세요.</div>
-					<div class="text">3.시간을 잘 지켜주세요.</div>
-					<div class="text">4.사용시 팻말을 돌려서 표시!</div>
+					<div class="text">1.다른 사람을 위해 시간을 지켜주시길 바랍니다.</div>
+					<div class="text">2.휴게실 사용 후 커튼을 열어 주시길 바랍니다.</div>
+					<div class="text">3.휴게실 사용 후 깨끗하게 이용해 주시길 바랍니다.</div>
+					<div class="text">4.휴게실 사용 후 팻말을 돌려 주시길 바랍니다.</div>
 					</div>
 					<img class="mlogo" src="./images/openhands_logo.png">
 				</div>
