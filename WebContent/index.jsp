@@ -501,7 +501,12 @@ td {
 .navbar-nav, .dropdown-item {
 	font-size: 25px;
 }
-
+.today{
+    font-size: 40px;
+    text-align: center;
+    font-weight: bold;
+}
+}
 /* #calendar {
 	width: 500px;
 	position: relative;
@@ -558,6 +563,9 @@ td {
 <script>
 $(document).ready(function() {
 
+	var today = new Date();
+	$('.today').text(today.getFullYear() + "년 " + today.getMonth() + "월 " + today.getDate() + "일");
+	
 	if(localStorage.getItem('popup') == 0) {
 		console.log(localStorage.getItem('popup'));
 		localStorage.setItem('popup', localStorage.getItem('popup')+1);
@@ -815,8 +823,8 @@ $(document).ready(function() {
 		</div>
 	</nav>
 	<br>
-	<br>
-	<br> ${html}
+	<div class="today"></div>
+	${html}
 
 	<div style="text-align:center;font-weight:bold; font-size : 20px; margin-top : -80px;">
 	※ 지원사원팀 휴게시간(AM 9: 30 ~ 10:00 / PM 2:30 ~ 3:00)으로 예약 불가이지만, 현장에 자리가 남아있으면 들어가셔도 됩니다.
