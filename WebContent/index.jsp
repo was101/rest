@@ -248,19 +248,19 @@ td {
 .rm01 {
 	width: 1645px;
 	margin-left: 110px;
-	margin-bottom: 110px;
+	margin-bottom: 90px;
 }
 
 .rm02 {
 	width: 1645px;
 	margin-left: 110px;
-	margin-bottom: 110px;
+	margin-bottom: 90px;
 }
 
 .rm03 {
 	width: 1645px;
 	margin-left: 110px;
-	margin-bottom: 110px;
+	margin-bottom: 90px;
 }
 
 .t1 {
@@ -353,10 +353,6 @@ td {
 	float: right;
 	top: -97px;
 	right: 0%;
-}
-
-.marquee {
-	text-align: center;
 }
 
 .commaimages1 {
@@ -505,11 +501,19 @@ td {
 .navbar-nav, .dropdown-item {
 	font-size: 25px;
 }
+
 .today{
     font-size: 40px;
     text-align: center;
     font-weight: bold;
 }
+
+.support {
+	text-align:center;
+	font-weight:bold; 
+	font-size: 20px;"
+}
+
 }
 /* #calendar {
 	width: 500px;
@@ -830,11 +834,9 @@ $(document).ready(function() {
 	<div class="today"></div>
 	${html}
 
-	<div style="text-align:center;font-weight:bold; font-size : 20px; margin-top : -80px;">
+	<div class="support">
 	※ 지원사원팀 휴게시간(AM 9: 30 ~ 10:00 / PM 2:30 ~ 3:00)으로 예약 불가이지만, 현장에 자리가 남아있으면 들어가셔도 됩니다.
 	</div>
-	
-	
 	
 <c:if test="${nickname == '오픈핸즈'}">
 	<div class="admin">
