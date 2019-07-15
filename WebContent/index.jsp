@@ -572,7 +572,7 @@ td {
 $(document).ready(function() {
 
 	var today = new Date();
-	$('.today').text(today.getFullYear() + "년 " + today.getMonth() + "월 " + today.getDate() + "일");
+	$('.today').text(today.getFullYear() + "년 " + (today.getMonth() + 1) + "월 " + today.getDate() + "일");
 	
 	if(localStorage.getItem('popup') == 0) {
 		console.log(localStorage.getItem('popup'));
