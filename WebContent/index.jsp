@@ -355,6 +355,10 @@ td {
 	right: 0%;
 }
 
+.marquee {
+	text-align: center;
+}
+
 .commaimages1 {
 	margin-right: 30px;
 	width: 120px;

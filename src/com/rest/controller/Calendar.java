@@ -88,8 +88,8 @@ public class Calendar extends HttpServlet {
 						}
 					}
 				}
-				if(i < 3) html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>리클라이너 고장으로 사용할 수 없습니다.</marquee></div></div>";
-				else html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'><marquee>안마의자 고장으로 사용할 수 없습니다.</marquee></div></div>";
+				if(i < 3) html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'>리클라이너 고장으로 사용할 수 없습니다.</div></div>";
+				else html += "</tr></tbody></table><div class='dnotice" + i + "' style='display:none;'>안마의자 고장으로 사용할 수 없습니다.</div></div>";
 			}
 			
 			String str = "";
