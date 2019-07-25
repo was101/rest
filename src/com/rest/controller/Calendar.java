@@ -59,7 +59,7 @@ public class Calendar extends HttpServlet {
 			List<String> info = dao.getInfo(nickname);
 			
 			for (int i = 1; i <= 3; i++) {
-				html += "<div class='rm0" + i + "'><img class='commaimages" + i + "' src='./images/comma" + i + ".png'><table class='t" + i + "'><tbody><tr><td class='AM' style='font-weight:bold;'>AM</td>";
+				html += "<div class='rm0" + i + "'><img class='commaimages" + i + "' src='./images/comma" + i + ".svg'><table class='t" + i + "'><tbody><tr><td class='AM' style='font-weight:bold;'>AM</td>";
 				for (int j = 6; j < 12; j++) {
 					for (int k = 0; k <= 4; k += 2) {
 						if(j < 8) {

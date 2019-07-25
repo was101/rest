@@ -52,15 +52,17 @@ body {
 }
 
 .nickname {
-	background-image: url('./images/person.png');
+	background-image: url('./images/person.svg');
 	background-repeat: no-repeat;
 	background-position: 15px center;
+	background-size: 20px;
 }
 
 .password {
-	background-image: url('./images/lock.png');
+	background-image: url('./images/lock.svg');
 	background-repeat: no-repeat;
 	background-position: 15px center;
+	background-size: 20px;
 	margin-top: 25px;
 }
 
@@ -556,7 +558,7 @@ $(document).ready(function() {
       </div>
       
       <div class="findPW">
-      <img src="./images/lock.png" style="margin-right:10px;"><span class="fnname" style="font-weight:bold;">비밀번호 찾기</span><br>
+      <img src="./images/lock.svg" style="margin-right:10px;"><span class="fnname" style="font-weight:bold;">비밀번호 찾기</span><br>
         
         <div style="margin-top:10px;">
         <span style="margin-right:70px;">닉네임</span><input class="signNick fpnick" type="text" placeholder="Nickname"><br>
@@ -573,7 +575,7 @@ $(document).ready(function() {
 </div>
 </div>
 
-	<div class="alertMain" style="display:none;background-color:RGB(107, 107, 107, 0.5);position:fixed;top:0;left:0;z-index:1500;background-color;white;width:100%;height:100%;">
+	<div class="alertMain" style="display:none;background-color:RGB(107, 107, 107, 0.5);position:fixed;top:0;left:0;z-index:1500;width:100%;height:100%;">
 	<div style="position: absolute;top:46.5%;left:48.7%;transform: translate(-50%, -50%);border:1px solid gray;width: 482px;height:203px;opacity:1;">
 		<div class="alheader">알림
             <button class="alX alertClose">&times;</button>

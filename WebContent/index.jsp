@@ -461,6 +461,68 @@ td {
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
+.alert {
+	display : none;
+	background-color : RGB(107, 107, 107, 0.5);
+	position : fixed;
+	top : 0;
+	left : 0;
+	z-index : 1500;
+	width : 100%;
+	height : 100%;
+}
+
+.check {
+	display : none;
+	background-color : RGB(107, 107, 107, 0.5);
+	position : fixed;
+	top : 0;
+	left : 0;
+	z-index : 1500;
+	width : 100%;
+	height : 100%;
+}
+
+.alheader, .fnheader {
+	background-image: linear-gradient(to right, RGB(7, 152, 207),
+		RGB(132, 125, 175), RGB(245, 101, 146));
+	width: 482px;
+	height: 40px;
+	color: white;
+	padding: 5px;
+	font-size: 20px;
+	font-weight: bold;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+}
+
+.alX {
+	position: absolute;
+	left: 95%;
+	border-radius: 100%;
+	border: 0;
+	width: 20px;
+	height: 20px;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 3px 0 0 0;
+	padding: 0;
+}
+
+.alertbody {
+	padding-top: 10px;
+	text-align: center;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.checkbody {
+	padding-top: 10px;
+	text-align: center;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
 .mleft {
 	float: left;
     margin-top: 5px;
@@ -577,8 +639,17 @@ $(document).ready(function() {
 	if(localStorage.getItem('popup') == 0) {
 		console.log(localStorage.getItem('popup'));
 		localStorage.setItem('popup', localStorage.getItem('popup')+1);
-	$('#noticepopup').show();
+		$('#noticepopup').show();
 	}
+	
+	var alHeadHTML = "";
+	$('.alertClose').click(function() {
+		$('.alert').hide();
+	});
+	
+	$('.checkClose').click(function() {
+		$('.check').hide();
+	});
 	
 	var time = ${time};
 	for(var i = 0; i < time.length; i++) {
@@ -610,24 +681,42 @@ $(document).ready(function() {
 	
 	$('td').not('.default, .active, .AM, .PM').click(function() {
 		var res = $(this);
-		var reservationCheck = confirm(res.attr('class').replace("m","시 ") + "분에 예약 하시겠습니까?");
-		if(reservationCheck) {
-		$.ajax({
-			type: 'post',
-			url: '/Rest/Reservation',
-			data : {
-				'time' : res.attr('class'),
-				'rm_no' : res.parent().parent().parent().attr('class')
-			},
-		success : function(result) {
-			if(result == "x") alert("예약을 2번 이상 예약할 수 없습니다.");
-			else if(result == "d") alert("연속으로 예약할 수 없습니다.");
-			else if(result == "s") alert("동일한 시간대에 다른 방을 예약할 수 없습니다.");
-			else if(result == "v") alert("지난 시간대는 예약할 수 없습니다.");
-			else if(result == "o") location.reload();
-			}
+		$('.checktext').text(res.attr('class').replace("m","시 ") + "분에 예약 하시겠습니까?");
+		$('.check').show();
+		$('.checkYes').click(function() {
+			$('.check').hide();
+			$.ajax({
+				type: 'post',
+				url: '/Rest/Reservation',
+				data : {
+					'time' : res.attr('class'),
+					'rm_no' : res.parent().parent().parent().attr('class')
+				},
+			success : function(result) {
+				if(result == "x") 
+				{
+					$('.alertText').text("예약을 2번 이상 예약할 수 없습니다.");
+					$('.alert').show();
+				}
+				else if(result == "d")
+				{
+					$('.alertText').text("연속으로 예약할 수 없습니다.");
+					$('.alert').show();
+				}
+				else if(result == "s")
+				{
+					$('.alertText').text("동일한 시간대에 다른 방을 예약할 수 없습니다.");
+					$('.alert').show();
+				}
+				else if(result == "v")
+				{
+					$('.alertText').text("지난 시간대는 예약할 수 없습니다.");
+					$('.alert').show();
+				}
+				else if(result == "o") location.reload();
+				}
+			});
 		});
-		}
 	});
 	
 	$('.active').click(function() {
@@ -641,33 +730,47 @@ $(document).ready(function() {
 			success : function(result) {
 				console.log(result);
 				if(result == '1') {
-				alert('에약이 취소 되었습니다.');
-				location.reload();
-				} else alert('예약자가 다릅니다.');
+				$('.alertText').text("에약이 취소 되었습니다.");
+				$('.alert').show();
+				$('.alertClose').click(function() {
+					location.reload();
+				});
+				$('.alX').click(function() {
+					location.reload();
+				});
+				} else
+				{
+					$('.alertText').text("예약자가 다릅니다.");
+					$('.alert').show();
+				}
+
 			}
 		});
 	});
 	
 	$('.default').click(function() {
-		alert("예약하실 수 없습니다.");
+		$('.alertText').text("예약하실 수 없습니다.");
+		$('.alert').show();
 	});
 	
 	$('.delete').click(function() {
 		var del = $(this);
-		var deleteCheck = confirm("예약을 취소하시겠습니까?");
 		var time = del.text().substring(3, del.text().indexOf(':')+3).replace(":", "m");
-		if(deleteCheck) {
-			 $.ajax({
+		$('.checktext').text("예약을 취소하시겠습니까?");
+		$('.check').show();
+		$('.checkYes').click(function() {
+			$('.check').hide();
+			$.ajax({
 				type: 'post',
 				url: '/Rest/Delete',
 				data : {
-					'time' : time
+				'time' : time
 				},
 				success : function() {
-					location.reload();
+				location.reload();
 				}
 			});
-		}
+		});
 	});
 	
     bind('#instance', function () {
@@ -820,11 +923,11 @@ $(document).ready(function() {
 					<a class="nav-link" data-toggle="dropdown" href="#"><strong style="font-size:25px;">내 예약 정보</strong></a>
 					<div class="dropdown-menu" style="position: absolute; left: -80%;width:248px;">
 					<div style="margin: 0px 3px 6px 15px; font-size : 25px;">
-					<img src="./images/person.png" style="margin-right:5px;"> <strong><%=request.getSession().getAttribute("nickname") %> </strong>예약 정보
+					<img src="./images/person.svg" style="margin-right:5px;height: 25px;width: 22px;"> <strong><%=request.getSession().getAttribute("nickname") %> </strong>예약 정보
 					</div>
 					<a class="dropdown-item target" href="Logout"></a>
 							${status}
-						<a class="dropdown-item" href="Logout"><img src="./images/logout.png" style="width:20px;margin-right:5px;">로그아웃</a>
+						<a class="dropdown-item" href="Logout"><img src="./images/logout.svg" style="width:20px;margin-right:5px;">로그아웃</a>
 					</div>
 				</li>
 			</ul>
@@ -874,6 +977,35 @@ $(document).ready(function() {
 </c:if>
 	<!-- <div id='calendar'></div> -->
 	<!-- <div class="alert"></div> -->
+	
+	<div class="alert">
+	<div style="position: absolute;top:46.5%;left:48.7%;transform: translate(-50%, -50%);border:1px solid gray;width: 482px;height:203px;opacity:1;border-radius: 6px;">
+		<div class="alheader">알림
+            <button class="alX alertClose">&times;</button>
+        </div>
+		<div class="alertbody" style="background-color:white;width:482px;">
+		<div class="alertText" style="margin-bottom: 45px; margin-top: 40px; font-size: 24px;"></div>
+            <div style="width:440px;margin:10px 20px 10px;border-top:1px solid gray;padding-top:10px;">
+                <button class="alertClose" style="margin-bottom:10px;;border-radius: 6px;border:1px solid gray;width:60px;height:28px;outline:0;font-size:15px;">확인</button>
+            </div>
+        </div>
+	</div>
+	</div>
+	
+	<div class="check">
+	<div style="position: absolute;top:46.5%;left:48.7%;transform: translate(-50%, -50%);border:1px solid gray;width: 482px;height:203px;opacity:1;border-radius: 6px;">
+		<div class="alheader">알림
+            <button class="alX checkClose">&times;</button>
+        </div>
+		<div class="checkbody" style="background-color:white;width:482px;">
+		<div class="checktext" style="margin-bottom: 45px; margin-top: 40px; font-size: 24px;"></div>
+            <div style="width:440px;margin:10px 20px 10px;border-top:1px solid gray;padding-top:10px;">
+                <button class="checkYes" style="margin-bottom:10px;;border-radius: 6px;border:1px solid gray;width:60px;height:28px;outline:0;font-size:15px;">확인</button>
+                <button class="checkClose" style="margin-bottom:10px;;border-radius: 6px;border:1px solid gray;width:60px;height:28px;outline:0;font-size:15px;">취소</button>
+            </div>
+        </div>
+	</div>
+	</div>
 	
 	<div class="modal-fade" id="noticepopup">
 		<div class="modal-dialog modal-dialog-centered">
