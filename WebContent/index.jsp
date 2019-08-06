@@ -903,7 +903,7 @@ $(document).ready(function() {
 	</div>
 	<nav class="navbar navbar-expand-sm navbar-white bg-white sticky-top">
 		<a class="navbar-brand logo" href="http://www.openhands.co.kr" target="_sub"><img
-			src="./images/openhands_logo.png" style="width: 140px"></a>
+			src="./images/openhands_logo.svg" style="width: 140px"></a>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">휴게실 예약</a></li>
@@ -945,20 +945,20 @@ $(document).ready(function() {
 	<div class="admin">
 		<span><center style="margin: 6px 0 0 0; color: RGB(64, 64, 64); font-size: 20px;">Controls</center></span>
 		<hr style="margin: 0;">
-		<img class="commaimage1" src="./images/comman1.png"
+		<img class="commaimage1" src="./images/comman1.svg"
 			style="margin-top: 20px;">
 		<div class="switchContainer1" id="switchContainer1">
 			<div class="switchBg"></div>
 			<div class="switchBtn"></div>
 		</div>
 
-		<img class="commaimage1" src="./images/comman2.png">
+		<img class="commaimage1" src="./images/comman2.svg">
 		<div class="switchContainer2" id="switchContainer2">
 			<div class="switchBg"></div>
 			<div class="switchBtn"></div>
 		</div>
 
-		<img class="commaimage1" src="./images/comman3.png">
+		<img class="commaimage1" src="./images/comman3.svg">
 		<div class="switchContainer3" id="switchContainer3">
 			<div class="switchBg"></div>
 			<div class="switchBtn"></div>
@@ -1026,7 +1026,7 @@ $(document).ready(function() {
 					<div class="text">3.휴게실 사용 후 깨끗하게 이용해 주시길 바랍니다.</div>
 					<div class="text">4.휴게실 사용 후 팻말을 돌려 주시길 바랍니다.</div>
 					</div>
-					<img class="mlogo" src="./images/openhands_logo.png">
+					<img class="mlogo" src="./images/openhands_logo.svg">
 				</div>
 			</div>
 			</div>

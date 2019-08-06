@@ -176,11 +176,11 @@ label {
 input[type=checkbox]+label {
 	left: 0;
 	padding: 5px 0 5px 38px;
-	background: url('./images/circle.png') no-repeat;
+	background: url('./images/circle.svg') no-repeat;
 }
 
 input[type=checkbox]:checked+label {
-	background-image: url('./images/circle+check.png');
+	background-image: url('./images/circle+check.svg');
 }
 
 .bttn {
@@ -495,7 +495,7 @@ $(document).ready(function() {
     </linearGradient>
   </defs>
   <text font-family="Nanum Square" fill="url(#grad1)" font-size="65" font-family="Verdana" x="10" y="86">휴게실 예약 시스템</text>
-</svg><img src="./images/comma.png" style="margin-top:4px;height:65px;">
+</svg><img src="./images/comma.svg" style="margin-top:4px;height:65px;">
 <br>
 <form action="login" method="post" onsubmit="return login();">
 		<input class='nickname' type="text" name="nickname" placeholder="Nickname"><br>
@@ -548,7 +548,7 @@ $(document).ready(function() {
 		
 
       <div class="findID">
-      <img src="./images/person.png" style="margin-right:10px;"><span class="fnname" style="font-weight:bold;margin-top:10px;">닉네임 찾기</span><br>
+      <img src="./images/person.svg" style="margin-right:10px; width: 18px; height: 20px;"><span class="fnname" style="font-weight:bold;margin-top:10px;">닉네임 찾기</span><br>
 		<div style="margin-top:10px;">
 		<span style="margin-right:63px;">E-mail</span><input class="signEmail fnemail" type="text" placeholder="E-mail"><span>@openhands.co.kr</span><br>
 		</div>
@@ -558,7 +558,7 @@ $(document).ready(function() {
       </div>
       
       <div class="findPW">
-      <img src="./images/lock.svg" style="margin-right:10px;"><span class="fnname" style="font-weight:bold;">비밀번호 찾기</span><br>
+      <img src="./images/lock.svg" style="margin-right:10px; width: 16px; height: 20px;"><span class="fnname" style="font-weight:bold;">비밀번호 찾기</span><br>
         
         <div style="margin-top:10px;">
         <span style="margin-right:70px;">닉네임</span><input class="signNick fpnick" type="text" placeholder="Nickname"><br>
@@ -581,7 +581,7 @@ $(document).ready(function() {
             <button class="alX alertClose">&times;</button>
         </div>
 		<div class="alertbody" style="background-color:white;width:482px;">
-            <img src="./images/emo.png" style="width:60px;margin-bottom:10px;"><br>
+            <img src="./images/emo.svg" style="width:60px;margin-bottom:10px;"><br>
             <div class="alertText">뭔가 잘못 된 것 같은데요!?</div>
             <div style="width:440px;margin:10px 20px 10px;border-top:1px solid gray;padding-top:10px;">
                 <button class="alertClose" style="margin-bottom:10px;;border-radius: 6px;border:1px solid gray;width:60px;height:28px;outline:0;font-size:15px;">확인</button>
