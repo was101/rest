@@ -48,7 +48,7 @@ public class FindPW extends HttpServlet {
 		try {
 			response.getWriter().write(a.run_decrypt(pw));
 		} catch (Exception e) {
-			e.printStackTrace();	//媛쒕컻�옄�슜
+			e.printStackTrace();
 		}
 	}
 

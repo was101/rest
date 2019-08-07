@@ -48,7 +48,7 @@ public class signUp extends HttpServlet {
 		try {
 			response.getWriter().write(dao.signUp(nickname, crypt.run_Encrypt(password), email) + "");
 		} catch (Exception e) {
-			e.printStackTrace();	//媛쒕컻�옄�슜
+			e.printStackTrace();
 		}
 	}
 

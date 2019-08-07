@@ -47,7 +47,6 @@ public class login extends HttpServlet {
 			remem = check[i];
 		}
 
-		// �꽭�뀡�씠 �뾾�쑝硫� �꽭�뀡�쓣 �깮�꽦, �꽭�뀡�씠 �엳�쑝硫� �빐�떦 �깉�뀡�쓣 遺덈윭�샂
 		if (check != null) {
 			Cookie nicknameCookie = new Cookie("nickname", nickname);
 			Cookie pwCookie = new Cookie("pw", crypt.run_Encrypt(pw));

@@ -52,7 +52,7 @@ public class Test extends HttpServlet {
 				response.getWriter().write("false");
 		} catch (Exception e) {
 			System.out.println("security error");
-//			e.printStackTrace();	//媛쒕컻�옄�슜
+//			e.printStackTrace();
 		}
 	}
 

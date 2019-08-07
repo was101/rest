@@ -38,18 +38,15 @@ public class Calendar extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 
-		// �꽭�뀡�씠 �뾾�쑝硫� 濡쒓렇�씤�솕硫댁쑝濡�, �엳�쑝硫� 罹섎┛�뜑 �깮�꽦.
 		if (session == null || session.getAttribute("nickname") == null) {
 			response.sendRedirect("/Rest/Start");
 		} else {
 			ReservationDAO dao = new ReservationDAO();
 
-			// 諛� 踰덊샇 媛믪씠 �엳�쑝硫� �빐�떦 踰덊샇濡�, �뾾�쑝硫� default濡� 1�쓣 �꽔�쓬.
 			int rm_no = 1;
 			if (request.getParameter("rm_no") != null)
 				rm_no = Integer.parseInt(request.getParameter("rm_no"));
 
-			// DB�뿉�꽌 time�쓣 遺덈윭�삩 �뮘�뿉 json�삎�떇�쑝濡� 諛붽퓞.(�븘吏곸� String)
 			String time = dao.booked();
 			String nickname = (String)session.getAttribute("nickname");
 			request.setCharacterEncoding("UTF-8");
@@ -102,7 +99,6 @@ public class Calendar extends HttpServlet {
 			}
 
 			
-			// time�쓣 異쒕젰�빐�꽌 DB�뿉�꽌 �옒 媛��졇 �솕�뒗吏� �솗�씤 媛��뒫. 洹� �썑 time�쓣 jsp�뿉 肉뚮젮以�.
 			request.setAttribute("time", time);
 			request.setAttribute("html", html);
 			request.setAttribute("status", status);

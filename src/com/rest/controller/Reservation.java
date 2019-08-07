@@ -43,14 +43,11 @@ public class Reservation extends HttpServlet {
 		for(String s : list) {
 			System.out.println("time : " + s);
 		}
-		// vo媛앹껜濡� �뜲�씠�꽣 ���옣
-		// DB 議고쉶
 		if(list.size() < 3) {
 			ReservationVO vo = new ReservationVO();
 			vo.setNickname((String)session.getAttribute("nickname"));
 			vo.setTime((String)request.getParameter("time"));
 			vo.setRm_no(Integer.parseInt((String)request.getParameter("rm_no").replaceAll("t", "")));
-		// DB�뿉 ���옣
 			boolean check = true;
 			int time = Integer.parseInt(vo.getTime().replace("m", ""));
 			System.out.println("resTime : " + time);

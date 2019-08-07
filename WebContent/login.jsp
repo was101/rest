@@ -173,10 +173,22 @@ label {
 	transform: translate(-50%, -50%);
 }
 
-input[type=checkbox]+label {
+/*IE 10+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	input[type=checkbox]+label {
 	left: 0;
 	padding: 5px 0 5px 38px;
 	background: url('./images/circle.svg') no-repeat;
+	background-position: -40px;
+	}
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	input[type=checkbox]+label {
+	left: 0;
+	padding: 5px 0 5px 38px;
+	background: url('./images/circle.svg') no-repeat;
+	}
 }
 
 input[type=checkbox]:checked+label {
